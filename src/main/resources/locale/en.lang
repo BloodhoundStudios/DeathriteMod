@@ -6,7 +6,9 @@ ridiumoreobject=Ridium Ore
 aetheroreobject=Aether Ore
 aetherrock=Aether Rock
 skyladderdown=Sky Ladder
-skyladderup=Sky Ladder Up (Not Obtainable)
+skyladderup=Sky Ladder
+wormholedown=Wormhole
+wormholeup=Wormhole
 deathritesummoner=Deathrite Summoner
 
 [item]
@@ -22,6 +24,7 @@ ridiumsword=Ridium Sword
 
 ridiumpickaxe=Ridium Pickaxe
 ridiumaxe=Ridium Axe
+ridiumshovel=Ridium Shovel
 
 ridiumhelmet=Ridium Helmet
 ridiumchestplate=Ridium Chestplate
@@ -32,6 +35,8 @@ aethermap=Global Aether Map
 essenceofthegods=Essence of the Gods
 thepoweroftheeclipse=The Power of The Eclipse
 stardust=Stardust
+darkmatter=Dark Matter
+skycore=Sky Core
 
 passedspirits=Passed Spirits
 knightsheart=Knights Heart

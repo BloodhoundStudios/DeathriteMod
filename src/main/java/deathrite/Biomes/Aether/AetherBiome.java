@@ -39,10 +39,16 @@ public class AetherBiome extends Biome {
         return new AetherSkyLevel(islandX, islandY, WorldGenerator.getIslandSize(islandX, islandY), 10, worldEntity, this);
     }
 
+    public Level getNewSpaceLevel(int islandX, int islandY, int dimension, Server server, WorldEntity worldEntity) {
+        return new AetherSpaceLevel(islandX, islandY, dimension, worldEntity, this);
+    }
+
     @Override
     public Level getNewLevel(int islandX, int islandY, int dimension, Server server, WorldEntity worldEntity) {
         if(dimension == 10) {
             return getNewSkyLevel(islandX, islandY, dimension, server, worldEntity);
+        } else if (dimension == -10) {
+            return getNewSpaceLevel(islandX, islandY, dimension, server, worldEntity);
         } if (dimension == 0) {
             return this.getNewSurfaceLevel(islandX, islandY, server, worldEntity);
         } else if (dimension == -1) {

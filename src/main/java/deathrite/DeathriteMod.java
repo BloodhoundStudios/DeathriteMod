@@ -3,10 +3,7 @@ package deathrite;
 import deathrite.Armor.Ridium.RidiumBootsItem;
 import deathrite.Armor.Ridium.RidiumChestplateItem;
 import deathrite.Armor.Ridium.RidiumHelmetItem;
-import deathrite.Biomes.Aether.AetherBiome;
-import deathrite.Biomes.Aether.AetherCaveLevel;
-import deathrite.Biomes.Aether.AetherSkyLevel;
-import deathrite.Biomes.Aether.AetherSurfaceLevel;
+import deathrite.Biomes.Aether.*;
 import deathrite.Buffs.Trinkets.Arrowheads.RidiumArrowheadBuff;
 import deathrite.Buffs.Trinkets.BladeSharpeners.AetherBladeSharpener;
 import deathrite.Buffs.Trinkets.BladeSharpeners.AethiumBladeSharpener;
@@ -26,6 +23,7 @@ import deathrite.Items.Materials.Essence.MoonEssence;
 import deathrite.Items.Materials.Essence.SunEssence;
 import deathrite.Items.Materials.Ridium.RidiumBar;
 import deathrite.Items.Materials.Ridium.RidiumOre;
+import deathrite.Items.Materials.SkyCore;
 import deathrite.Items.Materials.Stardust;
 import deathrite.Items.Weapons.Dev.DevSword;
 import deathrite.Items.Weapons.Ridium.RidiumSword;
@@ -52,6 +50,7 @@ import necesse.gfx.gameTexture.GameTexture;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.Item;
 import necesse.inventory.item.Item.Rarity;
+import necesse.inventory.item.matItem.MatItem;
 import necesse.inventory.item.placeableItem.mapItem.BiomeMapItem;
 import necesse.inventory.item.toolItem.axeToolItem.CustomAxeToolItem;
 import necesse.inventory.item.toolItem.pickaxeToolItem.CustomPickaxeToolItem;
@@ -66,6 +65,7 @@ import necesse.level.gameObject.RockOreObject;
 
 import java.awt.*;
 import java.util.Random;
+import java.util.logging.Level;
 
 // Normal = White
 // Common = Green
@@ -103,6 +103,7 @@ public class DeathriteMod {
 
         // Objects
         LadderDownObject.registerLadderPair("skyladder", 10, new Color(221, 232, 237), Rarity.EPIC, 20);
+        LadderDownObject.registerLadderPair("wormhole", -10, new Color(56, 8, 84), Rarity.LEGENDARY, 50);
 
         // Workstations
         DeathriteSummonerObject.registerWorkstation();
@@ -147,6 +148,8 @@ public class DeathriteMod {
         ItemRegistry.registerItem("sunessence", new SunEssence(), 30, true);
         ItemRegistry.registerItem("essenceofthegods", new EssenceOfTheGods(), 0, true);
         ItemRegistry.registerItem("stardust", new Stardust(), 10, true);
+        ItemRegistry.registerItem("skycore", new SkyCore(), 25, true);
+
 
         // Trinkets
         ItemRegistry.registerItem("ridiumarrowhead", new SimpleTrinketItem(Rarity.EPIC, "ridiumarrowheadbuff", 10),5, true);
@@ -167,6 +170,7 @@ public class DeathriteMod {
         ItemRegistry.registerItem("thepowerofthemoon", new ThePowerOfTheMoon(), 500, true);
         ItemRegistry.registerItem("thepowerofthesun", new ThePowerOfTheSun(), 500, true);
         ItemRegistry.registerItem("thepoweroftheeclipse", new ThePowerOfTheEclipse(), 1000, true);
+        ItemRegistry.registerItem("darkmatter", new DarkMatter(), 50, true);
 
         // Boss Summons
         ItemRegistry.registerItem("tabletofspirits", new TabletofSpiritsSpawnItem(), 500, true);
@@ -192,6 +196,7 @@ public class DeathriteMod {
         LevelRegistry.registerLevel("aethersurface", AetherSurfaceLevel.class);
         LevelRegistry.registerLevel("aethercave", AetherCaveLevel.class);
         LevelRegistry.registerLevel("aethersky", AetherSkyLevel.class);
+        LevelRegistry.registerLevel("aetherspace", AetherSpaceLevel.class);
 
         // Music
         AetherMusic = MusicRegistry.registerMusic("aethermusic", "music/aethersurfacemusic",
@@ -225,8 +230,19 @@ public class DeathriteMod {
                 RecipeTechRegistry.FALLEN_WORKSTATION,
                 new Ingredient[]{
                         new Ingredient("aetherbar", 10),
-                        new Ingredient("ridiumbar", 5)
-                        // new Ingredient("skycore", 1) -- Gonna make this an enemy drop
+                        new Ingredient("ridiumbar", 5),
+                        new Ingredient("skycore", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "wormholedown",
+                1,
+                RecipeTechRegistry.FALLEN_WORKSTATION,
+                new Ingredient[]{
+                        new Ingredient("stardust", 20),
+                        new Ingredient("aethiumbar", 10),
+                        new Ingredient("darkmatter", 5)
                 }
         ));
 
@@ -322,6 +338,17 @@ public class DeathriteMod {
                         new Ingredient("ridiumbar", 1),
                         new Ingredient("aetherbar", 1),
                         new Ingredient("knightsheart", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "skycore",
+                1,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("aetherbar", 5),
+                        new Ingredient("glass", 10),
+                        new Ingredient("glacialbar", 5)
                 }
         ));
 
