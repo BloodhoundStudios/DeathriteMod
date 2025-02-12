@@ -1,0 +1,85 @@
+[tile]
+exampletile=Example Tile
+
+[object]
+ridiumoreobject=Ridium Ore
+aetheroreobject=Aether Ore
+aetherrock=Aether Rock
+skyladderdown=Sky Ladder
+skyladderup=Sky Ladder Up (Not Obtainable)
+deathritesummoner=Deathrite Summoner
+
+[item]
+ridiumbar=Ridium Bar
+aetherbar=Aether Bar
+aethiumbar=Aethium Bar
+
+ridiumore=Ridium Ore
+aetherore=Aether Ore
+
+devsword=Dev Sword
+ridiumsword=Ridium Sword
+
+ridiumpickaxe=Ridium Pickaxe
+ridiumaxe=Ridium Axe
+
+ridiumhelmet=Ridium Helmet
+ridiumchestplate=Ridium Chestplate
+ridiumboots=Ridium Boots
+
+aetherstone=Aether Stone
+aethermap=Global Aether Map
+essenceofthegods=Essence of the Gods
+thepoweroftheeclipse=The Power of The Eclipse
+stardust=Stardust
+
+passedspirits=Passed Spirits
+knightsheart=Knights Heart
+moonessence=Moon Essence
+sunessence=Sun Essence
+motherslimesleftoverslime=Mother Slimes Leftover Slime
+spiderempresscrown=Spider Empress's Crown
+thepowerofthemoon=The Power of The Moon
+thepowerofthesun=The Power of The Sun
+
+tabletofspirits=Tablet of Spirits
+starryworm=Starry Worm
+
+ridiumarrowhead=Ridium Arrowhead
+ridiumbladesharpener=Ridium Blade Sharpener
+aetherbladesharpener=Aether Blade Sharpener
+aethiumbladesharpener=Aethium Blade Sharpener
+bladesharpener=Blade Sharpener
+
+[itemtooltip]
+examplestafftip=Shoots a homing, piercing projectile
+skyladderdowntip=Seems like it goes to the sky
+tabletofspiritstip=Releases a Knight from the past
+tabletofspiritstip2=Must be used in Aether Caves
+deathritesummonertip=Used to Summon relics of the past
+ridiumarrowheadtip=25% increased Ranged Damage
+ridiumbladesharpenertip=25% increased Melee Damage
+aetherbladesharpenertip=25% increased Melee Speed
+aethiumbladesharpenertip=25% increased Melee Speed and Damage, 15% increased Melee Crit Chance
+bladesharpener=5% increased Melee Damage
+starrywormtip=Calls upon the Devourer of Stars
+starrywormtip2=Must be used in The Aether Sky
+
+[biome]
+aether=Aether
+
+[tile]
+aethersandfloor=Aether Sand
+skycloudfloor=Sky Cloud
+aetherstonefloor=Aether Stone
+
+[mob]
+aetherspirit=Aether Spirit
+starfangeddestroyer=Starfanged Destroyer
+enragedstarfangeddestroyer=Enraged Starfanged Destroyer
+
+[buff]
+examplebuff=Example Buff
+
+[journal]
+craftessenceofthegods=Craft Essence of The Gods
