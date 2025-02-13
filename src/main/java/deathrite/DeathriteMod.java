@@ -24,7 +24,10 @@ import deathrite.Items.Materials.Essence.SunEssence;
 import deathrite.Items.Materials.Ridium.RidiumBar;
 import deathrite.Items.Materials.Ridium.RidiumOre;
 import deathrite.Items.Materials.SkyCore;
+import deathrite.Items.Materials.Space.SpaceStone;
 import deathrite.Items.Materials.Stardust;
+import deathrite.Items.Materials.Starite.StariteOre;
+import deathrite.Items.Materials.Starite.StarryBar;
 import deathrite.Items.Weapons.Dev.DevSword;
 import deathrite.Items.Weapons.Ridium.RidiumSword;
 import deathrite.Journal.DeathriteJournalChallenges;
@@ -32,11 +35,13 @@ import deathrite.Mobs.Bosses.StarfangedDestroyer.*;
 import deathrite.Mobs.Hostile.AetherSpirit;
 import deathrite.Mobs.Bosses.RidiumKnightBoss;
 import deathrite.Objects.Aether.AetherRock;
+import deathrite.Objects.Space.SpaceRock;
 import deathrite.Objects.Workstations.DeathriteSummonerObject;
 import deathrite.Projectiles.ShootingStarProjectile;
 import deathrite.Tiles.Aether.AetherSandTile;
 import deathrite.Tiles.Aether.AetherStoneTile;
 import deathrite.Tiles.Sky.SkyCloudTile;
+import deathrite.Tiles.Space.SpaceStoneTile;
 import necesse.engine.GameEventListener;
 import necesse.engine.GameEvents;
 import necesse.engine.events.loot.MobLootTableDropsEvent;
@@ -93,13 +98,16 @@ public class DeathriteMod {
         TileRegistry.registerTile("skycloudfloor", new SkyCloudTile(), 1, true);
         TileRegistry.registerTile("aethersandfloor", new AetherSandTile(), 1, true);
         TileRegistry.registerTile("aetherstonefloor", new AetherStoneTile(), 1, true);
+        TileRegistry.registerTile("spacestonefloor", new SpaceStoneTile(), 1, true);
 
         // Rock Objects
         ObjectRegistry.registerObject("aetherrock", new AetherRock(), 50, true);
+        ObjectRegistry.registerObject("spacerock", new SpaceRock(), 100, true);
 
         // OreRock
         ObjectRegistry.registerObject("aetheroreobject", new RockOreObject((RockObject)ObjectRegistry.getObject("aetherrock"), "oremask", "aetheroreobject", new Color(123, 196, 219), "aetherore"), -1.0F, true);
         ObjectRegistry.registerObject("ridiumoreobject", new RockOreObject((RockObject)ObjectRegistry.getObject("aetherrock"), "oremask", "ridiumoreobject", new Color(137, 156, 17), "ridiumore"), -1.0F, true);
+        ObjectRegistry.registerObject("stariteoreobject", new RockOreObject((RockObject)ObjectRegistry.getObject("spacerock"), "oremask", "stariteoreobject", new Color(224, 224, 25), "stariteore"), -1.0F, true);
 
         // Objects
         LadderDownObject.registerLadderPair("skyladder", 10, new Color(221, 232, 237), Rarity.EPIC, 20);
@@ -125,11 +133,13 @@ public class DeathriteMod {
         // Ores
         ItemRegistry.registerItem("ridiumore", new RidiumOre(), 2, true);
         ItemRegistry.registerItem("aetherore", new AetherOre(), 2, true);
+        ItemRegistry.registerItem("stariteore", new StariteOre(), 4, true);
 
         // Bars
         ItemRegistry.registerItem("ridiumbar", new RidiumBar(), 8, true);
         ItemRegistry.registerItem("aetherbar", new AetherBar(), 8, true);
         ItemRegistry.registerItem("aethiumbar", new AethiumBar(), 36, true);
+        ItemRegistry.registerItem("starrybar", new StarryBar(), 52, true);
 
         // Weapons
         ItemRegistry.registerItem("devsword", new DevSword(), 9999, false);
@@ -139,9 +149,14 @@ public class DeathriteMod {
         ItemRegistry.registerItem("ridiumpickaxe", new CustomPickaxeToolItem(400, 200, 6, 30, 50, 55, 1200, Rarity.RARE), 128, true);
         ItemRegistry.registerItem("ridiumaxe", new CustomAxeToolItem(400, 200, 6, 30, 50, 55, 1200, Rarity.RARE), 128, true);
         ItemRegistry.registerItem("ridiumshovel", new CustomShovelToolItem(400, 200, 6, 30, 50, 55, 1200, Rarity.RARE), 128, true);
+        ItemRegistry.registerItem("aethiumpickaxe", new CustomPickaxeToolItem(450, 220, 7, 35, 55, 55, 1400, Rarity.EPIC), 576, true);
+        ItemRegistry.registerItem("aethiumaxe", new CustomAxeToolItem(450, 220, 7, 35, 55, 55, 1400, Rarity.EPIC), 576, true);
+        ItemRegistry.registerItem("aethiumshovel", new CustomShovelToolItem(450, 220, 7, 35, 55, 55, 1400, Rarity.EPIC), 576, true);
+
 
         // Items
         ItemRegistry.registerItem("aetherstone", new AetherStone(), 1.5F, true);
+        ItemRegistry.registerItem("spacestone", new SpaceStone(), 2, true);
         ItemRegistry.registerItem("aethermap", new BiomeMapItem(Rarity.EPIC, 500, new String[]{"aether"}), 200.0F, true);
         ItemRegistry.registerItem("passedspirits", new PassedSpirits(), 2.5F, true);
         ItemRegistry.registerItem("moonessence", new MoonEssence(), 30, true);
@@ -294,6 +309,33 @@ public class DeathriteMod {
                 }
         ));
 
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumpickaxe",
+                1,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("aethiumbar", 16),
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumaxe",
+                1,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("aethiumbar", 16),
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumshovel",
+                1,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("aethiumbar", 16),
+                }
+        ));
+
         // Quest Items
         Recipes.registerModRecipe(new Recipe(
                 "essenceofthegods",
@@ -340,6 +382,17 @@ public class DeathriteMod {
                         new Ingredient("knightsheart", 1)
                 }
         ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "starrybar",
+                1,
+                RecipeTechRegistry.FORGE,
+                new Ingredient[]{
+                        new Ingredient("stariteore", 4),
+                        new Ingredient("aethiumbar", 1)
+                }
+        ));
+
 
         Recipes.registerModRecipe(new Recipe(
                 "skycore",
@@ -444,11 +497,30 @@ public class DeathriteMod {
         ));
 
         Recipes.registerModRecipe(new Recipe(
+                "stariteoreobject",
+                1,
+                RecipeTechRegistry.LANDSCAPING,
+                new Ingredient[]{
+                        new Ingredient("spacestone", 4),
+                        new Ingredient("stariteore", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
                 "aetherrock",
                 1,
                 RecipeTechRegistry.LANDSCAPING,
                 new Ingredient[]{
                         new Ingredient("aetherstone", 4)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "spacerock",
+                1,
+                RecipeTechRegistry.LANDSCAPING,
+                new Ingredient[]{
+                        new Ingredient("spacestone", 4)
                 }
         ));
 

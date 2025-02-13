@@ -56,7 +56,7 @@ public class AetherSpaceLevel extends AetherSurfaceLevel {
 
     public void generateLevel() {
         System.out.println("Aether Space Generated");
-        CaveGeneration cg = new CaveGeneration(this, "aetherstonefloor", "aetherrock");
+        CaveGeneration cg = new CaveGeneration(this, "spacestonefloor", "spacerock");
         GameEvents.triggerEvent(new GenerateCaveLayoutEvent(this, cg), (e) -> cg.generateLevel());
         GameEvents.triggerEvent(new GeneratedCaveLayoutEvent(this, cg));
 
@@ -72,12 +72,13 @@ public class AetherSpaceLevel extends AetherSurfaceLevel {
                 }
             });
             this.liquidManager.calculateShores();
-            cg.generateRandomSingleRocks(ObjectRegistry.getObjectID("aetherrock"), 0.005F);
+            cg.generateRandomSingleRocks(ObjectRegistry.getObjectID("spacerock"), 0.005F);
         });
         GameEvents.triggerEvent(new GeneratedCaveMiniBiomesEvent(this, cg));
         GameEvents.triggerEvent(new GenerateCaveOresEvent(this, cg), (e) -> {
             cg.generateOreVeins(0.12F, 4, 6, ObjectRegistry.getObjectID("ridiumoreobject"));
             cg.generateOreVeins(0.12F, 4, 6, ObjectRegistry.getObjectID("aetheroreobject"));
+            cg.generateOreVeins(0.1F, 2, 5, ObjectRegistry.getObjectID("stariteoreobject"));
         });
         GameEvents.triggerEvent(new GeneratedCaveOresEvent(this, cg));
         PresetGeneration presets = new PresetGeneration(this);
