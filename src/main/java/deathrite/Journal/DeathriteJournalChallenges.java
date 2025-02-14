@@ -9,7 +9,7 @@ import necesse.inventory.lootTable.lootItem.LootItemList;
 
 public class DeathriteJournalChallenges {
 
-    public static LootTable DEATHRITE_EOTG_REWARD = new LootTable((new LootItemList(new LootItem("stardust", 10))).setCustomListName("item", "stardust"));
+    public static LootTable DEATHRITE_EOTG_REWARD = new LootTable((new LootItemList(new LootItem("deathrite_stardust", 10))).setCustomListName("item", "stardust"));
     public static int EOTG_REWARD_ID;
     public static int CRAFT_ESSENCE_OF_THE_GODS_ID;
 

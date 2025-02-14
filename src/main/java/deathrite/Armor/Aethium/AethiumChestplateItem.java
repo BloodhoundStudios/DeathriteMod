@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package deathrite.Armor.Ridium;
+package deathrite.Armor.Aethium;
 
 import necesse.engine.modifiers.ModifierValue;
 import necesse.entity.mobs.Mob;
@@ -21,9 +21,9 @@ import necesse.inventory.item.armorItem.ChestArmorItem;
 // The Chestplate can only fit in its 16x16 Square
 // This Cheatsheet can also be applied to The Boots and Helmet
 
-public class RidiumChestplateItem extends ChestArmorItem {
-    public RidiumChestplateItem() {
-        super(14, 1300, Rarity.LEGENDARY, "ridiumchestplate", "ridiumarms");
+public class AethiumChestplateItem extends ChestArmorItem {
+    public AethiumChestplateItem() {
+        super(24, 1300, Rarity.LEGENDARY, "aethiumchestplate", "aethiumarms");
     }
 
     public ArmorModifiers getArmorModifiers(InventoryItem item, Mob mob) {

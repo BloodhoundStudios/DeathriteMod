@@ -67,7 +67,7 @@ public class EnragedStarfangedDestroyerHead extends BossWormMobHead<EnragedStarf
     public static int mindarkmatter = 5;
     public static int maxdarkmatter = 10;
     static int randomDarkMatterNumber = random.nextInt(maxdarkmatter - mindarkmatter + 1) + mindarkmatter;
-    public static LootTable lootTable = new LootTable(new LootItem("stardust", randomNumber));
+    public static LootTable lootTable = new LootTable(new LootItem("deathrite_stardust", randomNumber));
     public static RotationLootItem nightUniqueDrops = RotationLootItem.privateLootRotation(new LootItem("darkmatter", randomDarkMatterNumber));
     public static LootTable privateLootTable;
     public static float lengthPerBodyPart;

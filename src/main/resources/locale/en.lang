@@ -1,42 +1,55 @@
 [tile]
 exampletile=Example Tile
+spacestonefloor=Space Stone Floor
 
 [object]
 ridiumoreobject=Ridium Ore
 aetheroreobject=Aether Ore
+stariteoreobject=Starite Ore
 aetherrock=Aether Rock
 skyladderdown=Sky Ladder
 skyladderup=Sky Ladder
 wormholedown=Wormhole
 wormholeup=Wormhole
 deathritesummoner=Deathrite Summoner
+spacerock=Space Rock
 
 [item]
 ridiumbar=Ridium Bar
 aetherbar=Aether Bar
 aethiumbar=Aethium Bar
+starrybar=Starry Bar
 
 ridiumore=Ridium Ore
 aetherore=Aether Ore
 
 devsword=Dev Sword
 ridiumsword=Ridium Sword
+aethiumsword=Aethium Sword
 
 ridiumpickaxe=Ridium Pickaxe
 ridiumaxe=Ridium Axe
 ridiumshovel=Ridium Shovel
 
+aethiumpickaxe=Aethium Pickaxe
+aethiumaxe=Aethium Axe
+aethiumshovel=Aethium Shovel
+
 ridiumhelmet=Ridium Helmet
 ridiumchestplate=Ridium Chestplate
 ridiumboots=Ridium Boots
+aethiumhelmet=Aethium Helmet
+aethiumchestplate=Aethium Chestplate
+aethiumboots=Aethium Boots
 
 aetherstone=Aether Stone
 aethermap=Global Aether Map
 essenceofthegods=Essence of the Gods
 thepoweroftheeclipse=The Power of The Eclipse
-stardust=Stardust
+deathrite_stardust=Stardust
 darkmatter=Dark Matter
 skycore=Sky Core
+spacestone=Space Stone
 
 passedspirits=Passed Spirits
 knightsheart=Knights Heart

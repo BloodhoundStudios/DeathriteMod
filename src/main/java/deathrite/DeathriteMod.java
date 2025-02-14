@@ -1,5 +1,8 @@
 package deathrite;
 
+import deathrite.Armor.Aethium.AethiumBootsItem;
+import deathrite.Armor.Aethium.AethiumChestplateItem;
+import deathrite.Armor.Aethium.AethiumHelmetItem;
 import deathrite.Armor.Ridium.RidiumBootsItem;
 import deathrite.Armor.Ridium.RidiumChestplateItem;
 import deathrite.Armor.Ridium.RidiumHelmetItem;
@@ -28,6 +31,7 @@ import deathrite.Items.Materials.Space.SpaceStone;
 import deathrite.Items.Materials.Stardust;
 import deathrite.Items.Materials.Starite.StariteOre;
 import deathrite.Items.Materials.Starite.StarryBar;
+import deathrite.Items.Weapons.Aethium.AethiumSword;
 import deathrite.Items.Weapons.Dev.DevSword;
 import deathrite.Items.Weapons.Ridium.RidiumSword;
 import deathrite.Journal.DeathriteJournalChallenges;
@@ -61,6 +65,10 @@ import necesse.inventory.item.toolItem.axeToolItem.CustomAxeToolItem;
 import necesse.inventory.item.toolItem.pickaxeToolItem.CustomPickaxeToolItem;
 import necesse.inventory.item.toolItem.shovelToolItem.CustomShovelToolItem;
 import necesse.inventory.item.trinketItem.SimpleTrinketItem;
+import necesse.inventory.lootTable.LootItemInterface;
+import necesse.inventory.lootTable.LootTablePresets;
+import necesse.inventory.lootTable.lootItem.LootItem;
+import necesse.inventory.lootTable.lootItem.LootItemList;
 import necesse.inventory.recipe.Ingredient;
 import necesse.inventory.recipe.Recipe;
 import necesse.inventory.recipe.Recipes;
@@ -144,6 +152,7 @@ public class DeathriteMod {
         // Weapons
         ItemRegistry.registerItem("devsword", new DevSword(), 9999, false);
         ItemRegistry.registerItem("ridiumsword", new RidiumSword(), 200, true);
+        ItemRegistry.registerItem("aethiumsword", new AethiumSword(), 360, true);
 
         // Tools
         ItemRegistry.registerItem("ridiumpickaxe", new CustomPickaxeToolItem(400, 200, 6, 30, 50, 55, 1200, Rarity.RARE), 128, true);
@@ -162,7 +171,7 @@ public class DeathriteMod {
         ItemRegistry.registerItem("moonessence", new MoonEssence(), 30, true);
         ItemRegistry.registerItem("sunessence", new SunEssence(), 30, true);
         ItemRegistry.registerItem("essenceofthegods", new EssenceOfTheGods(), 0, true);
-        ItemRegistry.registerItem("stardust", new Stardust(), 10, true);
+        ItemRegistry.registerItem("deathrite_stardust", new Stardust(), 10, true);
         ItemRegistry.registerItem("skycore", new SkyCore(), 25, true);
 
 
@@ -177,6 +186,9 @@ public class DeathriteMod {
         ItemRegistry.registerItem("ridiumhelmet", new RidiumHelmetItem(), 10, true);
         ItemRegistry.registerItem("ridiumchestplate", new RidiumChestplateItem(), 10, true);
         ItemRegistry.registerItem("ridiumboots", new RidiumBootsItem(), 10, true);
+        ItemRegistry.registerItem("aethiumhelmet", new AethiumHelmetItem(), 20, true);
+        ItemRegistry.registerItem("aethiumchestplate", new AethiumChestplateItem(), 20, true);
+        ItemRegistry.registerItem("aethiumboots", new AethiumBootsItem(), 20, true);
 
         // Boss Drops
         ItemRegistry.registerItem("knightsheart", new KnightsHeart(), 15, true);
@@ -186,6 +198,7 @@ public class DeathriteMod {
         ItemRegistry.registerItem("thepowerofthesun", new ThePowerOfTheSun(), 500, true);
         ItemRegistry.registerItem("thepoweroftheeclipse", new ThePowerOfTheEclipse(), 1000, true);
         ItemRegistry.registerItem("darkmatter", new DarkMatter(), 50, true);
+        ItemRegistry.registerItem("crystalscale", new CrystalScale(), 50, true);
 
         // Boss Summons
         ItemRegistry.registerItem("tabletofspirits", new TabletofSpiritsSpawnItem(), 500, true);
@@ -255,7 +268,7 @@ public class DeathriteMod {
                 1,
                 RecipeTechRegistry.FALLEN_WORKSTATION,
                 new Ingredient[]{
-                        new Ingredient("stardust", 20),
+                        new Ingredient("deathrite_stardust", 20),
                         new Ingredient("aethiumbar", 10),
                         new Ingredient("darkmatter", 5)
                 }
@@ -279,6 +292,15 @@ public class DeathriteMod {
                 new Ingredient[]{
                         new Ingredient("ridiumbar", 10),
                         new Ingredient("anylog", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumsword",
+                1,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("aethiumbar", 10)
                 }
         ));
 
@@ -552,12 +574,12 @@ public class DeathriteMod {
                 1,
                 RecipeTechRegistry.getTech("deathritesummoner"),
                 new Ingredient[]{
-                        new Ingredient("stardust", 10),
+                        new Ingredient("deathrite_stardust", 10),
                         new Ingredient("essenceofthegods", 1)
                 }
         ));
 
-        // Vanilla Modded Loot Tables
+        // Vanilla Modded Boss Loot Tables
         GameEvents.addListener(MobLootTableDropsEvent.class, new GameEventListener<MobLootTableDropsEvent>() {
             @Override
             public void onEvent(MobLootTableDropsEvent event) {
@@ -565,6 +587,8 @@ public class DeathriteMod {
                 int moonmax = 25;
                 int sunmin = 20;
                 int sunmax = 25;
+                int crystalmin = 100;
+                int crystalmax = 250;
                 if (event.mob.getStringID().equals("fallenwizard")) {
                     event.drops.add(new InventoryItem("aethermap", 1));
                     event.drops.add(new InventoryItem("ridiumpickaxe", 1));
@@ -586,10 +610,16 @@ public class DeathriteMod {
                 if (event.mob.getStringID().equals("moonlightdancer")) {
                     event.drops.add(new InventoryItem("thepowerofthemoon", 1));
                     event.drops.add(new InventoryItem("moonessence", randomNumber));
-
+                }
+                Random crystalRandom = new Random();
+                int crystalRandomNumber = crystalRandom.nextInt(crystalmax - crystalmin + 1) + crystalmin;
+                if (event.mob.getStringID().equals("crystaldragon")) {
+                    event.drops.add(new InventoryItem("crystalscale", crystalRandomNumber));
                 }
             }
-
         });
+
+        // Vanilla Modded Loot Tables
+        LootTablePresets.startChest.items.addAll(new LootItemList(new LootItemInterface[]{new LootItem("knightheart", 200)}));
     }
 }
