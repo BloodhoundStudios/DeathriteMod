@@ -12,7 +12,7 @@ public class DevSword extends SwordToolItem {
         rarity = Rarity.UNIQUE;
         attackAnimTime.setBaseValue(50); // Attack Time (ms)
         attackDamage.setBaseValue(9999) // Base sword damage
-                .setUpgradedValue(1, 95); // Upgraded tier 1 damage
+                .setUpgradedValue(1, 9999); // Upgraded tier 1 damage
         attackRange.setBaseValue(100); // 120 range
         knockback.setBaseValue(0); // 100 knockback
     }

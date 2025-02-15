@@ -31,15 +31,19 @@ import deathrite.Items.Materials.Space.SpaceStone;
 import deathrite.Items.Materials.Stardust;
 import deathrite.Items.Materials.Starite.StariteOre;
 import deathrite.Items.Materials.Starite.StarryBar;
+import deathrite.Items.Materials.Xaeron.XaeronBar;
+import deathrite.Items.Materials.Xaeron.XaeronOre;
 import deathrite.Items.Weapons.Aethium.AethiumSword;
 import deathrite.Items.Weapons.Dev.DevSword;
 import deathrite.Items.Weapons.Ridium.RidiumSword;
+import deathrite.Items.Weapons.Starite.StarryFang;
 import deathrite.Journal.DeathriteJournalChallenges;
 import deathrite.Mobs.Bosses.StarfangedDestroyer.*;
 import deathrite.Mobs.Hostile.AetherSpirit;
 import deathrite.Mobs.Bosses.RidiumKnightBoss;
 import deathrite.Objects.Aether.AetherRock;
 import deathrite.Objects.Space.SpaceRock;
+import deathrite.Objects.Space.UpgradedSpaceRock;
 import deathrite.Objects.Workstations.DeathriteSummonerObject;
 import deathrite.Projectiles.ShootingStarProjectile;
 import deathrite.Tiles.Aether.AetherSandTile;
@@ -111,11 +115,13 @@ public class DeathriteMod {
         // Rock Objects
         ObjectRegistry.registerObject("aetherrock", new AetherRock(), 50, true);
         ObjectRegistry.registerObject("spacerock", new SpaceRock(), 100, true);
+        ObjectRegistry.registerObject("upgradedspacerock", new UpgradedSpaceRock(), 100, true);
 
         // OreRock
         ObjectRegistry.registerObject("aetheroreobject", new RockOreObject((RockObject)ObjectRegistry.getObject("aetherrock"), "oremask", "aetheroreobject", new Color(123, 196, 219), "aetherore"), -1.0F, true);
         ObjectRegistry.registerObject("ridiumoreobject", new RockOreObject((RockObject)ObjectRegistry.getObject("aetherrock"), "oremask", "ridiumoreobject", new Color(137, 156, 17), "ridiumore"), -1.0F, true);
         ObjectRegistry.registerObject("stariteoreobject", new RockOreObject((RockObject)ObjectRegistry.getObject("spacerock"), "oremask", "stariteoreobject", new Color(224, 224, 25), "stariteore"), -1.0F, true);
+        ObjectRegistry.registerObject("xaeronoreobject", new RockOreObject((RockObject)ObjectRegistry.getObject("upgradedspacerock"), "oremask", "xaeronoreobject", new Color(63, 7, 82), "xaeronore"), -1.0F, true);
 
         // Objects
         LadderDownObject.registerLadderPair("skyladder", 10, new Color(221, 232, 237), Rarity.EPIC, 20);
@@ -142,17 +148,20 @@ public class DeathriteMod {
         ItemRegistry.registerItem("ridiumore", new RidiumOre(), 2, true);
         ItemRegistry.registerItem("aetherore", new AetherOre(), 2, true);
         ItemRegistry.registerItem("stariteore", new StariteOre(), 4, true);
+        ItemRegistry.registerItem("xaeronore", new XaeronOre(), 6, true);
 
         // Bars
         ItemRegistry.registerItem("ridiumbar", new RidiumBar(), 8, true);
         ItemRegistry.registerItem("aetherbar", new AetherBar(), 8, true);
         ItemRegistry.registerItem("aethiumbar", new AethiumBar(), 36, true);
         ItemRegistry.registerItem("starrybar", new StarryBar(), 52, true);
+        ItemRegistry.registerItem("xaeronbar", new XaeronBar(), 24, true);
 
         // Weapons
         ItemRegistry.registerItem("devsword", new DevSword(), 9999, false);
         ItemRegistry.registerItem("ridiumsword", new RidiumSword(), 200, true);
         ItemRegistry.registerItem("aethiumsword", new AethiumSword(), 360, true);
+        ItemRegistry.registerItem("starryfang", new StarryFang(), 770, true);
 
         // Tools
         ItemRegistry.registerItem("ridiumpickaxe", new CustomPickaxeToolItem(400, 200, 6, 30, 50, 55, 1200, Rarity.RARE), 128, true);
@@ -358,6 +367,16 @@ public class DeathriteMod {
                 }
         ));
 
+        Recipes.registerModRecipe(new Recipe(
+                "starryfang",
+                1,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("starrybar", 10),
+                        new Ingredient("darkmatter", 5)
+                }
+        ));
+
         // Quest Items
         Recipes.registerModRecipe(new Recipe(
                 "essenceofthegods",
@@ -529,6 +548,16 @@ public class DeathriteMod {
         ));
 
         Recipes.registerModRecipe(new Recipe(
+                "xaeronoreobject",
+                1,
+                RecipeTechRegistry.LANDSCAPING,
+                new Ingredient[]{
+                        new Ingredient("spacestone", 4),
+                        new Ingredient("xaeronore", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
                 "aetherrock",
                 1,
                 RecipeTechRegistry.LANDSCAPING,
@@ -539,6 +568,15 @@ public class DeathriteMod {
 
         Recipes.registerModRecipe(new Recipe(
                 "spacerock",
+                1,
+                RecipeTechRegistry.LANDSCAPING,
+                new Ingredient[]{
+                        new Ingredient("spacestone", 4)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "upgradedspacerock",
                 1,
                 RecipeTechRegistry.LANDSCAPING,
                 new Ingredient[]{

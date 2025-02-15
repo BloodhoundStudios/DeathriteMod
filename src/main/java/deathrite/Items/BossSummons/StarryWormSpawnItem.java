@@ -25,6 +25,9 @@ import necesse.level.maps.IncursionLevel;
 import necesse.level.maps.Level;
 
 public class StarryWormSpawnItem extends ConsumableItem {
+
+    public boolean canSpawn = true;
+
     public StarryWormSpawnItem() {
         super(1, true);
         this.itemCooldownTime.setBaseValue(2000);
@@ -71,7 +74,7 @@ public class StarryWormSpawnItem extends ConsumableItem {
             float ny = (float)Math.sin(Math.toRadians((double)angle));
             float distance = 960.0F;
             // Night
-            if(level.getWorldEntity().getDayTimeHour() >= 20) {
+            if(level.getWorldEntity().getDayTimeHour() >= 20 || level.getWorldEntity().getDayTimeHour() <= 7) {
                 System.out.println(level.getWorldEntity().getDayTimeHour());
                 Mob mob = MobRegistry.getMob("enragedstarfangeddestroyer", level);
                 level.entityManager.addMob(mob, (float) (player.getX() + (int) (nx * distance)), (float) (player.getY() + (int) (ny * distance)));

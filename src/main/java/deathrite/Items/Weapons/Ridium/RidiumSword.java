@@ -12,7 +12,7 @@ public class RidiumSword extends SwordToolItem {
         rarity = Rarity.EPIC;
         attackAnimTime.setBaseValue(330); // 300 ms attack time
         attackDamage.setBaseValue(85) // Base sword damage
-                .setUpgradedValue(1, 90); // Upgraded tier 1 damage
+                .setUpgradedValue(1, 85); // Upgraded tier 1 damage
         attackRange.setBaseValue(100); // 120 range
         knockback.setBaseValue(100); // 100 knockback
     }
