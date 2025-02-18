@@ -79,6 +79,11 @@ import necesse.inventory.recipe.Ingredient;
 import necesse.inventory.recipe.Recipe;
 import necesse.inventory.recipe.Recipes;
 import necesse.level.gameObject.*;
+import net.bytebuddy.ByteBuddy;
+import net.bytebuddy.agent.ByteBuddyAgent;
+import net.bytebuddy.asm.Advice;
+import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
+import net.bytebuddy.matcher.ElementMatchers;
 
 import java.awt.*;
 import java.util.Random;
@@ -130,7 +135,7 @@ public class DeathriteMod {
         ObjectRegistry.registerObject("xaeronoreobject", new RockOreObject((RockObject)ObjectRegistry.getObject("upgradedspacerock"), "oremask", "xaeronoreobject", new Color(63, 7, 82), "xaeronore"), -1.0F, true);
 
         // Trees
-        ObjectRegistry.registerObject("aethertree", new TreeObject("aethertree", "palmlog", "aethersapling", new Color(255, 255, 255), 40, 80, 120, "aetherleaves"), 0.0F, false);
+        ObjectRegistry.registerObject("aethertree", new TreeObject("aethertree", "aetherlog", "aethersapling", new Color(255, 255, 255), 40, 80, 120, "aetherleaves"), 0.0F, false);
         ObjectRegistry.registerObject("aethersapling", new TreeSaplingObject("aethersapling", "aethertree", 1800, 2700, true, new String[]{"aethersandfloor"}), 5.0F, true);
 
         // Objects
@@ -200,6 +205,8 @@ public class DeathriteMod {
         ItemRegistry.registerItem("deathrite_stardust", new Stardust(), 10, true);
         ItemRegistry.registerItem("skycore", new SkyCore(), 25, true);
 
+        // Logs
+        ItemRegistry.registerItem("aetherlog", (new MatItem(500, new String[]{"anylog"})).setItemCategory(new String[]{"materials", "logs"}), 2.0F, true);
 
         // Trinkets
         ItemRegistry.registerItem("ridiumarrowhead", new SimpleTrinketItem(Rarity.EPIC, "ridiumarrowheadbuff", 10),5, true);
@@ -280,6 +287,23 @@ public class DeathriteMod {
     }
 
     public void postInit() {
+        // Install Byte Buddy agent (required for runtime class modification)
+        // Thanks to A Wild Ferren/ferrenfx on discord for getting the workstation upgrade to work
+        ByteBuddyAgent.install();
+
+        try {
+            new ByteBuddy()
+                    .rebase(CraftingStationObject.class) // Rebase preseves the original class.
+                    .visit(Advice.to(GetStationUpgradeInterceptor.class)
+                            .on(ElementMatchers.named("getStationUpgrade"))) // Intercept this method in every instance of CraftingStationObject
+                    .make()
+                    .load(CraftingStationObject.class.getClassLoader(), ClassReloadingStrategy.fromInstalledAgent());
+
+            System.out.println("Successfully intercepted getStationUpgrade()!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         // Items
         Recipes.registerModRecipe(new Recipe(
                 "skyladderdown",
@@ -670,26 +694,6 @@ public class DeathriteMod {
                 }
         ));
 
-        Recipes.registerModRecipe(new Recipe(
-                "aethiumworkstation",
-                1,
-                RecipeTechRegistry.FALLEN_WORKSTATION,
-                new Ingredient[]{
-                        new Ingredient("aethiumbar", 5),
-                        new Ingredient("skycore", 1)
-                }
-        ));
-
-        Recipes.registerModRecipe(new Recipe(
-                "aethiumanvil",
-                1,
-                RecipeTechRegistry.FALLEN_WORKSTATION,
-                new Ingredient[]{
-                        new Ingredient("aethiumbar", 6),
-                        new Ingredient("skycore", 1)
-                }
-        ));
-
         // Boss Summons
         Recipes.registerModRecipe(new Recipe(
                 "tabletofspirits",
@@ -753,5 +757,27 @@ public class DeathriteMod {
 
         // Vanilla Modded Loot Tables
         LootTablePresets.startChest.items.addAll(new LootItemList(new LootItemInterface[]{new LootItem("knightheart", 200)}));
+    }
+
+    public static class GetStationUpgradeInterceptor {
+        @Advice.OnMethodExit
+        static void onExit(@Advice.This Object thisObject, @Advice.Return(readOnly = false) CraftingStationUpgrade returnValue) {
+            System.out.println("Intercepted getStationUpgrade call!");
+
+
+            if (thisObject instanceof FallenWorkstationObject) {
+
+                // Modify the return value only for FallenWorkstationObject.
+                returnValue = new CraftingStationUpgrade(ObjectRegistry.getObject("aethiumworkstation"),
+                        new Ingredient[]{new Ingredient("aethiumbar", 5), new Ingredient("skycore", 1)});
+            }
+
+            if (thisObject instanceof FallenAnvilObject) {
+
+                // Modify the return value only for FallenWorkstationObject.
+                returnValue = new CraftingStationUpgrade(ObjectRegistry.getObject("aethiumanvil"),
+                        new Ingredient[]{new Ingredient("aethiumbar", 6), new Ingredient("skycore", 1)});
+            }
+        }
     }
 }

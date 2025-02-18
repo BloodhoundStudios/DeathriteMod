@@ -6,26 +6,43 @@ spacestonefloor=Space Stone Floor
 ridiumoreobject=Ridium Ore
 aetheroreobject=Aether Ore
 stariteoreobject=Starite Ore
+xaeronoreobject=Xaeron Ore
+
 aetherrock=Aether Rock
+spacerock=Space Rock
+upgradedspacerock=Space Rock
+
 skyladderdown=Sky Ladder
 skyladderup=Sky Ladder
 wormholedown=Wormhole
 wormholeup=Wormhole
+
 deathritesummoner=Deathrite Summoner
-spacerock=Space Rock
+aethiumworkstation=Aethium Workstation
+aethiumanvil=Aethium Anvil
+
+aethersapling=Aether Sapling
+aethertree= Aether Tree
 
 [item]
 ridiumbar=Ridium Bar
 aetherbar=Aether Bar
 aethiumbar=Aethium Bar
 starrybar=Starry Bar
+xaeronbar=Xaeron Bar
+crystalizedxaeronbar=Crystalized Xaeron Bar
+
+aetherlog=Aether Log
 
 ridiumore=Ridium Ore
 aetherore=Aether Ore
+stariteore=Starite Ore
+xaeronore=Xaeron Ore
 
 devsword=Dev Sword
 ridiumsword=Ridium Sword
 aethiumsword=Aethium Sword
+starryfang=Starry Fang
 
 ridiumpickaxe=Ridium Pickaxe
 ridiumaxe=Ridium Axe
@@ -59,6 +76,7 @@ motherslimesleftoverslime=Mother Slimes Leftover Slime
 spiderempresscrown=Spider Empress's Crown
 thepowerofthemoon=The Power of The Moon
 thepowerofthesun=The Power of The Sun
+crystalscale=Crystal Scale
 
 tabletofspirits=Tablet of Spirits
 starryworm=Starry Worm
@@ -68,6 +86,8 @@ ridiumbladesharpener=Ridium Blade Sharpener
 aetherbladesharpener=Aether Blade Sharpener
 aethiumbladesharpener=Aethium Blade Sharpener
 bladesharpener=Blade Sharpener
+staritebladesharpener=Starite Blade Sharpener
+xaeronbladesharpener=Xaeron Blade Sharpener
 
 [itemtooltip]
 examplestafftip=Shoots a homing, piercing projectile
@@ -79,9 +99,12 @@ ridiumarrowheadtip=25% increased Ranged Damage
 ridiumbladesharpenertip=25% increased Melee Damage
 aetherbladesharpenertip=25% increased Melee Speed
 aethiumbladesharpenertip=25% increased Melee Speed and Damage, 15% increased Melee Crit Chance
+staritebladesharpenertip=27% increased Melee Speed and Damage, 20% increased Melee Crit Chance
 bladesharpener=5% increased Melee Damage
 starrywormtip=Calls upon the Devourer of Stars
 starrywormtip2=Must be used in The Aether Sky
+aethiumworkstationtip=placeholder text
+aethiumanviltip=placeholder text
 
 [biome]
 aether=Aether
@@ -101,3 +124,6 @@ examplebuff=Example Buff
 
 [journal]
 craftessenceofthegods=Craft Essence of The Gods
+
+[tech]
+aethiumworkstation=Aethium Workstation
