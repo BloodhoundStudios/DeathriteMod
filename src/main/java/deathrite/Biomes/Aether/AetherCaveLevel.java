@@ -156,6 +156,7 @@ public class AetherCaveLevel extends AetherSurfaceLevel {
             });
             this.liquidManager.calculateShores();
             cg.generateRandomSingleRocks(ObjectRegistry.getObjectID("aetherrock"), 0.005F);
+            cg.generateRandomSingleRocks(ObjectRegistry.getObjectID("aethercaverocksmall"), 0.01F);
         });
         GameEvents.triggerEvent(new GeneratedCaveMiniBiomesEvent(this, cg));
         GameEvents.triggerEvent(new GenerateCaveOresEvent(this, cg), (e) -> {

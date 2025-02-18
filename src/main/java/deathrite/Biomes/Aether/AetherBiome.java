@@ -93,9 +93,9 @@ public class AetherBiome extends Biome {
     }
 
     static {
-        surfaceMobs = (new MobSpawnTable().add(25,"aetherspirit"));;
+        surfaceMobs = (new MobSpawnTable().add(15,"aetherspirit"));;
         caveMobs = (new MobSpawnTable().add(50,"aetherspirit"));
         surfaceCritters = (new MobSpawnTable());
-        caveCritters = (new MobSpawnTable()).include(Biome.defaultCaveCritters).add(100, "sandstonecaveling");
+        caveCritters = (new MobSpawnTable()).include(Biome.defaultCaveCritters).add(100, "aethercaveling");
     }
 }

@@ -1,4 +1,4 @@
-package deathrite.MethodPatches;
+package deathrite.Overrides;
 
 import necesse.engine.modLoader.annotations.ModMethodPatch;
 import necesse.level.gameObject.LadderDownObject;

@@ -6,13 +6,10 @@
 package deathrite.Biomes.Aether;
 
 import necesse.engine.GameEvents;
-import necesse.engine.events.worldGeneration.GenerateIslandAnimalsEvent;
-import necesse.engine.events.worldGeneration.GenerateIslandLayoutEvent;
-import necesse.engine.events.worldGeneration.GeneratedIslandAnimalsEvent;
-import necesse.engine.events.worldGeneration.GeneratedIslandLayoutEvent;
-import necesse.engine.events.worldGeneration.GeneratedIslandStructuresEvent;
+import necesse.engine.events.worldGeneration.*;
 import necesse.engine.localization.message.GameMessage;
 import necesse.engine.localization.message.LocalMessage;
+import necesse.engine.registries.ObjectRegistry;
 import necesse.engine.registries.TileRegistry;
 import necesse.engine.util.LevelIdentifier;
 import necesse.engine.world.WorldEntity;
@@ -62,6 +59,10 @@ public class AetherSurfaceLevel extends Level {
         GameEvents.triggerEvent(new GeneratedIslandStructuresEvent(this, islandSize, ig));
         GameEvents.triggerEvent(new GenerateIslandAnimalsEvent(this, islandSize, ig), (e) -> GenerationTools.spawnMobHerds(this, ig.random, "wildostrich", 1, sandTile, 1, 1));
         GameEvents.triggerEvent(new GeneratedIslandAnimalsEvent(this, islandSize, ig));
+        GameEvents.triggerEvent(new GenerateIslandFloraEvent(this, islandSize, ig), (e) -> {
+            int aetherTreeObject = ObjectRegistry.getObjectID("aethertree");
+            ig.generateObjects(aetherTreeObject, sandTile, 0.002F);
+        });
         GenerationTools.checkValid(this);
     }
 
