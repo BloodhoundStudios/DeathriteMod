@@ -43,6 +43,7 @@ devsword=Dev Sword
 ridiumsword=Ridium Sword
 aethiumsword=Aethium Sword
 starryfang=Starry Fang
+xaeronsword=Xaeron Sword
 
 ridiumpickaxe=Ridium Pickaxe
 ridiumaxe=Ridium Axe
@@ -81,13 +82,37 @@ crystalscale=Crystal Scale
 tabletofspirits=Tablet of Spirits
 starryworm=Starry Worm
 
-ridiumarrowhead=Ridium Arrowhead
+bladesharpener=Blade Sharpener
 ridiumbladesharpener=Ridium Blade Sharpener
 aetherbladesharpener=Aether Blade Sharpener
 aethiumbladesharpener=Aethium Blade Sharpener
-bladesharpener=Blade Sharpener
 staritebladesharpener=Starite Blade Sharpener
 xaeronbladesharpener=Xaeron Blade Sharpener
+crystalizedbladesharpener=Crystalized Xaeron Blade Sharpener
+
+arrowhead=Arrowhead
+ridiumarrowhead=Ridium Arrowhead
+aetherarrowhead=Aether Arrowhead
+aethiumarrowhead=Aethium Arrowhead
+staritearrowhead=Starite Arrowhead
+xaeronarrowhead=Xaeron Arrowhead
+crystalizedxaeronarrowhead=Crystalized Xaeron Arrowhead
+
+spellbook=Spellbook
+ridiumspellbook=Ridium Spellbook
+aetherspellbook=Aether Spellbook
+aethiumspellbook=Aethium Spellbook
+staritespellbook=Starite Spellbook
+xaeronspellbook=Xaeron Spellbook
+crystalizedxaeronspellbook=Crystalized Xaeron Spellbook
+
+staffcrystal=Staff Crystal
+ridiumcrystal=Ridium Crystal
+aethercrystal=Aether Crystal
+aethiumcrystal=Aethium Crystal
+staritecrystal=Starite Crystal
+xaeroncrystal=Xaeron Crystal
+crystalizedxaeroncrystal=Crystalized Xaeron Crystal
 
 [itemtooltip]
 examplestafftip=Shoots a homing, piercing projectile
@@ -95,12 +120,39 @@ skyladderdowntip=Seems like it goes to the sky
 tabletofspiritstip=Releases a Knight from the past
 tabletofspiritstip2=Must be used in Aether Caves
 deathritesummonertip=Used to Summon relics of the past
-ridiumarrowheadtip=25% increased Ranged Damage
+
+bladesharpenertip=5% increased Melee Damage
 ridiumbladesharpenertip=25% increased Melee Damage
 aetherbladesharpenertip=25% increased Melee Speed
 aethiumbladesharpenertip=25% increased Melee Speed and Damage, 15% increased Melee Crit Chance
 staritebladesharpenertip=27% increased Melee Speed and Damage, 20% increased Melee Crit Chance
-bladesharpener=5% increased Melee Damage
+xaeronbladesharpenertip=30% increased Melee Speed and Damage, 20% increased Melee Crit Chance
+crystalizedxaeronbladesharpenertip=35% increased Melee Speed and Damage, 25% increased Melee Crit Chance
+
+arrowheadtip=5% increased Ranged Damage
+ridiumarrowheadtip=25% increased Ranged Damage
+aetherarrowheadtip=25% increased Ranged Speed
+aethiumarrowheadtip=25% increased Ranged Speed and Damage, 15% increased Ranged Crit Chance
+staritearrowheadtip=27% increased Ranged Speed and Damage, 20% increased Ranged Crit Chance
+xaeronarrowheadtip=30% increased Ranged Speed and Damage, 20% increased Ranged Crit Chance
+crystalizedxaeronarrowheadtip=35% increased Ranged Speed and Damage, 25% increased Ranged Crit Chance
+
+spellbooktip=5% increased Magic Damage
+ridiumspellbooktip=25% increased Magic Damage
+aetherspellbooktip=25% increased Magic Speed
+aethiumspellbooktip=25% increased Magic Speed and Damage, 15% increased Magic Crit Chance
+staritespellbooktip=27% increased Magic Speed and Damage, 20% increased Magic Crit Chance
+xaeronspellbooktip=30% increased Magic Speed and Damage, 20% increased Magic Crit Chance
+crystalizedxaeronspellbooktip=35% increased Magic Speed and Damage, 25% increased Magic Crit Chance
+
+staffcrystaltip=5% increased Summon Damage
+ridiumcrystaltip=25% increased Summon Damage
+aethercrystaltip=25% increased Summon Speed
+aethiumcrystaltip=25% increased Summon Speed and Damage, 15% increased Summon Crit Chance
+staritecrystaltip=27% increased Summon Speed and Damage, 20% increased Summon Crit Chance
+xaeroncrystaltip=30% increased Summon Speed and Damage, 20% increased Summon Crit Chance
+crystalizedxaeroncrystaltip=35% increased Summon Speed and Damage, 25% increased Summon Crit Chance
+
 starrywormtip=Calls upon the Devourer of Stars
 starrywormtip2=Must be used in The Aether Sky
 aethiumworkstationtip=placeholder text

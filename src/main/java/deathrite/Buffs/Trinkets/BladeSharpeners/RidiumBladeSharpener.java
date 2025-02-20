@@ -15,7 +15,7 @@ public class RidiumBladeSharpener extends TrinketBuff {
     }
 
     public void init(ActiveBuff buff, BuffEventSubscriber eventSubscriber) {
-        buff.setModifier(BuffModifiers.MELEE_DAMAGE, .25F);
+        buff.addModifier(BuffModifiers.MELEE_DAMAGE, 0.25F);
     }
 
     public ListGameTooltips getTrinketTooltip(TrinketItem trinketItem, InventoryItem item, PlayerMob perspective) {

@@ -10,17 +10,19 @@ import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.trinketItem.TrinketItem;
 
-public class RidiumArrowheadBuff extends TrinketBuff {
-    public RidiumArrowheadBuff() {
+public class AethiumArrowhead extends TrinketBuff {
+    public AethiumArrowhead() {
     }
 
     public void init(ActiveBuff buff, BuffEventSubscriber eventSubscriber) {
         buff.addModifier(BuffModifiers.RANGED_DAMAGE, 0.25F);
+        buff.addModifier(BuffModifiers.RANGED_ATTACK_SPEED, 0.25F);
+        buff.addModifier(BuffModifiers.RANGED_CRIT_CHANCE, 0.15F);
     }
 
     public ListGameTooltips getTrinketTooltip(TrinketItem trinketItem, InventoryItem item, PlayerMob perspective) {
         ListGameTooltips tooltips = super.getTrinketTooltip(trinketItem, item, perspective);
-        tooltips.add(Localization.translate("itemtooltip", "ridiumarrowheadtip"));
+        tooltips.add(Localization.translate("itemtooltip", "aethiumarrowheadtip"));
         return tooltips;
     }
 }

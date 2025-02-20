@@ -17,7 +17,7 @@ public class StarfrostBuff extends Buff {
     }
 
     public void init(ActiveBuff buff, BuffEventSubscriber eventSubscriber) {
-        buff.setModifier(BuffModifiers.FROST_DAMAGE_FLAT, 7.0F);
+        buff.addModifier(BuffModifiers.FROST_DAMAGE_FLAT, 7.0F);
     }
 
     public void clientTick(ActiveBuff buff) {

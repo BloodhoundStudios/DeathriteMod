@@ -15,7 +15,7 @@ public class BladeSharpener extends TrinketBuff {
     }
 
     public void init(ActiveBuff buff, BuffEventSubscriber eventSubscriber) {
-        buff.setModifier(BuffModifiers.MELEE_DAMAGE, .05F);
+        buff.addModifier(BuffModifiers.MELEE_DAMAGE, 0.05F);
     }
 
     public ListGameTooltips getTrinketTooltip(TrinketItem trinketItem, InventoryItem item, PlayerMob perspective) {

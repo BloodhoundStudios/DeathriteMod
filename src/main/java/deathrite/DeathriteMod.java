@@ -7,8 +7,10 @@ import deathrite.Armor.Ridium.RidiumBootsItem;
 import deathrite.Armor.Ridium.RidiumChestplateItem;
 import deathrite.Armor.Ridium.RidiumHelmetItem;
 import deathrite.Biomes.Aether.*;
-import deathrite.Buffs.Trinkets.Arrowheads.RidiumArrowheadBuff;
+import deathrite.Buffs.Trinkets.Arrowheads.*;
 import deathrite.Buffs.Trinkets.BladeSharpeners.*;
+import deathrite.Buffs.Trinkets.Crystals.*;
+import deathrite.Buffs.Trinkets.Spellbooks.*;
 import deathrite.Buffs.Trinkets.StarfrostBuff;
 import deathrite.Items.BossDrops.*;
 import deathrite.Items.BossSummons.StarryWormSpawnItem;
@@ -35,6 +37,8 @@ import deathrite.Items.Weapons.Aethium.AethiumSword;
 import deathrite.Items.Weapons.Dev.DevSword;
 import deathrite.Items.Weapons.Ridium.RidiumSword;
 import deathrite.Items.Weapons.Starite.StarryFang;
+import deathrite.Items.Weapons.Xaeron.CrystalizedXaeronSword;
+import deathrite.Items.Weapons.Xaeron.XaeronSword;
 import deathrite.Journal.DeathriteJournalChallenges;
 import deathrite.Mobs.Bosses.StarfangedDestroyer.*;
 import deathrite.Mobs.Friendly.Caveling.AetherCaveling;
@@ -103,7 +107,6 @@ public class DeathriteMod {
     public static GameMusic StarfangedMusic;
     public static GameTexture StarfangedDestroyerTexture;
     public static HumanTexture AetherCavelingTexture;
-    public static int[] AethiumWorkstation;
 
     public void init() {
         // Journal Challenges
@@ -151,14 +154,37 @@ public class DeathriteMod {
         BiomeRegistry.registerBiome("aether", new AetherBiome(), 50, null);
 
         // Buffs
-        BuffRegistry.registerBuff("ridiumarrowheadbuff", new RidiumArrowheadBuff());
+        BuffRegistry.registerBuff("starfrost", new StarfrostBuff());
+
+        BuffRegistry.registerBuff("bladesharpener", new BladeSharpener());
         BuffRegistry.registerBuff("ridiumbladesharpener", new RidiumBladeSharpener());
         BuffRegistry.registerBuff("aetherbladesharpener", new AetherBladeSharpener());
         BuffRegistry.registerBuff("aethiumbladesharpener", new AethiumBladeSharpener());
-        BuffRegistry.registerBuff("bladesharpener", new BladeSharpener());
-        BuffRegistry.registerBuff("starfrost", new StarfrostBuff());
         BuffRegistry.registerBuff("staritebladesharpener", new StariteBladeSharpener());
         BuffRegistry.registerBuff("xaeronbladesharpener", new XaeronBladeSharpener());
+        BuffRegistry.registerBuff("crystalizedxaeronbladesharpener", new CrystalizedXaeronBladeSharpener());
+
+        BuffRegistry.registerBuff("arrowhead", new Arrowhead());
+        BuffRegistry.registerBuff("ridiumarrowheadbuff", new RidiumArrowheadBuff());
+        BuffRegistry.registerBuff("aetherarrowhead", new AetherArrowhead());
+        BuffRegistry.registerBuff("aethiumarrowhead", new AethiumArrowhead());
+        BuffRegistry.registerBuff("staritearrowhead", new StariteArrowhead());
+        BuffRegistry.registerBuff("xaeronarrowhead", new XaeronArrowhead());
+        BuffRegistry.registerBuff("crystalizedxaeronarrowhead", new CrystalizedXaeronArrowhead());
+
+        BuffRegistry.registerBuff("spellbook", new Spellbook());
+        BuffRegistry.registerBuff("ridiumspellbookbuff", new RidiumSpellbook());
+        BuffRegistry.registerBuff("aetherspellbook", new AetherSpellbook());
+        BuffRegistry.registerBuff("aethiumspellbook", new AethiumSpellbook());
+        BuffRegistry.registerBuff("staritespellbook", new StariteSpellbook());
+        BuffRegistry.registerBuff("xaeronspellbook", new XaeronSpellbook());
+        BuffRegistry.registerBuff("crystalizedxaeronspellbook", new CrystalizedXaeronSpellbook());
+
+        BuffRegistry.registerBuff("staffcrystal", new StaffCrystal());
+        BuffRegistry.registerBuff("aethercrystal", new AetherCrystal());
+        BuffRegistry.registerBuff("aethiumcrystal", new AethiumCrystal());
+        BuffRegistry.registerBuff("staritecrystal", new StariteCrystal());
+        BuffRegistry.registerBuff("crystalizedxaeroncrystal", new CrystalizedXaeronCrystal());
 
         // Recipe Techs
         RecipeTechRegistry.registerTech("deathritesummoner", "deathritesummoner");
@@ -184,6 +210,8 @@ public class DeathriteMod {
         ItemRegistry.registerItem("ridiumsword", new RidiumSword(), 200, true);
         ItemRegistry.registerItem("aethiumsword", new AethiumSword(), 360, true);
         ItemRegistry.registerItem("starryfang", new StarryFang(), 770, true);
+        ItemRegistry.registerItem("xaeronsword", new XaeronSword(), 240, true);
+        ItemRegistry.registerItem("crystalizedxaeronsword", new CrystalizedXaeronSword(), 5480, true);
 
         // Tools
         ItemRegistry.registerItem("ridiumpickaxe", new CustomPickaxeToolItem(400, 200, 6, 30, 50, 55, 1200, Rarity.RARE), 128, true);
@@ -192,7 +220,12 @@ public class DeathriteMod {
         ItemRegistry.registerItem("aethiumpickaxe", new CustomPickaxeToolItem(450, 220, 7, 35, 55, 55, 1400, Rarity.EPIC), 576, true);
         ItemRegistry.registerItem("aethiumaxe", new CustomAxeToolItem(450, 220, 7, 35, 55, 55, 1400, Rarity.EPIC), 576, true);
         ItemRegistry.registerItem("aethiumshovel", new CustomShovelToolItem(450, 220, 7, 35, 55, 55, 1400, Rarity.EPIC), 576, true);
-
+        ItemRegistry.registerItem("starrypickaxe", new CustomPickaxeToolItem(500, 250, 8, 40, 60, 55, 1600, Rarity.LEGENDARY), 832, true);
+        ItemRegistry.registerItem("starryaxe", new CustomAxeToolItem(500, 250, 8, 40, 60, 55, 1600, Rarity.LEGENDARY), 832, true);
+        ItemRegistry.registerItem("starryshovel", new CustomShovelToolItem(500, 250, 8, 40, 60, 55, 1600, Rarity.LEGENDARY), 832, true);
+        ItemRegistry.registerItem("xaeronpickaxe", new CustomPickaxeToolItem(550, 300, 9, 45, 65, 60, 1800, Rarity.LEGENDARY), 384, true);
+        ItemRegistry.registerItem("xaeronaxe", new CustomAxeToolItem(550, 300, 9, 45, 65, 60, 1800, Rarity.LEGENDARY), 384, true);
+        ItemRegistry.registerItem("xaeronshovel", new CustomShovelToolItem(550, 300, 9, 45, 65, 60, 1800, Rarity.LEGENDARY), 384, true);
 
         // Items
         ItemRegistry.registerItem("aetherstone", new AetherStone(), 1.5F, true);
@@ -209,13 +242,35 @@ public class DeathriteMod {
         ItemRegistry.registerItem("aetherlog", (new MatItem(500, new String[]{"anylog"})).setItemCategory(new String[]{"materials", "logs"}), 2.0F, true);
 
         // Trinkets
-        ItemRegistry.registerItem("ridiumarrowhead", new SimpleTrinketItem(Rarity.EPIC, "ridiumarrowheadbuff", 10),5, true);
-        ItemRegistry.registerItem("ridiumbladesharpener", new SimpleTrinketItem(Rarity.EPIC, "ridiumbladesharpener", 10).addDisables("bladesharpener"), 27, true);
-        ItemRegistry.registerItem("aetherbladesharpener", new SimpleTrinketItem(Rarity.EPIC, "aetherbladesharpener", 10).addDisables("bladesharpener"), 27, true);
-        ItemRegistry.registerItem("aethiumbladesharpener", new SimpleTrinketItem(Rarity.EPIC, "aethiumbladesharpener", 10).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener"), 69, true);
         ItemRegistry.registerItem("bladesharpener", new SimpleTrinketItem(Rarity.COMMON, "bladesharpener", 5), 11, true);
+        ItemRegistry.registerItem("ridiumbladesharpener", new SimpleTrinketItem(Rarity.EPIC, "ridiumbladesharpener", 10).addDisables("bladesharpener", "aetherbladesharpener"), 27, true);
+        ItemRegistry.registerItem("aetherbladesharpener", new SimpleTrinketItem(Rarity.EPIC, "aetherbladesharpener", 10).addDisables("bladesharpener", "ridiumbladesharpener"), 27, true);
+        ItemRegistry.registerItem("aethiumbladesharpener", new SimpleTrinketItem(Rarity.EPIC, "aethiumbladesharpener", 10).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener"), 69, true);
         ItemRegistry.registerItem("staritebladesharpener", new SimpleTrinketItem(Rarity.LEGENDARY, "staritebladesharpener", 10).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener", "aethiumbladesharpener"), 173, true);
         ItemRegistry.registerItem("xaeronbladesharpener", new SimpleTrinketItem(Rarity.LEGENDARY, "xaeronbladesharpener", 10).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener", "aethiumbladesharpener", "staritebladesharpener"), 221, true);
+        ItemRegistry.registerItem("crystalizedxaeronbladesharpener", new SimpleTrinketItem(Rarity.LEGENDARY, "crystalizedxaeronbladesharpener", 10).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener", "aethiumbladesharpener", "staritebladesharpener", "xaeronbladesharpener"), 1317, true);
+
+        ItemRegistry.registerItem("arrowhead", new SimpleTrinketItem(Rarity.COMMON, "arrowhead", 5), 11, true);
+        ItemRegistry.registerItem("ridiumarrowhead", new SimpleTrinketItem(Rarity.EPIC, "ridiumarrowheadbuff", 10).addDisables("arrowhead", "aetherarrowhead"),5, true);
+        ItemRegistry.registerItem("aetherarrowhead", new SimpleTrinketItem(Rarity.EPIC, "aetherarrowhead", 10).addDisables("arrowhead", "ridiumarrowhead"), 27, true);
+        ItemRegistry.registerItem("aethiumarrowhead", new SimpleTrinketItem(Rarity.EPIC, "aethiumarrowhead", 10).addDisables("arrowhead", "ridiumarrowhead", "aetherarrowhead"), 69, true);
+        ItemRegistry.registerItem("staritearrowhead", new SimpleTrinketItem(Rarity.LEGENDARY, "staritearrowhead", 10).addDisables("arrowhead", "ridiumarrowhead", "aetherarrowhead", "aethiumarrowhead"), 173, true);
+        ItemRegistry.registerItem("xaeronarrowhead", new SimpleTrinketItem(Rarity.LEGENDARY, "xaeronarrowhead", 10).addDisables("arrowhead", "ridiumarrowhead", "aetherarrowhead", "aethiumarrowhead", "staritearrowhead"), 221, true);
+        ItemRegistry.registerItem("crystalizedxaeronarrowhead", new SimpleTrinketItem(Rarity.LEGENDARY, "crystalizedxaeronarrowhead", 10).addDisables("arrowhead", "ridiumarrowhead", "aetherarrowhead", "aethiumarrowhead", "staritearrowhead", "xaeronarrowhead"), 1317, true);
+
+        ItemRegistry.registerItem("spellbook", new SimpleTrinketItem(Rarity.COMMON, "spellbook", 5), 11, true);
+        ItemRegistry.registerItem("ridiumspellbook", new SimpleTrinketItem(Rarity.EPIC, "ridiumspellbookbuff", 10).addDisables("spellbook", "aetherspellbook"),5, true);
+        ItemRegistry.registerItem("aetherspellbook", new SimpleTrinketItem(Rarity.EPIC, "aetherspellbook", 10).addDisables("spellbook", "ridiumspellbook"), 27, true);
+        ItemRegistry.registerItem("aethiumspellbook", new SimpleTrinketItem(Rarity.EPIC, "aethiumspellbook", 10).addDisables("spellbook", "ridiumspellbook", "aetherspellbook"), 69, true);
+        ItemRegistry.registerItem("staritespellbook", new SimpleTrinketItem(Rarity.LEGENDARY, "staritespellbook", 10).addDisables("spellbook", "ridiumspellbook", "aetherspellbook", "aethiumspellbook"), 173, true);
+        ItemRegistry.registerItem("xaeronspellbook", new SimpleTrinketItem(Rarity.LEGENDARY, "xaeronspellbook", 10).addDisables("spellbook", "ridiumspellbook", "aetherspellbook", "aethiumspellbook", "staritespellbook"), 221, true);
+        ItemRegistry.registerItem("crystalizedxaeronspellbook", new SimpleTrinketItem(Rarity.LEGENDARY, "crystalizedxaeronspellbook", 10).addDisables("spellbook", "ridiumspellbook", "aetherspellbook", "aethiumspellbook", "staritespellbook", "xaeronspellbook"), 1317, true);
+
+        ItemRegistry.registerItem("staffcrystal", new SimpleTrinketItem(Rarity.COMMON, "staffcrystal", 5), 11, true);
+        ItemRegistry.registerItem("aethercrystal", new SimpleTrinketItem(Rarity.EPIC, "aethercrystal", 10).addDisables("staffcrystal"), 27, true);
+        ItemRegistry.registerItem("aethiumcrystal", new SimpleTrinketItem(Rarity.EPIC, "aethiumcrystal", 10).addDisables("staffcrystal", "aethercrystal"), 69, true);
+        ItemRegistry.registerItem("staritecrystal", new SimpleTrinketItem(Rarity.LEGENDARY, "staritecrystal", 10).addDisables("staffcrystal", "aethercrystal", "aethiumcrystal"), 173, true);
+        ItemRegistry.registerItem("crystalizedxaeroncrystal", new SimpleTrinketItem(Rarity.LEGENDARY, "crystalizedxaeroncrystal", 10).addDisables("staffcrystal", "aethercrystal", "aethiumcrystal", "staritecrystal"), 1317, true);
 
         // Armor
         ItemRegistry.registerItem("ridiumhelmet", new RidiumHelmetItem(), 10, true);
@@ -304,6 +359,8 @@ public class DeathriteMod {
             e.printStackTrace();
         }
 
+        LootTablePresets.startChest.items.addAll(new LootItemList(new LootItem("knightsheart", 250)));
+
         // Items
         Recipes.registerModRecipe(new Recipe(
                 "skyladderdown",
@@ -354,6 +411,25 @@ public class DeathriteMod {
                 RecipeTechRegistry.getTech("aethiumanvil"),
                 new Ingredient[]{
                         new Ingredient("aethiumbar", 10)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "starryfang",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 10),
+                        new Ingredient("darkmatter", 5)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "xaeronsword",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("xaeronbar", 10)
                 }
         ));
 
@@ -412,14 +488,32 @@ public class DeathriteMod {
         ));
 
         Recipes.registerModRecipe(new Recipe(
-                "starryfang",
+                "starrypickaxe",
                 1,
                 RecipeTechRegistry.getTech("aethiumanvil"),
                 new Ingredient[]{
-                        new Ingredient("starrybar", 10),
-                        new Ingredient("darkmatter", 5)
+                        new Ingredient("starrybar", 16),
                 }
         ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "starryaxe",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 16),
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "starryshovel",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 16),
+                }
+        ));
+
 
         // Quest Items
         Recipes.registerModRecipe(new Recipe(
@@ -565,6 +659,15 @@ public class DeathriteMod {
 
         // Trinkets
         Recipes.registerModRecipe(new Recipe(
+                "bladesharpener",
+                1,
+                RecipeTechRegistry.WORKSTATION,
+                new Ingredient[]{
+                        new Ingredient("ironbar", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
                 "ridiumbladesharpener",
                 1,
                 RecipeTechRegistry.FALLEN_WORKSTATION,
@@ -596,7 +699,37 @@ public class DeathriteMod {
         ));
 
         Recipes.registerModRecipe(new Recipe(
-                "bladesharpener",
+                "staritebladesharpener",
+                1,
+                RecipeTechRegistry.getTech("aethiumworkstation"),
+                new Ingredient[]{
+                        new Ingredient("aethiumbladesharpener", 1),
+                        new Ingredient("starrybar", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "xaeronbladesharpener",
+                1,
+                RecipeTechRegistry.getTech("aethiumworkstation"),
+                new Ingredient[]{
+                        new Ingredient("staritebladesharpener", 1),
+                        new Ingredient("xaeronbar", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedxaeronbladesharpener",
+                1,
+                RecipeTechRegistry.getTech("aethiumworkstation"),
+                new Ingredient[]{
+                        new Ingredient("xaeronbladesharpener", 1),
+                        new Ingredient("crystalizedxaeronbar", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "arrowhead",
                 1,
                 RecipeTechRegistry.WORKSTATION,
                 new Ingredient[]{
@@ -605,12 +738,184 @@ public class DeathriteMod {
         ));
 
         Recipes.registerModRecipe(new Recipe(
-                "staritebladesharpener",
+                "ridiumarrowhead",
+                1,
+                RecipeTechRegistry.FALLEN_WORKSTATION,
+                new Ingredient[]{
+                        new Ingredient("ridiumbar", 2),
+                        new Ingredient("arrowhead", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aetherarrowhead",
+                1,
+                RecipeTechRegistry.FALLEN_WORKSTATION,
+                new Ingredient[]{
+                        new Ingredient("aetherbar", 2),
+                        new Ingredient("arrowhead", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumarrowhead",
                 1,
                 RecipeTechRegistry.getTech("aethiumworkstation"),
                 new Ingredient[]{
-                        new Ingredient("aethiumbladesharpener", 1),
+                        new Ingredient("ridiumarrowhead", 1),
+                        new Ingredient("aetherarrowhead", 1),
+                        new Ingredient("knightsheart", 1),
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "staritearrowhead",
+                1,
+                RecipeTechRegistry.getTech("aethiumworkstation"),
+                new Ingredient[]{
+                        new Ingredient("aethiumarrowhead", 1),
                         new Ingredient("starrybar", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "xaeronarrowhead",
+                1,
+                RecipeTechRegistry.getTech("aethiumworkstation"),
+                new Ingredient[]{
+                        new Ingredient("staritearrowhead", 1),
+                        new Ingredient("xaeronbar", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedxaeronarrowhead",
+                1,
+                RecipeTechRegistry.getTech("aethiumworkstation"),
+                new Ingredient[]{
+                        new Ingredient("xaeronarrowhead", 1),
+                        new Ingredient("crystalizedxaeronbar", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "spellbook",
+                1,
+                RecipeTechRegistry.ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("book", 1),
+                        new Ingredient("voidshard", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "ridiumspellbook",
+                1,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("ridiumbar", 2),
+                        new Ingredient("spellbook", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aetherspellbook",
+                1,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("aetherbar", 2),
+                        new Ingredient("spellbook", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumspellbook",
+                1,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("ridiumspellbook", 1),
+                        new Ingredient("aetherspellbook", 1),
+                        new Ingredient("knightsheart", 1),
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "staritespellbook",
+                1,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("aethiumspellbook", 1),
+                        new Ingredient("starrybar", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "xaeronspellbook",
+                1,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("staritespellbook", 1),
+                        new Ingredient("xaeronbar", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedxaeronspellbook",
+                1,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("xaeronspellbook", 1),
+                        new Ingredient("crystalizedxaeronbar", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "staffcrystal",
+                1,
+                RecipeTechRegistry.ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("voidshard", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethercrystal",
+                1,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("aetherbar", 2),
+                        new Ingredient("staffcrystal", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumcrystal",
+                1,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("ridiumbar", 2),
+                        new Ingredient("aethercrystal", 1),
+                        new Ingredient("knightsheart", 1),
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "staritecrystal",
+                1,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("aethiumcrystal", 1),
+                        new Ingredient("starrybar", 2)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedxaeroncrystal",
+                1,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("staritecrystal", 1),
+                        new Ingredient("crystalizedxaeronbar", 2)
                 }
         ));
 
@@ -754,9 +1059,6 @@ public class DeathriteMod {
                 }
             }
         });
-
-        // Vanilla Modded Loot Tables
-        LootTablePresets.startChest.items.addAll(new LootItemList(new LootItemInterface[]{new LootItem("knightheart", 200)}));
     }
 
     public static class GetStationUpgradeInterceptor {

@@ -15,9 +15,9 @@ public class XaeronBladeSharpener extends TrinketBuff {
     }
 
     public void init(ActiveBuff buff, BuffEventSubscriber eventSubscriber) {
-        buff.setModifier(BuffModifiers.MELEE_DAMAGE, .30F);
-        buff.setModifier(BuffModifiers.MELEE_ATTACK_SPEED, .30F);
-        buff.setModifier(BuffModifiers.MELEE_CRIT_CHANCE, .20F);
+        buff.addModifier(BuffModifiers.MELEE_DAMAGE, 0.30F);
+        buff.addModifier(BuffModifiers.MELEE_ATTACK_SPEED, 0.30F);
+        buff.addModifier(BuffModifiers.MELEE_CRIT_CHANCE, 0.20F);
     }
 
     public ListGameTooltips getTrinketTooltip(TrinketItem trinketItem, InventoryItem item, PlayerMob perspective) {

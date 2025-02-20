@@ -15,7 +15,7 @@ public class AetherBladeSharpener extends TrinketBuff {
     }
 
     public void init(ActiveBuff buff, BuffEventSubscriber eventSubscriber) {
-        buff.setModifier(BuffModifiers.MELEE_ATTACK_SPEED, .25F);
+        buff.addModifier(BuffModifiers.MELEE_ATTACK_SPEED, 0.25F);
     }
 
     public ListGameTooltips getTrinketTooltip(TrinketItem trinketItem, InventoryItem item, PlayerMob perspective) {

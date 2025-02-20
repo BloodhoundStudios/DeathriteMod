@@ -1,4 +1,4 @@
-package deathrite.Buffs.Trinkets.Arrowheads;
+package deathrite.Buffs.Trinkets.Crystals;
 
 import necesse.engine.localization.Localization;
 import necesse.entity.mobs.PlayerMob;
@@ -10,17 +10,21 @@ import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.trinketItem.TrinketItem;
 
-public class RidiumArrowheadBuff extends TrinketBuff {
-    public RidiumArrowheadBuff() {
+public class AethiumCrystal extends TrinketBuff {
+    public AethiumCrystal() {
     }
 
     public void init(ActiveBuff buff, BuffEventSubscriber eventSubscriber) {
-        buff.addModifier(BuffModifiers.RANGED_DAMAGE, 0.25F);
+        buff.addModifier(BuffModifiers.SUMMON_DAMAGE, 0.25F);
+        buff.addModifier(BuffModifiers.SUMMON_ATTACK_SPEED, 0.25F);
+        buff.addModifier(BuffModifiers.SUMMON_CRIT_CHANCE, 0.15F);
+        buff.addModifier(BuffModifiers.MAX_SUMMONS, 1);
+        buff.addModifier(BuffModifiers.SUMMONS_TARGET_RANGE, 0.5F);
     }
 
     public ListGameTooltips getTrinketTooltip(TrinketItem trinketItem, InventoryItem item, PlayerMob perspective) {
         ListGameTooltips tooltips = super.getTrinketTooltip(trinketItem, item, perspective);
-        tooltips.add(Localization.translate("itemtooltip", "ridiumarrowheadtip"));
+        tooltips.add(Localization.translate("itemtooltip", "aethiumcrystaltip"));
         return tooltips;
     }
 }

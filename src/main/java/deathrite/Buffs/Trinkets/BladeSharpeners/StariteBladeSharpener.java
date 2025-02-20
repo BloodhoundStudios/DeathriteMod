@@ -15,9 +15,9 @@ public class StariteBladeSharpener extends TrinketBuff {
     }
 
     public void init(ActiveBuff buff, BuffEventSubscriber eventSubscriber) {
-        buff.setModifier(BuffModifiers.MELEE_DAMAGE, .27F);
-        buff.setModifier(BuffModifiers.MELEE_ATTACK_SPEED, .27F);
-        buff.setModifier(BuffModifiers.MELEE_CRIT_CHANCE, .20F);
+        buff.addModifier(BuffModifiers.MELEE_DAMAGE, .27F);
+        buff.addModifier(BuffModifiers.MELEE_ATTACK_SPEED, .27F);
+        buff.addModifier(BuffModifiers.MELEE_CRIT_CHANCE, .20F);
     }
 
     public ListGameTooltips getTrinketTooltip(TrinketItem trinketItem, InventoryItem item, PlayerMob perspective) {
