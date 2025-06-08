@@ -12,6 +12,7 @@ import necesse.inventory.lootTable.LootTable;
 import necesse.level.maps.Level;
 import necesse.level.maps.biomes.Biome;
 import necesse.level.maps.biomes.MobSpawnTable;
+import necesse.level.maps.biomes.desert.DesertDeepCaveLevel;
 
 public class AetherBiome extends Biome {
     public static MobSpawnTable surfaceMobs;
@@ -33,6 +34,10 @@ public class AetherBiome extends Biome {
 
     public Level getNewCaveLevel(int islandX, int islandY, int dimension, Server server, WorldEntity worldEntity) {
         return new AetherCaveLevel(islandX, islandY, dimension, worldEntity, this);
+    }
+
+    public Level getNewDeepCaveLevel(int islandX, int islandY, int dimension, Server server, WorldEntity worldEntity) {
+        return null;
     }
 
     public Level getNewSkyLevel(int islandX, int islandY, int dimension, Server server, WorldEntity worldEntity) {

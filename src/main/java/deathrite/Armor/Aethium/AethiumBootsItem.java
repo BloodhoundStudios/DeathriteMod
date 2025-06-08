@@ -19,7 +19,7 @@ public class AethiumBootsItem extends BootsArmorItem {
     public FloatUpgradeValue speed = (new FloatUpgradeValue()).setBaseValue(0.2F).setUpgradedValue(1.0F, 0.25F);
 
     public AethiumBootsItem() {
-        super(16, 1300, Rarity.LEGENDARY, "aethiumboots");
+        super(16, 1300, Rarity.EPIC, "aethiumboots");
     }
 
     public ArmorModifiers getArmorModifiers(InventoryItem item, Mob mob) {

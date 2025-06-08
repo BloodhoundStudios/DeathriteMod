@@ -1,5 +1,6 @@
 package deathrite.Buffs.Trinkets;
 
+import deathrite.DeathriteMod;
 import necesse.engine.util.GameRandom;
 import necesse.entity.mobs.Mob;
 import necesse.entity.mobs.buffs.ActiveBuff;

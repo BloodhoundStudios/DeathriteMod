@@ -22,7 +22,7 @@ import necesse.inventory.item.armorItem.SetHelmetArmorItem;
 
 public class AethiumHelmetItem extends SetHelmetArmorItem {
     public AethiumHelmetItem() {
-        super(20, (DamageType)null, 1300, Rarity.LEGENDARY, "aethiumhelmet", "aethiumchestplate", "aethiumboots", "ancientfossilhelmetsetbonus");
+        super(20, (DamageType)null, 1300, Rarity.EPIC, "aethiumhelmet", "aethiumchestplate", "aethiumboots", "ancientfossilhelmetsetbonus");
         this.hairDrawOptions = HairDrawMode.NO_HEAD;
     }
 

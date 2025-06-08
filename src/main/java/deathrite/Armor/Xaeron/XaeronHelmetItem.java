@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package deathrite.Armor.Ridium;
+package deathrite.Armor.Xaeron;
 
 import necesse.engine.modifiers.ModifierValue;
 import necesse.entity.mobs.Mob;
@@ -20,9 +20,9 @@ import necesse.inventory.item.armorItem.SetHelmetArmorItem;
 // Last/Bottom row is The Left
 // The Boots can only fit in its 16x16 Square
 
-public class RidiumHelmetItem extends SetHelmetArmorItem {
-    public RidiumHelmetItem() {
-        super(20, (DamageType)null, 1300, Rarity.RARE, "ridiumhelmet", "ridiumchestplate", "ridiumboots", "ancientfossilhelmetsetbonus");
+public class XaeronHelmetItem extends SetHelmetArmorItem {
+    public XaeronHelmetItem() {
+        super(30, (DamageType)null, 1300, Rarity.LEGENDARY, "", "xaeronchestplate", "xaeronboots", "ancientfossilhelmetsetbonus");
         this.hairDrawOptions = HairDrawMode.NO_HEAD;
     }
 

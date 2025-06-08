@@ -3,23 +3,37 @@ package deathrite;
 import deathrite.Armor.Aethium.AethiumBootsItem;
 import deathrite.Armor.Aethium.AethiumChestplateItem;
 import deathrite.Armor.Aethium.AethiumHelmetItem;
+import deathrite.Armor.CrystalizedXaeron.CrystalizedXaeronBootsItem;
+import deathrite.Armor.CrystalizedXaeron.CrystalizedXaeronChestplateItem;
+import deathrite.Armor.CrystalizedXaeron.CrystalizedXaeronHelmetItem;
 import deathrite.Armor.Ridium.RidiumBootsItem;
 import deathrite.Armor.Ridium.RidiumChestplateItem;
 import deathrite.Armor.Ridium.RidiumHelmetItem;
+import deathrite.Armor.Starite.StariteBootsItem;
+import deathrite.Armor.Starite.StariteChestplateItem;
+import deathrite.Armor.Starite.StariteHelmetItem;
+import deathrite.Armor.Xaeron.XaeronBootsItem;
+import deathrite.Armor.Xaeron.XaeronChestplateItem;
+import deathrite.Armor.Xaeron.XaeronHelmetItem;
 import deathrite.Biomes.Aether.*;
 import deathrite.Buffs.Trinkets.Arrowheads.*;
 import deathrite.Buffs.Trinkets.BladeSharpeners.*;
 import deathrite.Buffs.Trinkets.Crystals.*;
 import deathrite.Buffs.Trinkets.Spellbooks.*;
 import deathrite.Buffs.Trinkets.StarfrostBuff;
+import deathrite.Buffs.Trinkets.TheTrinketofEverything;
+import deathrite.Events.WeaponEvents.AetherStaffEvent;
+import deathrite.Items.Arrows.AetherArrow;
+import deathrite.Items.Arrows.CrystalizedXaeronArrow;
+import deathrite.Items.Arrows.RidiumArrow;
+import deathrite.Items.Arrows.StariteArrow;
 import deathrite.Items.BossDrops.*;
+import deathrite.Items.BossSummons.EnragedStarryWormSpawnItem;
 import deathrite.Items.BossSummons.StarryWormSpawnItem;
 import deathrite.Items.BossSummons.TabletofSpiritsSpawnItem;
-import deathrite.Items.Materials.Aether.AetherBar;
-import deathrite.Items.Materials.Aether.AetherOre;
-import deathrite.Items.Materials.Aether.AetherStone;
-import deathrite.Items.Materials.Aether.PassedSpirits;
+import deathrite.Items.Materials.Aether.*;
 import deathrite.Items.Materials.Aethium.AethiumBar;
+import deathrite.Items.Materials.VoidShards.*;
 import deathrite.Items.Materials.Essence.EssenceOfTheGods;
 import deathrite.Items.Materials.Essence.MoonEssence;
 import deathrite.Items.Materials.Essence.SunEssence;
@@ -33,24 +47,27 @@ import deathrite.Items.Materials.Starite.StarryBar;
 import deathrite.Items.Materials.Xaeron.CrystalizedXaeronBar;
 import deathrite.Items.Materials.Xaeron.XaeronBar;
 import deathrite.Items.Materials.Xaeron.XaeronOre;
-import deathrite.Items.Weapons.Aethium.AethiumSword;
+import deathrite.Items.Weapons.Aether.AetherStaff;
+import deathrite.Items.Weapons.Aethium.*;
 import deathrite.Items.Weapons.Dev.DevSword;
-import deathrite.Items.Weapons.Ridium.RidiumSword;
-import deathrite.Items.Weapons.Starite.StarryFang;
-import deathrite.Items.Weapons.Xaeron.CrystalizedXaeronSword;
-import deathrite.Items.Weapons.Xaeron.XaeronSword;
+import deathrite.Items.Weapons.Ridium.*;
+import deathrite.Items.Weapons.Starite.*;
+import deathrite.Items.Weapons.Xaeron.*;
 import deathrite.Journal.DeathriteJournalChallenges;
 import deathrite.Mobs.Bosses.StarfangedDestroyer.*;
 import deathrite.Mobs.Friendly.Caveling.AetherCaveling;
 import deathrite.Mobs.Hostile.AetherSpirit;
-import deathrite.Mobs.Bosses.RidiumKnightBoss;
 import deathrite.Objects.Aether.AetherRock;
 import deathrite.Objects.Space.SpaceRock;
 import deathrite.Objects.Space.UpgradedSpaceRock;
 import deathrite.Objects.Workstations.AethiumAnvilObject;
 import deathrite.Objects.Workstations.AethiumWorkstationObject;
 import deathrite.Objects.Workstations.DeathriteSummonerObject;
-import deathrite.Projectiles.ShootingStarProjectile;
+import deathrite.Projectiles.*;
+import deathrite.Projectiles.Arrows.AetherArrowProjectile;
+import deathrite.Projectiles.Arrows.CrystalizedXaeronArrowProjectile;
+import deathrite.Projectiles.Arrows.RidiumArrowProjectile;
+import deathrite.Projectiles.Arrows.StariteArrowProjectile;
 import deathrite.Tiles.Aether.AetherSandTile;
 import deathrite.Tiles.Aether.AetherStoneTile;
 import deathrite.Tiles.Sky.SkyCloudTile;
@@ -65,17 +82,18 @@ import necesse.engine.modLoader.annotations.ModEntry;
 import necesse.engine.registries.*;
 import necesse.engine.sound.GameMusic;
 import necesse.entity.mobs.HumanTexture;
+import necesse.entity.projectile.XaeronDaggerProjectile;
 import necesse.gfx.gameTexture.GameTexture;
+import necesse.gfx.shader.ShaderLoader;
 import necesse.inventory.InventoryItem;
-import necesse.inventory.item.Item;
 import necesse.inventory.item.Item.Rarity;
 import necesse.inventory.item.matItem.MatItem;
+import necesse.inventory.item.miscItem.VinylItem;
 import necesse.inventory.item.placeableItem.mapItem.BiomeMapItem;
 import necesse.inventory.item.toolItem.axeToolItem.CustomAxeToolItem;
 import necesse.inventory.item.toolItem.pickaxeToolItem.CustomPickaxeToolItem;
 import necesse.inventory.item.toolItem.shovelToolItem.CustomShovelToolItem;
 import necesse.inventory.item.trinketItem.SimpleTrinketItem;
-import necesse.inventory.lootTable.LootItemInterface;
 import necesse.inventory.lootTable.LootTablePresets;
 import necesse.inventory.lootTable.lootItem.LootItem;
 import necesse.inventory.lootTable.lootItem.LootItemList;
@@ -91,7 +109,6 @@ import net.bytebuddy.matcher.ElementMatchers;
 
 import java.awt.*;
 import java.util.Random;
-import java.util.logging.Level;
 
 // Normal = White
 // Common = Green
@@ -106,7 +123,9 @@ public class DeathriteMod {
     public static GameMusic AetherMusic;
     public static GameMusic StarfangedMusic;
     public static GameTexture StarfangedDestroyerTexture;
+    public static GameTexture aetherStaffPillars;
     public static HumanTexture AetherCavelingTexture;
+    public static int TestShader;
 
     public void init() {
         // Journal Challenges
@@ -155,6 +174,7 @@ public class DeathriteMod {
 
         // Buffs
         BuffRegistry.registerBuff("starfrost", new StarfrostBuff());
+        BuffRegistry.registerBuff("thetrinketofeverything", new TheTrinketofEverything());
 
         BuffRegistry.registerBuff("bladesharpener", new BladeSharpener());
         BuffRegistry.registerBuff("ridiumbladesharpener", new RidiumBladeSharpener());
@@ -197,6 +217,13 @@ public class DeathriteMod {
         ItemRegistry.registerItem("stariteore", new StariteOre(), 4, true);
         ItemRegistry.registerItem("xaeronore", new XaeronOre(), 6, true);
 
+        // Shards
+        ItemRegistry.registerItem("aethervoidshard", new AetherVoidShard(), 58, true);
+        ItemRegistry.registerItem("aethiumvoidshard", new AethiumVoidShard(), 298, true);
+        ItemRegistry.registerItem("staritevoidshard", new StariteVoidShard(), 1542, true);
+        ItemRegistry.registerItem("crystalizedvoidshard", new CrystalizedVoidShard(), 7960, true);
+        ItemRegistry.registerItem("everythingshard", new EverythingShard(), 159200, true);
+
         // Bars
         ItemRegistry.registerItem("ridiumbar", new RidiumBar(), 8, true);
         ItemRegistry.registerItem("aetherbar", new AetherBar(), 8, true);
@@ -205,13 +232,45 @@ public class DeathriteMod {
         ItemRegistry.registerItem("xaeronbar", new XaeronBar(), 24, true);
         ItemRegistry.registerItem("crystalizedxaeronbar", new CrystalizedXaeronBar(), 548, true);
 
+        // Arrows
+        ItemRegistry.registerItem("ridiumarrow", new RidiumArrow(), 8, true);
+        ItemRegistry.registerItem("aetherarrow", new AetherArrow(), 8, true);
+        ItemRegistry.registerItem("staritearrow", new StariteArrow(), 52, true);
+        ItemRegistry.registerItem("crystalizedxaeronarrow", new CrystalizedXaeronArrow(), 548, true);
+
         // Weapons
+        //Melee
         ItemRegistry.registerItem("devsword", new DevSword(), 9999, false);
         ItemRegistry.registerItem("ridiumsword", new RidiumSword(), 200, true);
         ItemRegistry.registerItem("aethiumsword", new AethiumSword(), 360, true);
         ItemRegistry.registerItem("starryfang", new StarryFang(), 770, true);
         ItemRegistry.registerItem("xaeronsword", new XaeronSword(), 240, true);
         ItemRegistry.registerItem("crystalizedxaeronsword", new CrystalizedXaeronSword(), 5480, true);
+        ItemRegistry.registerItem("xaerondagger", new XaeronDagger(), 340, true);
+        ItemRegistry.registerItem("ridiumglaive", new RidiumGlaive(), 128, true);
+        ItemRegistry.registerItem("stariteglaive", new StariteGlaive(), 832, true);
+        ItemRegistry.registerItem("xaeronglaive", new XaeronGlaive(), 384, true);
+        ItemRegistry.registerItem("ridiumgreatsword", new RidiumGreatsword(), 160, true);
+        ItemRegistry.registerItem("aethiumgreatsword", new AethiumGreatsword(), 720, true);
+        ItemRegistry.registerItem("staritegreatsword", new StariteGreatsword(), 1040, true);
+        ItemRegistry.registerItem("crystalizedxaerongreatsword", new CrystalizedXaeronGreatsword(), 10960, true);
+        ItemRegistry.registerItem("aethiumspear", new AethiumSpear(), 540, true);
+        ItemRegistry.registerItem("xaeronspear", new XaeronSpear(), 360, true);
+        ItemRegistry.registerItem("crystalizedxaeronspear", new CrystalizedXaeronSpear(), 8220, true);
+
+        ItemRegistry.registerItem("stariteboomerang", new StariteBoomerang(), 520, true);
+        ItemRegistry.registerItem("crystalizedxaeronboomerang", new CrystalizedXaeronBoomerang(), 5480, true);
+
+        //Ranged
+        ItemRegistry.registerItem("ridiumbow", new RidiumBow(), 128, true);
+        ItemRegistry.registerItem("aethiumbow", new AethiumBow(), 576, true);
+        ItemRegistry.registerItem("staritebow", new StariteBow(), 832, true);
+
+        //Magic
+        ItemRegistry.registerItem("ridiumstaff", new RidiumStaff(), 410, true);
+        ItemRegistry.registerItem("aetherstaff", new AetherStaff(), 410, true);
+        ItemRegistry.registerItem("aethiumstaff", new AethiumStaff(), 2030, true);
+        ItemRegistry.registerItem("staritestaff", new StariteStaff(), 8490, true);
 
         // Tools
         ItemRegistry.registerItem("ridiumpickaxe", new CustomPickaxeToolItem(400, 200, 6, 30, 50, 55, 1200, Rarity.RARE), 128, true);
@@ -242,6 +301,8 @@ public class DeathriteMod {
         ItemRegistry.registerItem("aetherlog", (new MatItem(500, new String[]{"anylog"})).setItemCategory(new String[]{"materials", "logs"}), 2.0F, true);
 
         // Trinkets
+        ItemRegistry.registerItem("thetrinketofeverything", new SimpleTrinketItem(Rarity.LEGENDARY, "thetrinketofeverything", 801268).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener", "aethiumbladesharpener", "staritebladesharpener", "xaeronbladesharpener", "crystalizedxaeronbladesharpener", "arrowhead", "ridiumarrowhead", "aetherarrowhead", "aethiumarrowhead", "staritearrowhead", "xaeronarrowhead", "crystalizedxaeronarrowhead", "spellbook", "ridiumspellbook", "aetherspellbook", "aethiumspellbook", "staritespellbook", "xaeronspellbook", "crystalizedxaeronspellbook", "staffcrystal", "aethercrystal", "aethiumcrystal", "staritecrystal", "crystalizedxaeroncrystal"), 5268, true);
+
         ItemRegistry.registerItem("bladesharpener", new SimpleTrinketItem(Rarity.COMMON, "bladesharpener", 5), 11, true);
         ItemRegistry.registerItem("ridiumbladesharpener", new SimpleTrinketItem(Rarity.EPIC, "ridiumbladesharpener", 10).addDisables("bladesharpener", "aetherbladesharpener"), 27, true);
         ItemRegistry.registerItem("aetherbladesharpener", new SimpleTrinketItem(Rarity.EPIC, "aetherbladesharpener", 10).addDisables("bladesharpener", "ridiumbladesharpener"), 27, true);
@@ -273,12 +334,25 @@ public class DeathriteMod {
         ItemRegistry.registerItem("crystalizedxaeroncrystal", new SimpleTrinketItem(Rarity.LEGENDARY, "crystalizedxaeroncrystal", 10).addDisables("staffcrystal", "aethercrystal", "aethiumcrystal", "staritecrystal"), 1317, true);
 
         // Armor
-        ItemRegistry.registerItem("ridiumhelmet", new RidiumHelmetItem(), 10, true);
-        ItemRegistry.registerItem("ridiumchestplate", new RidiumChestplateItem(), 10, true);
-        ItemRegistry.registerItem("ridiumboots", new RidiumBootsItem(), 10, true);
-        ItemRegistry.registerItem("aethiumhelmet", new AethiumHelmetItem(), 20, true);
-        ItemRegistry.registerItem("aethiumchestplate", new AethiumChestplateItem(), 20, true);
-        ItemRegistry.registerItem("aethiumboots", new AethiumBootsItem(), 20, true);
+        ItemRegistry.registerItem("ridiumhelmet", new RidiumHelmetItem(), 64, true);
+        ItemRegistry.registerItem("ridiumchestplate", new RidiumChestplateItem(), 80, true);
+        ItemRegistry.registerItem("ridiumboots", new RidiumBootsItem(), 56, true);
+
+        ItemRegistry.registerItem("aethiumhelmet", new AethiumHelmetItem(), 128, true);
+        ItemRegistry.registerItem("aethiumchestplate", new AethiumChestplateItem(), 160, true);
+        ItemRegistry.registerItem("aethiumboots", new AethiumBootsItem(), 112, true);
+
+        ItemRegistry.registerItem("staritehelmet", new StariteHelmetItem(), 416, true);
+        ItemRegistry.registerItem("staritechestplate", new StariteChestplateItem(), 520, true);
+        ItemRegistry.registerItem("stariteboots", new StariteBootsItem(), 364, true);
+
+        ItemRegistry.registerItem("xaeronhelmet", new XaeronHelmetItem(), 192, true);
+        ItemRegistry.registerItem("xaeronchestplate", new XaeronChestplateItem(), 240, true);
+        ItemRegistry.registerItem("xaeronboots", new XaeronBootsItem(), 168, true);
+
+        ItemRegistry.registerItem("crystalizedxaeronhelmet", new CrystalizedXaeronHelmetItem(), 192, true);
+        ItemRegistry.registerItem("crystalizedxaeronchestplate", new CrystalizedXaeronChestplateItem(), 240, true);
+        ItemRegistry.registerItem("crystalizedxaeronboots", new CrystalizedXaeronBootsItem(), 168, true);
 
         // Boss Drops
         ItemRegistry.registerItem("knightsheart", new KnightsHeart(), 15, true);
@@ -293,7 +367,7 @@ public class DeathriteMod {
         // Boss Summons
         ItemRegistry.registerItem("tabletofspirits", new TabletofSpiritsSpawnItem(), 500, true);
         ItemRegistry.registerItem("starryworm", new StarryWormSpawnItem(), 9450, true);
-
+        ItemRegistry.registerItem("enragedstarryworm", new EnragedStarryWormSpawnItem(), 9450, true);
 
         // Mobs
         MobRegistry.registerMob("aetherspirit", AetherSpirit.class, true);
@@ -309,6 +383,20 @@ public class DeathriteMod {
 
         // Projectiles
         ProjectileRegistry.registerProjectile("shootingstarprojectile", ShootingStarProjectile.class, "shootingstarprojectile", "shootingstarprojectile_shadow");
+        ProjectileRegistry.registerProjectile("xaerondaggerprojectile", XaeronDaggerProjectile.class, "", "");
+        ProjectileRegistry.registerProjectile("shootingstargreatswordprojectile", ShootingStarGreatswordProjectile.class, "shootingstarprojectile", "shootingstarprojectile_shadow");
+        ProjectileRegistry.registerProjectile("stariteboomerang", StariteBoomerangProjectile.class, "", "");
+        ProjectileRegistry.registerProjectile("crystalizedxaeronboomerang", CrystalizedXaeronBoomerangProjectile.class, "", "");
+        ProjectileRegistry.registerProjectile("ridiumarrow", RidiumArrowProjectile.class, "", "");
+        ProjectileRegistry.registerProjectile("aetherarrow", AetherArrowProjectile.class, "", "");
+        ProjectileRegistry.registerProjectile("staritearrow", StariteArrowProjectile.class, "", "");
+        ProjectileRegistry.registerProjectile("crystalizedxaeronarrow", CrystalizedXaeronArrowProjectile.class, "", "");
+        ProjectileRegistry.registerProjectile("ridiumvisualbowarrow", RidiumArrowVisualProjectile.class, "", "");
+        ProjectileRegistry.registerProjectile("aethervisualbowarrow", AetherArrowVisualProjectile.class, "", "");
+        ProjectileRegistry.registerProjectile("shootingstarbowprojectile", ShootingStarStariteBowProjectile.class, "shootingstarprojectile", "shootingstarprojectile_shadow");
+        ProjectileRegistry.registerProjectile("ridiummagicprojectile", RidiumMagicProjectile.class, "ridiummagicprojectile", "ridiummagicprojectile_shadow");
+        ProjectileRegistry.registerProjectile("aethiumstaffridiumball", AethiumStaffRidiumBallProjectile.class, "aethiumstaffridiumball", "aethiumstaffridiumball_shadow");
+        ProjectileRegistry.registerProjectile("aethiumstaffaethershard", AethiumStaffAetherShardProjectile.class, "aethiumstaffaethershard", "aethiumstaffaethershard_shadow");
 
         // Levels
         LevelRegistry.registerLevel("aethersurface", AetherSurfaceLevel.class);
@@ -316,17 +404,20 @@ public class DeathriteMod {
         LevelRegistry.registerLevel("aethersky", AetherSkyLevel.class);
         LevelRegistry.registerLevel("aetherspace", AetherSpaceLevel.class);
 
+        // Events
+        LevelEventRegistry.registerEvent("aetherstaff", AetherStaffEvent.class);
+
         // Music
         AetherMusic = MusicRegistry.registerMusic("aethermusic", "music/aethersurfacemusic",
                 new StaticMessage("Aether Surface"),
-                new Color(47, 105, 12),
-                new Color(47, 105, 12),
+                new Color(41, 139, 191),
+                new Color(45, 43, 161),
                 new LocalMessage("itemtooltip", "fromdeathriteost"));
 
         StarfangedMusic = MusicRegistry.registerMusic("starfangeddestroyerbossmusic", "music/starfangeddestroyerbossmusic",
                 new StaticMessage("Starfanged Destroyer"),
-                new Color(47, 105, 12),
-                new Color(47, 105, 12),
+                new Color(44, 8, 74),
+                new Color(218, 206, 37),
                 new LocalMessage("itemtooltip", "fromdeathriteost"));
     }
 
@@ -337,8 +428,10 @@ public class DeathriteMod {
         // It will process your textures and save them again with a fixed alpha edge color
 
         AetherSpirit.texture = GameTexture.fromFile("mobs/aetherspirit");
+        aetherStaffPillars = GameTexture.fromFile("particles/aetherstaff");
         StarfangedDestroyerTexture = GameTexture.fromFile("mobs/starfangeddestroyer");
         AetherCavelingTexture = new HumanTexture(GameTexture.fromFile("mobs/aethercaveling"), GameTexture.fromFile("mobs/aethercavelingarms_front"), GameTexture.fromFile("mobs/aethercavelingarms_back"));
+        TestShader = ShaderLoader.loadFragmentShader("Shader");
     }
 
     public void postInit() {
@@ -374,6 +467,15 @@ public class DeathriteMod {
         ));
 
         Recipes.registerModRecipe(new Recipe(
+                "knightsheart",
+                1,
+                RecipeTechRegistry.getTech("deathritesummoner"),
+                new Ingredient[]{
+                        new Ingredient("passedspirits", 2),
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
                 "wormholedown",
                 1,
                 RecipeTechRegistry.getTech("aethiumworkstation"),
@@ -391,6 +493,43 @@ public class DeathriteMod {
                 new Ingredient[]{
                         new Ingredient("thepowerofthemoon", 1),
                         new Ingredient("thepowerofthesun", 1)
+                }
+        ));
+
+        // Ammo
+        Recipes.registerModRecipe(new Recipe(
+                "ridiumarrow",
+                100,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("ridiumbar", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aetherarrow",
+                100,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("aetherbar", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "staritearrow",
+                100,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedxaeronarrow",
+                100,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("crystalizedxaeronbar", 1)
                 }
         ));
 
@@ -430,6 +569,191 @@ public class DeathriteMod {
                 RecipeTechRegistry.getTech("aethiumanvil"),
                 new Ingredient[]{
                         new Ingredient("xaeronbar", 10)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "xaerondagger",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("carapacedagger", 1),
+                        new Ingredient("xaeronbar", 5)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "ridiumglaive",
+                1,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("ridiumbar", 16)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "stariteglaive",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 16)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "xaeronglaive",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("xaeronbar", 16)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "ridiumgreatsword",
+                1,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("ridiumbar", 20)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumgreatsword",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("aethiumbar", 20)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "staritegreatsword",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 20)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumspear",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("aethiumbar", 15)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "xaeronspear",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("xaeronbar", 15)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedxaeronspear",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("crystalizedxaeronbar", 15)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedxaerongreatsword",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("crystalizedxaeronbar", 20)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "stariteboomerang",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 10)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedxaeronboomerang",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("crystalizedxaeronbar", 10)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "ridiumbow",
+                1,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("ridiumbar", 16)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumbow",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("aethiumbar", 16)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "staritebow",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 16)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "ridiumstaff",
+                1,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("ridiumbar", 15),
+                        new Ingredient("aethervoidshard", 5)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aetherstaff",
+                1,
+                RecipeTechRegistry.FALLEN_ANVIL,
+                new Ingredient[]{
+                        new Ingredient("aetherbar", 15),
+                        new Ingredient("aethervoidshard", 5)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumstaff",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("aethiumbar", 15),
+                        new Ingredient("aethiumvoidshard", 5)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "staritestaff",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 15),
+                        new Ingredient("staritevoidshard", 5)
                 }
         ));
 
@@ -602,6 +926,55 @@ public class DeathriteMod {
                 }
         ));
 
+        Recipes.registerModRecipe(new Recipe(
+                "aethervoidshard",
+                5,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("aetherbar", 1),
+                        new Ingredient("voidshard", 5)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "aethiumvoidshard",
+                5,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("aethervoidshard", 5),
+                        new Ingredient("ridiumbar", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "staritevoidshard",
+                5,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("aethiumvoidshard", 5),
+                        new Ingredient("ridiumbar", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedvoidshard",
+                5,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("staritevoidshard", 5),
+                        new Ingredient("crystalscale", 5)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "everythingshard",
+                5,
+                RecipeTechRegistry.FALLEN_ALCHEMY,
+                new Ingredient[]{
+                        new Ingredient("crystalizedvoidshard", 20)
+                }
+        ));
+
         // Armor
         Recipes.registerModRecipe(new Recipe(
                 "ridiumhelmet",
@@ -633,7 +1006,7 @@ public class DeathriteMod {
         Recipes.registerModRecipe(new Recipe(
                 "aethiumhelmet",
                 1,
-                RecipeTechRegistry.FALLEN_ANVIL,
+                RecipeTechRegistry.getTech("aethiumanvil"),
                 new Ingredient[]{
                         new Ingredient("aethiumbar", 8)
                 }
@@ -642,7 +1015,7 @@ public class DeathriteMod {
         Recipes.registerModRecipe(new Recipe(
                 "aethiumchestplate",
                 1,
-                RecipeTechRegistry.FALLEN_ANVIL,
+                RecipeTechRegistry.getTech("aethiumanvil"),
                 new Ingredient[]{
                         new Ingredient("aethiumbar", 10)
                 }
@@ -651,9 +1024,90 @@ public class DeathriteMod {
         Recipes.registerModRecipe(new Recipe(
                 "aethiumboots",
                 1,
-                RecipeTechRegistry.FALLEN_ANVIL,
+                RecipeTechRegistry.getTech("aethiumanvil"),
                 new Ingredient[]{
                         new Ingredient("aethiumbar", 7)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "staritehelmet",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 8)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "staritechestplate",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 10)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "stariteboots",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("starrybar", 7)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "xaeronhelmet",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("xaeronbar", 8)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "xaeronchestplate",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("xaeronbar", 10)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "xaeronboots",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("xaeronbar", 7)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedxaeronhelmet",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("crystalizedxaeronbar", 8)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedxaeronchestplate",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("crystalizedxaeronbar", 10)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "crystalizedxaeronboots",
+                1,
+                RecipeTechRegistry.getTech("aethiumanvil"),
+                new Ingredient[]{
+                        new Ingredient("crystalizedxaeronbar", 7)
                 }
         ));
 
@@ -919,6 +1373,19 @@ public class DeathriteMod {
                 }
         ));
 
+        Recipes.registerModRecipe(new Recipe(
+                "thetrinketofeverything",
+                1,
+                RecipeTechRegistry.getTech("aethiumworkstation"),
+                new Ingredient[]{
+                        new Ingredient("crystalizedxaeronbladesharpener", 1),
+                        new Ingredient("crystalizedxaeronarrowhead", 1),
+                        new Ingredient("crystalizedxaeronspellbook", 1),
+                        new Ingredient("crystalizedxaeroncrystal", 1),
+                        new Ingredient("everythingshard", 5)
+                }
+        ));
+
         // Objects
         Recipes.registerModRecipe(new Recipe(
                 "ridiumoreobject",
@@ -1017,6 +1484,16 @@ public class DeathriteMod {
                 new Ingredient[]{
                         new Ingredient("deathrite_stardust", 10),
                         new Ingredient("essenceofthegods", 1)
+                }
+        ));
+
+        Recipes.registerModRecipe(new Recipe(
+                "enragedstarryworm",
+                1,
+                RecipeTechRegistry.getTech("deathritesummoner"),
+                new Ingredient[]{
+                        new Ingredient("starryworm", 1),
+                        new Ingredient("crystalizedxaeronbar", 5)
                 }
         ));
 

@@ -44,6 +44,34 @@ ridiumsword=Ridium Sword
 aethiumsword=Aethium Sword
 starryfang=Starry Fang
 xaeronsword=Xaeron Sword
+crystalizedxaeronsword=Crystalized Xaeron Sword
+
+xaerondagger=Xaeron Dagger
+
+ridiumglaive=Ridium Glaive
+stariteglaive=Starite Glaive
+xaeronglaive=Xaeron Glaive
+
+ridiumgreatsword=Ridium Greatsword
+aethiumgreatsword=Aethium Greatsword
+staritegreatsword=Starite Greatsword
+crystalizedxaerongreatsword=Crystalized Xaeron Greatsword
+
+stariteboomerang=Starite Boomerang
+crystalizedxaeronboomerang=Crystalized Xaeron Boomerang
+
+aethiumspear=Aethium Spear
+xaeronspear=Xaeron Spear
+crystalizedxaeronspear=Crystalized Xaeron Spear
+
+ridiumbow=Ridium Bow
+aethiumbow=Aethium Bow
+staritebow=Starite Bow
+
+ridiumstaff=Ridium Staff
+aetherstaff=Aether Staff
+aethiumstaff=Aethium Staff
+staritestaff=Starite Staff
 
 ridiumpickaxe=Ridium Pickaxe
 ridiumaxe=Ridium Axe
@@ -53,12 +81,33 @@ aethiumpickaxe=Aethium Pickaxe
 aethiumaxe=Aethium Axe
 aethiumshovel=Aethium Shovel
 
+starrypickaxe=Starry Pickaxe
+starryaxe=Starry Axe
+starryshovel=Starry Shovel
+
+xaeronpickaxe=Xaeron Pickaxe
+xaeronaxe=Xaeron Axe
+xaeronshovel=Xaeron Shovel
+
 ridiumhelmet=Ridium Helmet
 ridiumchestplate=Ridium Chestplate
 ridiumboots=Ridium Boots
+
 aethiumhelmet=Aethium Helmet
 aethiumchestplate=Aethium Chestplate
 aethiumboots=Aethium Boots
+
+staritehelmet=Starite Helmet
+staritechestplate=Starite Chestplate
+stariteboots=Starite Boots
+
+xaeronhelmet=Xaeron Helmet
+xaeronchestplate=Xaeron Chestplate
+xaeronboots=Xaeron Boots
+
+crystalizedxaeronhelmet=Crytalized Xaeron Helmet
+crystalizedxaeronchestplate=Crystalized Xaeron Chestplate
+crystalizedxaeronboots=Crystalized Xaeron Boots
 
 aetherstone=Aether Stone
 aethermap=Global Aether Map
@@ -81,6 +130,7 @@ crystalscale=Crystal Scale
 
 tabletofspirits=Tablet of Spirits
 starryworm=Starry Worm
+enragedstarryworm=Enraged Starry Worm
 
 bladesharpener=Blade Sharpener
 ridiumbladesharpener=Ridium Blade Sharpener
@@ -88,7 +138,7 @@ aetherbladesharpener=Aether Blade Sharpener
 aethiumbladesharpener=Aethium Blade Sharpener
 staritebladesharpener=Starite Blade Sharpener
 xaeronbladesharpener=Xaeron Blade Sharpener
-crystalizedbladesharpener=Crystalized Xaeron Blade Sharpener
+crystalizedxaeronbladesharpener=Crystalized Xaeron Blade Sharpener
 
 arrowhead=Arrowhead
 ridiumarrowhead=Ridium Arrowhead
@@ -114,12 +164,27 @@ staritecrystal=Starite Crystal
 xaeroncrystal=Xaeron Crystal
 crystalizedxaeroncrystal=Crystalized Xaeron Crystal
 
+thetrinketofeverything=The Trinket of Everything
+
+aethervoidshard=Aether Void Shard
+aethiumvoidshard=Aethium Void Shard
+staritevoidshard=Starite Void Shard
+crystalizedvoidshard=Crystalized Void Shard
+everythingshard=Everything Shard
+
+ridiumarrow=Ridium Arrow
+aetherarrow=Aether Arrow
+staritearrow=Starite Arrow
+crystalizedxaeronarrow=Crystalized Xaeron Arrow
+
 [itemtooltip]
-examplestafftip=Shoots a homing, piercing projectile
 skyladderdowntip=Seems like it goes to the sky
-tabletofspiritstip=Releases a Knight from the past
-tabletofspiritstip2=Must be used in Aether Caves
-deathritesummonertip=Used to Summon relics of the past
+
+staritegreatswordtip=Gain the powers of The Starfanged by charging up the Greatsword to it's max and shoot a star
+xaerondaggertip1=Upgraded version of The Carapace Dagger
+xaerondaggertip2=
+stariteboomerangtip=
+crystalizedxaeronboomerangtip=
 
 bladesharpenertip=5% increased Melee Damage
 ridiumbladesharpenertip=25% increased Melee Damage
@@ -153,10 +218,16 @@ staritecrystaltip=27% increased Summon Speed and Damage, 20% increased Summon Cr
 xaeroncrystaltip=30% increased Summon Speed and Damage, 20% increased Summon Crit Chance
 crystalizedxaeroncrystaltip=35% increased Summon Speed and Damage, 25% increased Summon Crit Chance
 
+tabletofspiritstip=Releases a Knight from the past
+tabletofspiritstip2=Must be used in Aether Caves
 starrywormtip=Calls upon the Devourer of Stars
-starrywormtip2=Must be used in The Aether Sky
-aethiumworkstationtip=placeholder text
-aethiumanviltip=placeholder text
+starrywormtip2=Must be used in The Aether Sky and in the day
+enragedstarrywormtip=Calls upon the Devourer of Stars
+enragedstarrywormtip2=Must be used in The Aether Sky and at night
+
+deathritesummonertip=Used to Summon relics of the past
+aethiumworkstationtip=
+aethiumanviltip=
 
 [biome]
 aether=Aether

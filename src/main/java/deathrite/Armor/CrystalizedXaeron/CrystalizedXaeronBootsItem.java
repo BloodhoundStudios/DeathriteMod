@@ -1,4 +1,4 @@
-package deathrite.Armor.Ridium;
+package deathrite.Armor.CrystalizedXaeron;
 
 import necesse.engine.modifiers.ModifierValue;
 import necesse.entity.mobs.Mob;
@@ -15,11 +15,11 @@ import necesse.inventory.item.upgradeUtils.FloatUpgradeValue;
 // Last/Bottom row is The Left
 // The Boots can only fit in its 16x16 Square
 
-public class RidiumBootsItem extends BootsArmorItem {
+public class CrystalizedXaeronBootsItem extends BootsArmorItem {
     public FloatUpgradeValue speed = (new FloatUpgradeValue()).setBaseValue(0.2F).setUpgradedValue(1.0F, 0.25F);
 
-    public RidiumBootsItem() {
-        super(16, 1300, Rarity.RARE, "ridiumboots");
+    public CrystalizedXaeronBootsItem() {
+        super(20, 1300, Rarity.LEGENDARY, "");
     }
 
     public ArmorModifiers getArmorModifiers(InventoryItem item, Mob mob) {

@@ -12,6 +12,8 @@ import necesse.engine.localization.Localization;
 import necesse.engine.localization.message.GameMessage;
 import necesse.engine.localization.message.LocalMessage;
 import necesse.engine.network.PacketReader;
+import necesse.engine.network.gameNetworkData.GNDItem;
+import necesse.engine.network.gameNetworkData.GNDItemMap;
 import necesse.engine.network.packet.PacketChatMessage;
 import necesse.engine.registries.MobRegistry;
 import necesse.engine.util.GameBlackboard;
@@ -46,7 +48,7 @@ public class TabletofSpiritsSpawnItem extends ConsumableItem {
         }
     }
 
-    public InventoryItem onAttemptPlace(Level level, int x, int y, PlayerMob player, InventoryItem item, PacketReader contentReader, String error) {
+    public InventoryItem onAttemptPlace(Level level, int x, int y, PlayerMob player, InventoryItem item, GNDItemMap contentReader, String error) {
         if (level.isServer() && player != null && player.isServerClient() && error.equals("inincursion")) {
             player.getServerClient().sendChatMessage(new LocalMessage("misc", "cannotsummoninincursion"));
         }

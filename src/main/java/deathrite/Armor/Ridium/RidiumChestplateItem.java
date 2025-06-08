@@ -23,7 +23,7 @@ import necesse.inventory.item.armorItem.ChestArmorItem;
 
 public class RidiumChestplateItem extends ChestArmorItem {
     public RidiumChestplateItem() {
-        super(14, 1300, Rarity.LEGENDARY, "ridiumchestplate", "ridiumarms");
+        super(14, 1300, Rarity.RARE, "ridiumchestplate", "ridiumarms");
     }
 
     public ArmorModifiers getArmorModifiers(InventoryItem item, Mob mob) {

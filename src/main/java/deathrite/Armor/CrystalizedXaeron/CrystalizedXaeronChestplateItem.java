@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package deathrite.Armor.Aethium;
+package deathrite.Armor.CrystalizedXaeron;
 
 import necesse.engine.modifiers.ModifierValue;
 import necesse.entity.mobs.Mob;
@@ -21,9 +21,9 @@ import necesse.inventory.item.armorItem.ChestArmorItem;
 // The Chestplate can only fit in its 16x16 Square
 // This Cheatsheet can also be applied to The Boots and Helmet
 
-public class AethiumChestplateItem extends ChestArmorItem {
-    public AethiumChestplateItem() {
-        super(24, 1300, Rarity.EPIC, "aethiumchestplate", "aethiumarms");
+public class CrystalizedXaeronChestplateItem extends ChestArmorItem {
+    public CrystalizedXaeronChestplateItem() {
+        super(70, 1300, Rarity.LEGENDARY, "", "");
     }
 
     public ArmorModifiers getArmorModifiers(InventoryItem item, Mob mob) {

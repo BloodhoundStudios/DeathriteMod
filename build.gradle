@@ -8,7 +8,7 @@ plugins {
 project.ext.modID = "bhs.deathrite" // The unique id of your mod. Must be all lowercase and cannot use special characters.
 project.ext.modName = "Deathrite" // The display name of your mod.
 project.ext.modVersion = "1.1" // Your current builds version. Must follow the xx.xx... format.
-project.ext.gameVersion = "0.30.0" // The target game version.
+project.ext.gameVersion = "0.32.1" // The target game version.
 project.ext.modDescription = "Just a Test Mod" // Short description of what your mod is.
 project.ext.author = "Bloodhound Studios" // Your name
 
