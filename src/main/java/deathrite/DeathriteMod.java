@@ -28,7 +28,6 @@ import deathrite.Items.Arrows.CrystalizedXaeronArrow;
 import deathrite.Items.Arrows.RidiumArrow;
 import deathrite.Items.Arrows.StariteArrow;
 import deathrite.Items.BossDrops.*;
-import deathrite.Items.BossSummons.EnragedStarryWormSpawnItem;
 import deathrite.Items.BossSummons.StarryWormSpawnItem;
 import deathrite.Items.BossSummons.TabletofSpiritsSpawnItem;
 import deathrite.Items.Materials.Aether.*;
@@ -88,7 +87,6 @@ import necesse.gfx.shader.ShaderLoader;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.Item.Rarity;
 import necesse.inventory.item.matItem.MatItem;
-import necesse.inventory.item.miscItem.VinylItem;
 import necesse.inventory.item.placeableItem.mapItem.BiomeMapItem;
 import necesse.inventory.item.toolItem.axeToolItem.CustomAxeToolItem;
 import necesse.inventory.item.toolItem.pickaxeToolItem.CustomPickaxeToolItem;
@@ -367,7 +365,6 @@ public class DeathriteMod {
         // Boss Summons
         ItemRegistry.registerItem("tabletofspirits", new TabletofSpiritsSpawnItem(), 500, true);
         ItemRegistry.registerItem("starryworm", new StarryWormSpawnItem(), 9450, true);
-        ItemRegistry.registerItem("enragedstarryworm", new EnragedStarryWormSpawnItem(), 9450, true);
 
         // Mobs
         MobRegistry.registerMob("aetherspirit", AetherSpirit.class, true);
@@ -1484,16 +1481,6 @@ public class DeathriteMod {
                 new Ingredient[]{
                         new Ingredient("deathrite_stardust", 10),
                         new Ingredient("essenceofthegods", 1)
-                }
-        ));
-
-        Recipes.registerModRecipe(new Recipe(
-                "enragedstarryworm",
-                1,
-                RecipeTechRegistry.getTech("deathritesummoner"),
-                new Ingredient[]{
-                        new Ingredient("starryworm", 1),
-                        new Ingredient("crystalizedxaeronbar", 5)
                 }
         ));
 

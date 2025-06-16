@@ -63,10 +63,10 @@ public class StarryWormSpawnItem extends ConsumableItem {
             float ny = (float) Math.sin(Math.toRadians((double) angle));
             float distance = 960.0F;
             if (level.getIslandDimension() == 10) {
-                if (level.getWorldEntity().getDayTimeHour() < 20 && level.getWorldEntity().getDayTimeHour() > 7)
+                if (level.getWorldEntity().getDayTimeHour() > 7 && level.getWorldEntity().getDayTimeHour() < 20) {
                     System.out.println("Starfanged Destroyer has been summoned at " + level.getIdentifier() + ".");
                     System.out.println(level.getWorldEntity().getDayTimeHour());
-                    Mob mob = MobRegistry.getMob("starfangeddestroyer", level);
+                    Mob mob = MobRegistry.getMob("enragedstarfangeddestroyer", level);
                     level.entityManager.addMob(mob, (float) (player.getX() + (int) (nx * distance)), (float) (player.getY() + (int) (ny * distance)));
                     level.getServer().network.sendToClientsWithEntity(new PacketChatMessage(new LocalMessage("misc", "bosssummon", "name", mob.getLocalization())), mob);
                     if (level instanceof IncursionLevel) {
@@ -75,7 +75,7 @@ public class StarryWormSpawnItem extends ConsumableItem {
                 } else {
                     System.out.println("Enraged Starfanged Destroyer has been summoned at " + level.getIdentifier() + ".");
                     System.out.println(level.getWorldEntity().getDayTimeHour());
-                    Mob mob = MobRegistry.getMob("enragedstarfangeddestroyer", level);
+                    Mob mob = MobRegistry.getMob("starfangeddestroyer", level);
                     level.entityManager.addMob(mob, (float) (player.getX() + (int) (nx * distance)), (float) (player.getY() + (int) (ny * distance)));
                     level.getServer().network.sendToClientsWithEntity(new PacketChatMessage(new LocalMessage("misc", "bosssummon", "name", mob.getLocalization())), mob);
                     if (level instanceof IncursionLevel) {
@@ -83,6 +83,7 @@ public class StarryWormSpawnItem extends ConsumableItem {
                     }
                 }
             }
+        }
         return item;
     }
 
