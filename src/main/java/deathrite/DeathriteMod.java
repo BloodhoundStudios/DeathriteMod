@@ -85,8 +85,10 @@ import necesse.entity.projectile.XaeronDaggerProjectile;
 import necesse.gfx.gameTexture.GameTexture;
 import necesse.gfx.shader.ShaderLoader;
 import necesse.inventory.InventoryItem;
+import necesse.inventory.item.Item;
 import necesse.inventory.item.Item.Rarity;
 import necesse.inventory.item.matItem.MatItem;
+import necesse.inventory.item.miscItem.VinylItem;
 import necesse.inventory.item.placeableItem.mapItem.BiomeMapItem;
 import necesse.inventory.item.toolItem.axeToolItem.CustomAxeToolItem;
 import necesse.inventory.item.toolItem.pickaxeToolItem.CustomPickaxeToolItem;
@@ -126,6 +128,20 @@ public class DeathriteMod {
     public static int TestShader;
 
     public void init() {
+
+        // Music
+        AetherMusic = MusicRegistry.registerMusic("aethermusic", "music/aethersurfacemusic",
+                new StaticMessage("Aether"),
+                new Color(41, 139, 191),
+                new Color(45, 43, 161),
+                new LocalMessage("itemtooltip", "fromdeathriteost"));
+
+        StarfangedMusic = MusicRegistry.registerMusic("starfangeddestroyerbossmusic", "music/starfangeddestroyerbossmusic",
+                new StaticMessage("Starfanged Destroyer"),
+                new Color(44, 8, 74),
+                new Color(218, 206, 37),
+                new LocalMessage("itemtooltip", "fromdeathriteost"));
+
         // Journal Challenges
         DeathriteJournalChallenges.registerCore();
 
@@ -366,6 +382,10 @@ public class DeathriteMod {
         ItemRegistry.registerItem("tabletofspirits", new TabletofSpiritsSpawnItem(), 500, true);
         ItemRegistry.registerItem("starryworm", new StarryWormSpawnItem(), 9450, true);
 
+        // Music Vinyls
+        ItemRegistry.registerItem(AetherMusic.getStringID() + "vinyl", new VinylItem(AetherMusic), 50, true, false);
+        ItemRegistry.registerItem(StarfangedMusic.getStringID() + "vinyl", new VinylItem(StarfangedMusic), 50, true, false);
+
         // Mobs
         MobRegistry.registerMob("aetherspirit", AetherSpirit.class, true);
         MobRegistry.registerMob("aethercaveling", AetherCaveling.class, true);
@@ -403,19 +423,6 @@ public class DeathriteMod {
 
         // Events
         LevelEventRegistry.registerEvent("aetherstaff", AetherStaffEvent.class);
-
-        // Music
-        AetherMusic = MusicRegistry.registerMusic("aethermusic", "music/aethersurfacemusic",
-                new StaticMessage("Aether Surface"),
-                new Color(41, 139, 191),
-                new Color(45, 43, 161),
-                new LocalMessage("itemtooltip", "fromdeathriteost"));
-
-        StarfangedMusic = MusicRegistry.registerMusic("starfangeddestroyerbossmusic", "music/starfangeddestroyerbossmusic",
-                new StaticMessage("Starfanged Destroyer"),
-                new Color(44, 8, 74),
-                new Color(218, 206, 37),
-                new LocalMessage("itemtooltip", "fromdeathriteost"));
     }
 
     public void initResources() {
