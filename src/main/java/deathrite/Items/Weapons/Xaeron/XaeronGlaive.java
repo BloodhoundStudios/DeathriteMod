@@ -13,6 +13,7 @@ import necesse.entity.mobs.itemAttacker.ItemAttackerMob;
 import necesse.entity.particle.Particle.GType;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.toolItem.glaiveToolItem.GlaiveToolItem;
+import necesse.inventory.lootTable.presets.GlaiveWeaponsLootTable;
 import necesse.level.maps.Level;
 
 import java.awt.*;
@@ -20,7 +21,7 @@ import java.awt.geom.Point2D;
 
 public class XaeronGlaive extends GlaiveToolItem {
     public XaeronGlaive() {
-        super(1600);
+        super(1600, GlaiveWeaponsLootTable.glaiveWeapons);
         this.rarity = Rarity.LEGENDARY;
         this.attackAnimTime.setBaseValue(550);
         this.attackDamage.setBaseValue(80.0F).setUpgradedValue(1.0F, 85.0F);

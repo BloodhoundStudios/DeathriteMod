@@ -5,7 +5,7 @@ import java.awt.Color;
 
 public class AetherRock extends RockObject {
     public AetherRock() {
-        super("aetherrock",new Color(9, 99, 77),"aetherstone",1,5,1);
-        toolTier = 6;
+        super("aetherrock",new Color(9, 97, 75),"aetherstone",1,5,1, new String[0]);
+        toolTier = 10;
     }
 }

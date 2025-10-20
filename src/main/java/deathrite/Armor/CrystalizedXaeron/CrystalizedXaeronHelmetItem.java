@@ -12,6 +12,8 @@ import necesse.entity.mobs.gameDamageType.DamageType;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.armorItem.ArmorModifiers;
 import necesse.inventory.item.armorItem.SetHelmetArmorItem;
+import necesse.inventory.lootTable.presets.ArmorSetsLootTable;
+import necesse.inventory.lootTable.presets.HeadArmorLootTable;
 
 // Cheatsheet for spriting Helmet
 // First/Top row is The Back
@@ -22,7 +24,7 @@ import necesse.inventory.item.armorItem.SetHelmetArmorItem;
 
 public class CrystalizedXaeronHelmetItem extends SetHelmetArmorItem {
     public CrystalizedXaeronHelmetItem() {
-        super(35, (DamageType)null, 1300, Rarity.LEGENDARY, "", "crystalizedxaeronchestplate", "crystalizedxaeronboots", "ancientfossilhelmetsetbonus");
+        super(35, (DamageType)null, 1300, HeadArmorLootTable.headArmor, ArmorSetsLootTable.armorSets, Rarity.LEGENDARY,"", "crystalizedxaeronchestplate", "crystalizedxaeronboots", "ancientfossilhelmetsetbonus");
         this.hairDrawOptions = HairDrawMode.NO_HEAD;
     }
 

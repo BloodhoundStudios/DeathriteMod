@@ -1,10 +1,11 @@
 package deathrite.Items.Weapons.Aethium;
 
 import necesse.inventory.item.toolItem.swordToolItem.SwordToolItem;
+import necesse.inventory.lootTable.presets.CloseRangeWeaponsLootTable;
 
 public class AethiumSword extends SwordToolItem {
     public AethiumSword() {
-        super(650);
+        super(650, CloseRangeWeaponsLootTable.closeRangeWeapons);
         rarity = Rarity.EPIC;
         attackAnimTime.setBaseValue(300); // 300 ms attack time
         attackDamage.setBaseValue(90) // Base sword damage

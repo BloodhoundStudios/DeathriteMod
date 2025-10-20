@@ -96,7 +96,7 @@ public class AetherSpirit extends FlyingHostileMob {
             }
         });
 
-        addShadowDrawables(tileList, x, y, light, camera);
+        addShadowDrawables(tileList, level, x, y, light, camera);
     }
 
     @Override

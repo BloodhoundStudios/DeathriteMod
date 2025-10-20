@@ -128,9 +128,7 @@ thepowerofthemoon=The Power of The Moon
 thepowerofthesun=The Power of The Sun
 crystalscale=Crystal Scale
 
-tabletofspirits=Tablet of Spirits
 starryworm=Starry Worm
-enragedstarryworm=Enraged Starry Worm
 
 bladesharpener=Blade Sharpener
 ridiumbladesharpener=Ridium Blade Sharpener
@@ -218,12 +216,8 @@ staritecrystaltip=27% increased Summon Speed and Damage, 20% increased Summon Cr
 xaeroncrystaltip=30% increased Summon Speed and Damage, 20% increased Summon Crit Chance
 crystalizedxaeroncrystaltip=35% increased Summon Speed and Damage, 25% increased Summon Crit Chance
 
-tabletofspiritstip=Releases a Knight from the past
-tabletofspiritstip2=Must be used in Aether Caves
 starrywormtip=Calls upon the Devourer of Stars
-starrywormtip2=Must be used in The Aether Sky and in the day
-enragedstarrywormtip=Calls upon the Devourer of Stars
-enragedstarrywormtip2=Must be used in The Aether Sky and at night
+starrywormtip2=Use at night with caution
 
 deathritesummonertip=Used to Summon relics of the past
 aethiumworkstationtip=

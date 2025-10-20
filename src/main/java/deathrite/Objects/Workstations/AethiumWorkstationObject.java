@@ -14,7 +14,7 @@ import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.toolItem.ToolType;
 import necesse.inventory.recipe.Tech;
-import necesse.level.gameObject.CraftingStationObject;
+import necesse.level.gameObject.container.CraftingStationObject;
 import necesse.level.gameObject.ObjectDamagedTextureArray;
 import necesse.level.gameObject.ObjectPlaceOption;
 import necesse.level.maps.Level;

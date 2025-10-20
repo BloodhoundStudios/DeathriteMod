@@ -20,13 +20,14 @@ import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.PlayerInventorySlot;
 import necesse.inventory.item.toolItem.projectileToolItem.magicProjectileToolItem.MagicProjectileToolItem;
+import necesse.inventory.lootTable.presets.MagicWeaponsLootTable;
 import necesse.level.maps.Level;
 
 import java.awt.geom.Point2D;
 
 public class AethiumStaff extends MagicProjectileToolItem {
     public AethiumStaff() {
-        super(1400);
+        super(1400, MagicWeaponsLootTable.magicWeapons);
         this.rarity = Rarity.RARE;
         this.attackAnimTime.setBaseValue(600);
         this.attackDamage.setBaseValue(52.0F).setUpgradedValue(1.0F, 65.0F);

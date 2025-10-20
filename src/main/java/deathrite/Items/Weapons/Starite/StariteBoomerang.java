@@ -6,10 +6,11 @@ import necesse.entity.mobs.PlayerMob;
 import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.toolItem.projectileToolItem.throwToolItem.boomerangToolItem.BoomerangToolItem;
+import necesse.inventory.lootTable.presets.ThrowWeaponsLootTable;
 
 public class StariteBoomerang extends BoomerangToolItem {
     public StariteBoomerang() {
-        super(1500, "stariteboomerang");
+        super(1500, ThrowWeaponsLootTable.throwWeapons,"stariteboomerang");
         this.rarity = Rarity.EPIC;
         this.attackAnimTime.setBaseValue(300);
         this.attackDamage.setBaseValue(75.0F).setUpgradedValue(1.0F, 75.0F);

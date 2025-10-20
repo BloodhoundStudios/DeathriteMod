@@ -20,6 +20,7 @@ import necesse.inventory.item.toolItem.ToolType;
 import necesse.inventory.recipe.Ingredient;
 import necesse.inventory.recipe.Tech;
 import necesse.level.gameObject.*;
+import necesse.level.gameObject.container.CraftingStationObject;
 import necesse.level.maps.Level;
 import necesse.level.maps.light.GameLight;
 import necesse.level.maps.multiTile.MultiTile;

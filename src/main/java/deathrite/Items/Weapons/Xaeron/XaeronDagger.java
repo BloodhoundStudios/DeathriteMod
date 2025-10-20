@@ -24,11 +24,12 @@ import necesse.inventory.InventoryItem;
 import necesse.inventory.PlayerInventorySlot;
 import necesse.inventory.item.ItemCategory;
 import necesse.inventory.item.toolItem.projectileToolItem.throwToolItem.ThrowToolItem;
+import necesse.inventory.lootTable.presets.ThrowWeaponsLootTable;
 import necesse.level.maps.Level;
 
 public class XaeronDagger extends ThrowToolItem {
     public XaeronDagger() {
-        super(1200);
+        super(1200, ThrowWeaponsLootTable.throwWeapons);
         this.attackAnimTime.setBaseValue(140);
         this.damageType = DamageTypeRegistry.MELEE;
         this.attackDamage.setBaseValue(70.0F).setUpgradedValue(1.0F, 80.0F);

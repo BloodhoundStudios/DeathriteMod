@@ -7,6 +7,7 @@ import necesse.inventory.InventoryItem;
 import necesse.inventory.item.armorItem.ArmorModifiers;
 import necesse.inventory.item.armorItem.BootsArmorItem;
 import necesse.inventory.item.upgradeUtils.FloatUpgradeValue;
+import necesse.inventory.lootTable.presets.FeetArmorLootTable;
 
 // Cheatsheet for spriting Boots
 // First/Top row is The Back
@@ -19,7 +20,7 @@ public class AethiumBootsItem extends BootsArmorItem {
     public FloatUpgradeValue speed = (new FloatUpgradeValue()).setBaseValue(0.2F).setUpgradedValue(1.0F, 0.25F);
 
     public AethiumBootsItem() {
-        super(16, 1300, Rarity.EPIC, "aethiumboots");
+        super(16, 1300, Rarity.EPIC, "aethiumboots", FeetArmorLootTable.feetArmor);
     }
 
     public ArmorModifiers getArmorModifiers(InventoryItem item, Mob mob) {

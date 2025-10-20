@@ -14,11 +14,12 @@ import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.PlayerInventorySlot;
 import necesse.inventory.item.toolItem.swordToolItem.greatswordToolItem.GreatswordToolItem;
+import necesse.inventory.lootTable.presets.GreatswordWeaponsLootTable;
 import necesse.level.maps.Level;
 
 public class CrystalizedXaeronGreatsword extends GreatswordToolItem {
     public CrystalizedXaeronGreatsword() {
-        super(900, getThreeChargeLevels(500, 600, 700));
+        super(900, GreatswordWeaponsLootTable.greatswordWeapons, getThreeChargeLevels(500, 600, 700));
         this.rarity = Rarity.LEGENDARY;
         this.attackDamage.setBaseValue(160.0F).setUpgradedValue(1.0F, 185.0F);
         this.attackRange.setBaseValue(120);

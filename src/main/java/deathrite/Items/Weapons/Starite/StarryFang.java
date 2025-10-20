@@ -1,10 +1,11 @@
 package deathrite.Items.Weapons.Starite;
 
 import necesse.inventory.item.toolItem.swordToolItem.SwordToolItem;
+import necesse.inventory.lootTable.presets.CloseRangeWeaponsLootTable;
 
 public class StarryFang extends SwordToolItem {
     public StarryFang() {
-        super(400);
+        super(400, CloseRangeWeaponsLootTable.closeRangeWeapons);
         rarity = Rarity.EPIC;
         attackAnimTime.setBaseValue(600); // 300 ms attack time
         attackDamage.setBaseValue(130) // Base sword damage

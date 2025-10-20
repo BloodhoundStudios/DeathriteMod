@@ -242,7 +242,7 @@ public class StarfangedDestroyerHead extends BossWormMobHead<StarfangedDestroyer
             int drawY = camera.getDrawY(y);
             float headAngle = GameMath.fixAngle(GameMath.getAngle(new Point2D.Float(this.dx, this.dy)));
             WormMobHead.addAngledDrawable(list, new GameSprite(DeathriteMod.StarfangedDestroyerTexture, 0, 1, 96), MobRegistry.Textures.swampGuardian_mask, light, (int)this.height, headAngle, drawX, drawY, 64);
-            this.addShadowDrawables(tileList, x, y, light, camera);
+            this.addShadowDrawables(tileList, level, x, y, light, camera);
         }
     }
 

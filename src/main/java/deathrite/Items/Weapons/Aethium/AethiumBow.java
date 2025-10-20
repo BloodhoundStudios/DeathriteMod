@@ -21,11 +21,12 @@ import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.arrowItem.ArrowItem;
 import necesse.inventory.item.toolItem.projectileToolItem.bowProjectileToolItem.BowProjectileToolItem;
+import necesse.inventory.lootTable.presets.BowWeaponsLootTable;
 import necesse.level.maps.Level;
 
 public class AethiumBow extends BowProjectileToolItem {
     public AethiumBow() {
-        super(1500);
+        super(1500, BowWeaponsLootTable.bowWeapons);
         this.attackAnimTime.setBaseValue(450);
         this.rarity = Rarity.EPIC;
         this.attackDamage.setBaseValue(44.0F).setUpgradedValue(1.0F, 90.0F);

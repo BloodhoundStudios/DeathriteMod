@@ -80,7 +80,7 @@ public class StarfangedDestroyerBody extends BossWormMobBody<StarfangedDestroyer
             int drawX = camera.getDrawX(x) - 48;
             int drawY = camera.getDrawY(y);
             WormMobHead.addDrawable(list, new GameSprite(DeathriteMod.StarfangedDestroyerTexture, this.sprite.x, this.sprite.y, 96), MobRegistry.Textures.swampGuardian_mask, light, (int)this.height, drawX, drawY, 64);
-            this.addShadowDrawables(tileList, x, y, light, camera);
+            this.addShadowDrawables(tileList, level, x, y, light, camera);
         }
     }
 

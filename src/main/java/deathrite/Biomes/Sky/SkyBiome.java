@@ -1,4 +1,4 @@
-package deathrite.Biomes.Aether;
+package deathrite.Biomes.Sky;
 
 import deathrite.DeathriteMod;
 import necesse.engine.AbstractMusicList;
@@ -21,7 +21,7 @@ import necesse.level.maps.biomes.FishingSpot;
 import necesse.level.maps.biomes.MobSpawnTable;
 import necesse.level.maps.regionSystem.Region;
 
-public class AetherBiome extends Biome {
+public class SkyBiome extends Biome {
     public static FishingLootTable surfaceFish;
     public static MobSpawnTable surfaceMobs;
     public static MobSpawnTable caveMobs;
@@ -43,53 +43,43 @@ public class AetherBiome extends Biome {
     }
 
     public int getGenerationTerrainTileID() {
-        return DeathriteMod.AETHER_SAND;
+        return DeathriteMod.SKY_CLOUD;
     }
 
     public int getGenerationBeachTileID() {
-        return DeathriteMod.AETHER_SAND;
+        return DeathriteMod.SKY_CLOUD;
     }
 
     public int getGenerationCaveRockObjectID() {
-        return DeathriteMod.AETHER_ROCK;
+        return DeathriteMod.SPACE_ROCK;
     }
 
     public int getGenerationDeepCaveRockObjectID() {
-        return DeathriteMod.AETHER_ROCK;
+        return DeathriteMod.UPGRADED_SPACE_ROCK;
     }
 
-    public int getGenerationCaveTileID() { return TileRegistry.getTileID("aetherstonefloor"); }
+    public int getGenerationCaveTileID() { return DeathriteMod.SPACE_FLOOR; }
 
-    public int getGenerationDeepCaveTileID() { return TileRegistry.getTileID("aetherstonefloor"); }
+    public int getGenerationDeepCaveTileID() { return DeathriteMod.SPACE_FLOOR; }
 
     public void initializeGeneratorStack(BiomeGeneratorStack stack) {
         super.initializeGeneratorStack(stack);
-        stack.addRandomSimplexVeinsBranch("aetherTrees", 1.0F, 0.2F, 1.0F, 0);
-        stack.addRandomVeinsBranch("aetherOreVein", 0.16F, 4, 8, 0.5F, 2, false);
-        stack.addRandomVeinsBranch("aetherDeepOreVein", 0.16F, 4, 8, 0.5F, 2, false);
-        stack.addRandomVeinsBranch("ridiumOreVein", 0.16F, 4, 8, 0.5F, 2, false);
-    }
-
-    public void generateRegionSurfaceTerrain(Region region, BiomeGeneratorStack stack, GameRandom random) {
-        super.generateRegionSurfaceTerrain(region, stack, random);
-        int sandTile = DeathriteMod.AETHER_SAND;
-        stack.startPlaceOnVein(this, region, random, "aetherTrees").onlyOnTile(sandTile).chance((double)0.08F).placeObject("aethertree");
-        region.updateLiquidManager();
+        stack.addRandomVeinsBranch("stariteOreVein", 0.16F, 4, 8, 0.5F, 2, false);
+        stack.addRandomVeinsBranch("stariteDeepOreVein", 0.16F, 2, 4, 0.25F, 2, false);
+        stack.addRandomVeinsBranch("xaeronOreVein", 0.16F, 4, 8, 0.5F, 2, false);
     }
 
     public void generateRegionCaveTerrain(Region region, BiomeGeneratorStack stack, GameRandom random) {
         super.generateRegionCaveTerrain(region, stack, random);
-        stack.startPlace(this, region, random).chance((double)0.01F).placeObject("aethercaverocksmall");
-        stack.startPlaceOnVein(this, region, random, "aetherOreVein").onlyOnObject(DeathriteMod.AETHER_ROCK).placeObjectForced("aetheroreobject");
+        stack.startPlaceOnVein(this, region, random, "stariteOreVein").onlyOnObject(DeathriteMod.SPACE_ROCK).placeObjectForced("stariteoreobject");
     }
 
     public void generateRegionDeepCaveTerrain(Region region, BiomeGeneratorStack stack, GameRandom random) {
         super.generateRegionDeepCaveTerrain(region, stack, random);
         stack.startPlace(this, region, random).chance((double) 0.005F).placeObject("deepcaverock");
-        stack.startPlace(this, region, random).chance((double) 0.01F).placeObject("aethercaverocksmall");
         stack.startPlace(this, region, random).chance((double) 0.03F).placeCrates(new String[]{"crate"});
-        stack.startPlaceOnVein(this, region, random, "aetherDeepOreVein").onlyOnObject(DeathriteMod.AETHER_ROCK).placeObjectForced("aetheroreobject");
-        stack.startPlaceOnVein(this, region, random, "ridiumOreVein").onlyOnObject(DeathriteMod.AETHER_ROCK).placeObjectForced("ridiumoreobject");
+        stack.startPlaceOnVein(this, region, random, "stariteDeepOreVein").onlyOnObject(DeathriteMod.UPGRADED_SPACE_ROCK).placeObjectForced("stariteoreobject");
+        stack.startPlaceOnVein(this, region, random, "xaeronOreVein").onlyOnObject(DeathriteMod.UPGRADED_SPACE_ROCK).placeObjectForced("xaeronoreobject");
     }
 
     public MobSpawnTable getMobSpawnTable(Level level) {
@@ -123,9 +113,9 @@ public class AetherBiome extends Biome {
     }
 
     static {
-        surfaceMobs = (new MobSpawnTable().add(15,"aetherspirit"));;
-        caveMobs = (new MobSpawnTable().add(50,"aetherspirit"));
+        surfaceMobs = (new MobSpawnTable());;
+        caveMobs = (new MobSpawnTable());
         surfaceCritters = (new MobSpawnTable());
-        caveCritters = (new MobSpawnTable()).include(Biome.defaultCaveCritters).add(100, "aethercaveling");
+        caveCritters = (new MobSpawnTable()).include(Biome.defaultCaveCritters);
     }
 }

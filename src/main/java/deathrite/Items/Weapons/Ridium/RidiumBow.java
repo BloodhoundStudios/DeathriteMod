@@ -22,11 +22,12 @@ import necesse.inventory.InventoryItem;
 import necesse.inventory.item.Item;
 import necesse.inventory.item.arrowItem.ArrowItem;
 import necesse.inventory.item.toolItem.projectileToolItem.bowProjectileToolItem.BowProjectileToolItem;
+import necesse.inventory.lootTable.presets.BowWeaponsLootTable;
 import necesse.level.maps.Level;
 
 public class RidiumBow extends BowProjectileToolItem {
     public RidiumBow() {
-        super(1500);
+        super(1500, BowWeaponsLootTable.bowWeapons);
         this.attackAnimTime.setBaseValue(450);
         this.rarity = Item.Rarity.EPIC;
         this.attackDamage.setBaseValue(43.0F).setUpgradedValue(1.0F, 85.0F);

@@ -41,7 +41,7 @@ public class StarfangedDestroyerTail extends StarfangedDestroyerBody {
             }
 
             WormMobHead.addAngledDrawable(list, new GameSprite(DeathriteMod.StarfangedDestroyerTexture, 1, 1, 96), MobRegistry.Textures.swampGuardian_mask, light, (int)this.height, tailAngle, drawX, drawY, 64);
-            this.addShadowDrawables(tileList, x, y, light, camera);
+            this.addShadowDrawables(tileList, level, x, y, light, camera);
         }
     }
 }

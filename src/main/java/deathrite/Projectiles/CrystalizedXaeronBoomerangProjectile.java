@@ -60,7 +60,4 @@ public class CrystalizedXaeronBoomerangProjectile extends BoomerangProjectile {
             this.addShadowDrawables(tileList, drawX, drawY, light, this.getAngle(), this.texture.getHeight() / 2);
         }
     }
-
-    public void playMoveSound() {
-    }
 }

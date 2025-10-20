@@ -7,6 +7,6 @@ import java.awt.*;
 public class SpaceRock extends RockObject {
     public SpaceRock() {
         super("spacerock",new Color(57, 60, 66),"spacestone",1,5,1);
-        toolTier = 7;
+        toolTier = 11;
     }
 }

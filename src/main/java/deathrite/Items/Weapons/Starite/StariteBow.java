@@ -21,11 +21,12 @@ import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.arrowItem.ArrowItem;
 import necesse.inventory.item.toolItem.projectileToolItem.bowProjectileToolItem.BowProjectileToolItem;
+import necesse.inventory.lootTable.presets.BowWeaponsLootTable;
 import necesse.level.maps.Level;
 
 public class StariteBow extends BowProjectileToolItem {
     public StariteBow() {
-        super(1500);
+        super(1500, BowWeaponsLootTable.bowWeapons);
         this.attackAnimTime.setBaseValue(450);
         this.rarity = Rarity.EPIC;
         this.attackDamage.setBaseValue(130.0F).setUpgradedValue(1.0F, 150.0F);

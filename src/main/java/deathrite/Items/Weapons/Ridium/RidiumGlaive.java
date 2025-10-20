@@ -17,11 +17,13 @@ import necesse.entity.particle.Particle.GType;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.Item.Rarity;
 import necesse.inventory.item.toolItem.glaiveToolItem.GlaiveToolItem;
+import necesse.inventory.lootTable.presets.CloseRangeWeaponsLootTable;
+import necesse.inventory.lootTable.presets.GlaiveWeaponsLootTable;
 import necesse.level.maps.Level;
 
 public class RidiumGlaive extends GlaiveToolItem {
     public RidiumGlaive() {
-        super(1600);
+        super(1600, GlaiveWeaponsLootTable.glaiveWeapons);
         this.rarity = Rarity.EPIC;
         this.attackAnimTime.setBaseValue(450);
         this.attackDamage.setBaseValue(35.0F).setUpgradedValue(1.0F, 40.0F);

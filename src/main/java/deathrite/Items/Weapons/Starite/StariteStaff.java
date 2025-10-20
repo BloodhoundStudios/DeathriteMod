@@ -19,13 +19,14 @@ import necesse.gfx.drawOptions.itemAttack.ItemAttackDrawOptions;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.PlayerInventorySlot;
 import necesse.inventory.item.toolItem.projectileToolItem.magicProjectileToolItem.MagicProjectileToolItem;
+import necesse.inventory.lootTable.presets.MagicWeaponsLootTable;
 import necesse.level.maps.Level;
 
 import java.awt.geom.Point2D;
 
 public class StariteStaff extends MagicProjectileToolItem {
     public StariteStaff() {
-        super(1200);
+        super(1200, MagicWeaponsLootTable.magicWeapons);
         this.rarity = Rarity.EPIC;
         this.attackAnimTime.setBaseValue(550);
         this.attackDamage.setBaseValue(60.0F).setUpgradedValue(1.0F, 200.0F);

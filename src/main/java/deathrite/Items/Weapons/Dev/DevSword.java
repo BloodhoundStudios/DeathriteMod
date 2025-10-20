@@ -1,6 +1,7 @@
 package deathrite.Items.Weapons.Dev;
 
 import necesse.inventory.item.toolItem.swordToolItem.SwordToolItem;
+import necesse.inventory.lootTable.presets.CloseRangeWeaponsLootTable;
 
 // Extends SwordToolItem
 public class DevSword extends SwordToolItem {
@@ -8,7 +9,7 @@ public class DevSword extends SwordToolItem {
     // Weapon attack textures are loaded from resources/player/weapons/<itemStringID>
 
     public DevSword() {
-        super(400);
+        super(400, CloseRangeWeaponsLootTable.closeRangeWeapons);
         rarity = Rarity.UNIQUE;
         attackAnimTime.setBaseValue(50); // Attack Time (ms)
         attackDamage.setBaseValue(9999) // Base sword damage

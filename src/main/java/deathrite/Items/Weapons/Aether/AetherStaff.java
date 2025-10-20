@@ -24,13 +24,14 @@ import necesse.inventory.InventoryItem;
 import necesse.inventory.PlayerInventorySlot;
 import necesse.inventory.item.Item;
 import necesse.inventory.item.toolItem.projectileToolItem.magicProjectileToolItem.MagicProjectileToolItem;
+import necesse.inventory.lootTable.presets.MagicWeaponsLootTable;
 import necesse.level.maps.Level;
 
 import java.awt.geom.Point2D;
 
 public class AetherStaff extends MagicProjectileToolItem {
     public AetherStaff() {
-        super(1300);
+        super(1300, MagicWeaponsLootTable.magicWeapons);
         this.rarity = Rarity.EPIC;
         this.attackAnimTime.setBaseValue(550);
         this.attackDamage.setBaseValue(57.0F).setUpgradedValue(1.0F, 140.0F);

@@ -14,12 +14,13 @@ import necesse.gfx.gameTooltips.ListGameTooltips;
 import necesse.inventory.InventoryItem;
 import necesse.inventory.item.Item.Rarity;
 import necesse.inventory.item.toolItem.swordToolItem.greatswordToolItem.GreatswordToolItem;
+import necesse.inventory.lootTable.presets.GreatswordWeaponsLootTable;
 import necesse.level.maps.Level;
 import necesse.level.maps.incursion.IncursionData;
 
 public class StariteGreatsword extends GreatswordToolItem {
     public StariteGreatsword() {
-        super(1900, getThreeChargeLevels(500, 600, 700));
+        super(1900, GreatswordWeaponsLootTable.greatswordWeapons, getThreeChargeLevels(500, 600, 700));
         this.rarity = Rarity.EPIC;
         this.attackDamage.setBaseValue(35.0F).setUpgradedValue(1.0F, 165.0F);
         this.attackRange.setBaseValue(70);

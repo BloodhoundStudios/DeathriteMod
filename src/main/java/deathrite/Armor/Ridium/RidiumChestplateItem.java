@@ -9,8 +9,10 @@ import necesse.engine.modifiers.ModifierValue;
 import necesse.entity.mobs.Mob;
 import necesse.entity.mobs.buffs.BuffModifiers;
 import necesse.inventory.InventoryItem;
+import necesse.inventory.item.Item;
 import necesse.inventory.item.armorItem.ArmorModifiers;
 import necesse.inventory.item.armorItem.ChestArmorItem;
+import necesse.inventory.lootTable.presets.BodyArmorLootTable;
 
 // Cheatsheet for spriting Chestplate and Arms
 // First/Top row is The Back L | is The Left R
@@ -23,7 +25,7 @@ import necesse.inventory.item.armorItem.ChestArmorItem;
 
 public class RidiumChestplateItem extends ChestArmorItem {
     public RidiumChestplateItem() {
-        super(14, 1300, Rarity.RARE, "ridiumchestplate", "ridiumarms");
+        super(14, 1300, Rarity.RARE, "ridiumchestplate", "ridiumarms", BodyArmorLootTable.bodyArmor);
     }
 
     public ArmorModifiers getArmorModifiers(InventoryItem item, Mob mob) {
