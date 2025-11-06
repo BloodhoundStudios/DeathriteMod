@@ -24,7 +24,7 @@ import necesse.inventory.lootTable.presets.HeadArmorLootTable;
 
 public class StariteHelmetItem extends SetHelmetArmorItem {
     public StariteHelmetItem() {
-        super(25, (DamageType)null, 1300, HeadArmorLootTable.headArmor, ArmorSetsLootTable.armorSets, Rarity.LEGENDARY, "", "staritechestplate", "stariteboots", "ancientfossilhelmetsetbonus");
+        super(25, (DamageType)null, 1300, HeadArmorLootTable.headArmor, ArmorSetsLootTable.armorSets, Rarity.EPIC, "", "staritechestplate", "stariteboots", "ancientfossilhelmetsetbonus");
         this.hairDrawOptions = HairDrawMode.NO_HEAD;
     }
 

@@ -24,7 +24,7 @@ import necesse.level.maps.Level;
 public class RidiumGlaive extends GlaiveToolItem {
     public RidiumGlaive() {
         super(1600, GlaiveWeaponsLootTable.glaiveWeapons);
-        this.rarity = Rarity.EPIC;
+        this.rarity = Rarity.RARE;
         this.attackAnimTime.setBaseValue(450);
         this.attackDamage.setBaseValue(35.0F).setUpgradedValue(1.0F, 40.0F);
         this.attackRange.setBaseValue(145);

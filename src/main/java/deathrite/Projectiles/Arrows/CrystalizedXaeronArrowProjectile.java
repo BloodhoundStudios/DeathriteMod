@@ -26,9 +26,6 @@ import java.awt.*;
 import java.util.List;
 
 public class CrystalizedXaeronArrowProjectile extends Projectile {
-    public CrystalizedXaeronArrowProjectile() {
-    }
-
     public void init() {
         super.init();
         this.givesLight = true;
@@ -49,20 +46,6 @@ public class CrystalizedXaeronArrowProjectile extends Projectile {
         return new Trail(this, this.getLevel(), new Color(227, 136, 138), 12.0F, 250, this.getHeight());
     }
 
-    public void doHitLogic(Mob mob, LevelObjectHit object, float x, float y) {
-        super.doHitLogic(mob, object, x, y);
-        if (this.isServer()) {
-            if (mob != null) {
-                ActiveBuff ab = new ActiveBuff(BuffRegistry.Debuffs.SPIDER_VENOM, mob, 10.0F, this.getOwner());
-                mob.addBuff(ab, true);
-                if (this.modifier != null) {
-                    this.modifier.doHitLogic(mob, object, x, y);
-                }
-            }
-
-        }
-    }
-
     public void addDrawables(List<LevelSortedDrawable> list, OrderableDrawables tileList, OrderableDrawables topList, OrderableDrawables overlayList, Level level, TickManager tickManager, GameCamera camera, PlayerMob perspective) {
         if (!this.removed()) {
             GameLight light = level.getLightLevel(this);
@@ -80,7 +63,7 @@ public class CrystalizedXaeronArrowProjectile extends Projectile {
 
     public void dropItem() {
         if (GameRandom.globalRandom.getChance(0.25F)) {
-            this.getLevel().entityManager.pickups.add((new InventoryItem("spideritearrow")).getPickupEntity(this.getLevel(), this.x, this.y));
+            this.getLevel().entityManager.pickups.add((new InventoryItem("crystalizedxaeronarrow")).getPickupEntity(this.getLevel(), this.x, this.y));
         }
 
     }

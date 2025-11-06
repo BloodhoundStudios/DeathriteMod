@@ -15,8 +15,6 @@ import necesse.inventory.lootTable.LootItemInterface;
 import necesse.inventory.lootTable.LootTable;
 import necesse.inventory.lootTable.lootItem.CountOfTicketLootItems;
 import necesse.inventory.lootTable.lootItem.LootItem;
-import necesse.level.maps.levelData.jobs.ConsumeFoodLevelJob;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,7 +25,6 @@ public class MysteryManHumanMob extends HumanShop {
     public MysteryManHumanMob() {
         super(999999999, 999999999, "mysteryman");
         this.look = new HumanLook();
-        this.setSpeed(50.0F);
         this.attackCooldown = 500;
         this.attackAnimTime = 500;
         this.setSwimSpeed(1.0F);
@@ -45,7 +42,7 @@ public class MysteryManHumanMob extends HumanShop {
     }
 
     protected ArrayList<GameMessage> getMessages(ServerClient client) {
-        return this.getLocalMessages("alchemisttalk", 5);
+        return this.getLocalMessages("mysterymantalk", 1);
     }
 
     public PacketOpenContainer getOpenShopPacket(Server server, ServerClient client) {

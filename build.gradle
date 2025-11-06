@@ -7,7 +7,7 @@ plugins {
 
 project.ext.modID = "bhs.deathrite" // The unique id of your mod. Must be all lowercase and cannot use special characters.
 project.ext.modName = "Deathrite" // The display name of your mod.
-project.ext.modVersion = "1.1" // Your current builds version. Must follow the xx.xx... format.
+project.ext.modVersion = "0.7.1" // Your current builds version. Must follow the xx.xx... format.
 project.ext.gameVersion = "1.0.1" // The target game version.
 project.ext.modDescription = "Deathrite is a mod that adds new things in the progression" // Short description of what your mod is.
 project.ext.author = "Bloodhound Studios" // Your name
@@ -24,7 +24,7 @@ project.ext.clientside = false
  * Dependencies define the default load order of mods
  * Uncomment and configure these if your mod has dependencies
  */
-//project.ext.modDependencies = ["other.modid1", "other.modid2"]
+project.ext.modDependencies = ["wither.lootbags"]
 //project.ext.modOptionalDependencies = ["optional.modid1", "optional.modid2"]
 
 // The path to the games install directory
@@ -45,6 +45,9 @@ setTargetCompatibility(JavaVersion.VERSION_1_8)
 
 repositories {
     mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 configurations {
@@ -66,6 +69,8 @@ dependencies {
     implementation files(gameDirectory + "/Necesse.jar")
     implementation fileTree(gameDirectory + "/lib/")
     implementation fileTree("./mods/") // Add all mods located in local mods folder
+    compileOnly files('libs/LootBagModdingLibrary.jar')
+    implementation files('libs/LootBagModdingLibrary.jar')
 
     // Add any third party library dependencies here. Remember to use libDepends, so that they will be added to your jar on build
     // These are some examples:

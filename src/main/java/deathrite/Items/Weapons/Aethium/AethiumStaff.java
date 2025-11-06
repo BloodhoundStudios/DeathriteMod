@@ -28,7 +28,7 @@ import java.awt.geom.Point2D;
 public class AethiumStaff extends MagicProjectileToolItem {
     public AethiumStaff() {
         super(1400, MagicWeaponsLootTable.magicWeapons);
-        this.rarity = Rarity.RARE;
+        this.rarity = Rarity.EPIC;
         this.attackAnimTime.setBaseValue(600);
         this.attackDamage.setBaseValue(52.0F).setUpgradedValue(1.0F, 65.0F);
         this.knockback.setBaseValue(80);

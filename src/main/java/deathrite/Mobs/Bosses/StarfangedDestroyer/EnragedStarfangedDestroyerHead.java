@@ -194,7 +194,7 @@ public class EnragedStarfangedDestroyerHead extends BossWormMobHead<EnragedStarf
 
     public void clientTick() {
         super.clientTick();
-        SoundManager.setMusic(DeathriteMod.StarfangedMusic, SoundManager.MusicPriority.EVENT, 1.5F);
+        SoundManager.setMusic(DeathriteMod.EnragedStarfangedMusic, SoundManager.MusicPriority.EVENT, 1.5F);
         EventStatusBarManager.registerMobHealthStatusBar(this);
         BossNearbyBuff.applyAround(this);
         float healthPerc = (float)this.getHealth() / (float)this.getMaxHealth();

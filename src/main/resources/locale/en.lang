@@ -24,7 +24,14 @@ aethiumanvil=Aethium Anvil
 aethersapling=Aether Sapling
 aethertree= Aether Tree
 
+[ui]
+givebutton=Give Essence of the Gods
+mysterymanwantitem=Give Item
+mysterymanstardust=Item
+
 [item]
+starfangedlootbag=Starfanged Loot Bag
+
 ridiumbar=Ridium Bar
 aetherbar=Aether Bar
 aethiumbar=Aethium Bar
@@ -54,7 +61,6 @@ xaeronglaive=Xaeron Glaive
 
 ridiumgreatsword=Ridium Greatsword
 aethiumgreatsword=Aethium Greatsword
-staritegreatsword=Starite Greatsword
 crystalizedxaerongreatsword=Crystalized Xaeron Greatsword
 
 stariteboomerang=Starite Boomerang
@@ -178,7 +184,6 @@ crystalizedxaeronarrow=Crystalized Xaeron Arrow
 [itemtooltip]
 skyladderdowntip=Seems like it goes to the sky
 
-staritegreatswordtip=Gain the powers of The Starfanged by charging up the Greatsword to it's max and shoot a star
 xaerondaggertip1=Upgraded version of The Carapace Dagger
 xaerondaggertip2=
 stariteboomerangtip=
@@ -216,6 +221,8 @@ staritecrystaltip=27% increased Summon Speed and Damage, 20% increased Summon Cr
 xaeroncrystaltip=30% increased Summon Speed and Damage, 20% increased Summon Crit Chance
 crystalizedxaeroncrystaltip=35% increased Summon Speed and Damage, 25% increased Summon Crit Chance
 
+thetrinketofeverythingtip=35% increased Melee, Ranged, Magic, and Summon Speed and Damage, 25% increased Melee, Ranged, Magic, and Summon Crit Chance
+
 starrywormtip=Calls upon the Devourer of Stars
 starrywormtip2=Use at night with caution
 
@@ -234,9 +241,14 @@ skycloudfloor=Sky Cloud
 aetherstonefloor=Aether Stone
 
 [mob]
+mysterymanhumanname=Ridium Knight
+mysterymanhuman=Ridium Knight
 aetherspirit=Aether Spirit
 starfangeddestroyer=Starfanged Destroyer
 enragedstarfangeddestroyer=Enraged Starfanged Destroyer
+
+[mobmsg]
+mysterymantalk1=Give me Essence of the Gods! I'll give you something you'd like.
 
 [buff]
 examplebuff=Example Buff

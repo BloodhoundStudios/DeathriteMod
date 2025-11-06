@@ -24,7 +24,7 @@ import necesse.inventory.lootTable.presets.BodyArmorLootTable;
 
 public class StariteChestplateItem extends ChestArmorItem {
     public StariteChestplateItem() {
-        super(30, 1300, Rarity.LEGENDARY, "", "", BodyArmorLootTable.bodyArmor);
+        super(30, 1300, Rarity.EPIC, "", "", BodyArmorLootTable.bodyArmor);
     }
 
     public ArmorModifiers getArmorModifiers(InventoryItem item, Mob mob) {

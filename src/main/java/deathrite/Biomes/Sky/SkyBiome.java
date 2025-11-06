@@ -22,7 +22,6 @@ import necesse.level.maps.biomes.MobSpawnTable;
 import necesse.level.maps.regionSystem.Region;
 
 public class SkyBiome extends Biome {
-    public static FishingLootTable surfaceFish;
     public static MobSpawnTable surfaceMobs;
     public static MobSpawnTable caveMobs;
     public static MobSpawnTable deepDesertCaveMobs;
@@ -99,7 +98,7 @@ public class SkyBiome extends Biome {
     }
 
     public AbstractMusicList getLevelMusic(Level level, PlayerMob perspective) {
-        return new MusicList(new GameMusic[]{DeathriteMod.AetherMusic});
+        return new MusicList(new GameMusic[]{DeathriteMod.SkyMusic});
     }
 
     public LootTable getExtraBiomeMobDrops(Mob mob) {

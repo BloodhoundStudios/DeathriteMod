@@ -20,7 +20,7 @@ public class StariteBootsItem extends BootsArmorItem {
     public FloatUpgradeValue speed = (new FloatUpgradeValue()).setBaseValue(0.2F).setUpgradedValue(1.0F, 0.25F);
 
     public StariteBootsItem() {
-        super(20, 1300, Rarity.LEGENDARY, "", FeetArmorLootTable.feetArmor);
+        super(20, 1300, Rarity.EPIC, "", FeetArmorLootTable.feetArmor);
     }
 
     public ArmorModifiers getArmorModifiers(InventoryItem item, Mob mob) {

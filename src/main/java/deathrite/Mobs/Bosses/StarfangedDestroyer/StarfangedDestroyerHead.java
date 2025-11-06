@@ -86,7 +86,7 @@ public class StarfangedDestroyerHead extends BossWormMobHead<StarfangedDestroyer
     public static int mindarkmatter = 1;
     public static int maxdarkmatter = 5;
     static int randomDarkMatterNumber = random.nextInt(maxdarkmatter - mindarkmatter + 1) + mindarkmatter;
-    public static LootTable lootTable = new LootTable(new LootItem("deathrite_stardust", randomNumber));
+    public static LootTable lootTable = new LootTable(new LootItem("deathrite_stardust", randomNumber), new LootItem("starfangedlootbag", 1));
     public static RotationLootItem uniqueDrops = RotationLootItem.privateLootRotation(new LootItem("darkmatter", randomDarkMatterNumber));
     public static LootTable privateLootTable;
     public static float lengthPerBodyPart;

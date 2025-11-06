@@ -5,6 +5,6 @@ import necesse.inventory.item.matItem.MatItem;
 
 public class MoonEssence extends MatItem {
     public MoonEssence() {
-        super(250, Item.Rarity.EPIC);
+        super(250, Item.Rarity.LEGENDARY);
     }
 }

@@ -32,6 +32,7 @@ import deathrite.Items.Arrows.RidiumArrow;
 import deathrite.Items.Arrows.StariteArrow;
 import deathrite.Items.BossDrops.*;
 import deathrite.Items.BossSummons.StarryWormSpawnItem;
+import deathrite.Items.LootBags.StarfangedLootBag;
 import deathrite.Items.Materials.Aether.*;
 import deathrite.Items.Materials.Aethium.AethiumBar;
 import deathrite.Items.Materials.VoidShards.*;
@@ -48,6 +49,7 @@ import deathrite.Items.Materials.Starite.StarryBar;
 import deathrite.Items.Materials.Xaeron.CrystalizedXaeronBar;
 import deathrite.Items.Materials.Xaeron.XaeronBar;
 import deathrite.Items.Materials.Xaeron.XaeronOre;
+import deathrite.Items.Mounts.HoverBoard2Mount;
 import deathrite.Items.Weapons.Aether.AetherStaff;
 import deathrite.Items.Weapons.Aethium.*;
 import deathrite.Items.Weapons.Dev.DevSword;
@@ -60,6 +62,7 @@ import deathrite.Mobs.Friendly.Caveling.AetherCaveling;
 import deathrite.Mobs.Friendly.NPCs.MysteryManHumanMob;
 import deathrite.Mobs.Friendly.NPCs.MysteryManSettler;
 import deathrite.Mobs.Hostile.AetherSpirit;
+import deathrite.Mobs.Mounts.Hoverboard2Mob;
 import deathrite.Objects.Aether.AetherRock;
 import deathrite.Objects.Space.SpaceRock;
 import deathrite.Objects.Space.UpgradedSpaceRock;
@@ -67,6 +70,7 @@ import deathrite.Objects.Workstations.AethiumAnvilObject;
 import deathrite.Objects.Workstations.AethiumWorkstationObject;
 import deathrite.Objects.Workstations.DeathriteSummonerObject;
 import deathrite.Overrides.FallenAnvilUpgrade;
+import deathrite.Overrides.FallenWorkstationUpgrade;
 import deathrite.Projectiles.*;
 import deathrite.Projectiles.Arrows.AetherArrowProjectile;
 import deathrite.Projectiles.Arrows.CrystalizedXaeronArrowProjectile;
@@ -85,19 +89,24 @@ import necesse.engine.localization.message.StaticMessage;
 import necesse.engine.modLoader.annotations.ModEntry;
 import necesse.engine.registries.*;
 import necesse.engine.sound.GameMusic;
+import necesse.engine.util.GameRandom;
 import necesse.entity.mobs.HumanTexture;
 import necesse.entity.mobs.friendly.human.humanShop.ShopContainerData;
 import necesse.entity.projectile.XaeronDaggerProjectile;
 import necesse.gfx.gameTexture.GameTexture;
 import necesse.gfx.shader.ShaderLoader;
 import necesse.inventory.InventoryItem;
+import necesse.inventory.item.Item;
 import necesse.inventory.item.Item.Rarity;
 import necesse.inventory.item.matItem.MatItem;
 import necesse.inventory.item.miscItem.VinylItem;
+import necesse.inventory.item.mountItem.HoverBoardMountItem;
 import necesse.inventory.item.toolItem.axeToolItem.CustomAxeToolItem;
 import necesse.inventory.item.toolItem.pickaxeToolItem.CustomPickaxeToolItem;
 import necesse.inventory.item.toolItem.shovelToolItem.CustomShovelToolItem;
 import necesse.inventory.item.trinketItem.SimpleTrinketItem;
+import necesse.inventory.lootTable.LootItemInterface;
+import necesse.inventory.lootTable.LootList;
 import necesse.inventory.lootTable.LootTablePresets;
 import necesse.inventory.lootTable.lootItem.LootItem;
 import necesse.inventory.lootTable.lootItem.LootItemList;
@@ -115,6 +124,7 @@ import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
 import net.bytebuddy.matcher.ElementMatchers;
 
 import java.awt.*;
+import java.util.List;
 import java.util.Random;
 
 // Normal = White
@@ -129,6 +139,10 @@ public class DeathriteMod {
 
     public static GameMusic AetherMusic;
     public static GameMusic StarfangedMusic;
+    public static GameMusic EnragedStarfangedMusic;
+    public static GameMusic WitherEasterEggMusic;
+    public static GameMusic SkyMusic;
+
     public static GameTexture StarfangedDestroyerTexture;
     public static GameTexture aetherStaffPillars;
     public static HumanTexture AetherCavelingTexture;
@@ -160,6 +174,24 @@ public class DeathriteMod {
                 new StaticMessage("Starfanged Destroyer"),
                 new Color(44, 8, 74),
                 new Color(218, 206, 37),
+                new LocalMessage("itemtooltip", "fromdeathriteost"));
+
+        EnragedStarfangedMusic = MusicRegistry.registerMusic("enragedstarfangeddestroyerbossmusic", "music/enragedstarfangeddestroyerbossmusic",
+                new StaticMessage("Enraged Starfanged Destroyer"),
+                new Color(44, 8, 74),
+                new Color(218, 206, 37),
+                new LocalMessage("itemtooltip", "fromdeathriteost"));
+
+        SkyMusic = MusicRegistry.registerMusic("skymusic", "music/skymusic",
+                new StaticMessage("Sky"),
+                new Color(213, 233, 239),
+                new Color(129, 220, 212),
+                new LocalMessage("itemtooltip", "fromdeathriteost"));
+
+        WitherEasterEggMusic = MusicRegistry.registerMusic("withereasteregg", "music/bossmusiceasteregg",
+                new StaticMessage("Easter egg :)"),
+                new Color(0, 0, 0),
+                new Color(68, 69, 69),
                 new LocalMessage("itemtooltip", "fromdeathriteost"));
 
         // Journal Challenges
@@ -271,6 +303,11 @@ public class DeathriteMod {
         ItemRegistry.registerItem("staritearrow", new StariteArrow(), 52, true);
         ItemRegistry.registerItem("crystalizedxaeronarrow", new CrystalizedXaeronArrow(), 548, true);
 
+        // Mounts
+        ItemRegistry.registerItem("hoverboardtwo", new HoverBoard2Mount(), 1000F, true);
+
+        // Loot Bags
+
         // Weapons
         //Melee
         ItemRegistry.registerItem("devsword", new DevSword(), 9999, false);
@@ -285,7 +322,6 @@ public class DeathriteMod {
         ItemRegistry.registerItem("xaeronglaive", new XaeronGlaive(), 384, true);
         ItemRegistry.registerItem("ridiumgreatsword", new RidiumGreatsword(), 160, true);
         ItemRegistry.registerItem("aethiumgreatsword", new AethiumGreatsword(), 720, true);
-        ItemRegistry.registerItem("staritegreatsword", new StariteGreatsword(), 1040, true);
         ItemRegistry.registerItem("crystalizedxaerongreatsword", new CrystalizedXaeronGreatsword(), 10960, true);
         ItemRegistry.registerItem("aethiumspear", new AethiumSpear(), 540, true);
         ItemRegistry.registerItem("xaeronspear", new XaeronSpear(), 360, true);
@@ -306,17 +342,17 @@ public class DeathriteMod {
         ItemRegistry.registerItem("staritestaff", new StariteStaff(), 8490, true);
 
         // Tools
-        ItemRegistry.registerItem("ridiumpickaxe", new CustomPickaxeToolItem(400, 200, 11, 30, 50, 55, 1200, ToolsLootTable.tools), 128, true);
-        ItemRegistry.registerItem("ridiumaxe", new CustomAxeToolItem(400, 200, 11, 30, 50, 55, 1200, ToolsLootTable.tools), 128, true);
+        ItemRegistry.registerItem("ridiumpickaxe", new CustomPickaxeToolItem(400, 200, 11, 30, 50, 55, 1200, ToolsLootTable.tools, Rarity.RARE), 128, true);
+        ItemRegistry.registerItem("ridiumaxe", new CustomAxeToolItem(400, 200, 11, 30, 50, 55, 1200, ToolsLootTable.tools, Rarity.RARE), 128, true);
         ItemRegistry.registerItem("ridiumshovel", new CustomShovelToolItem(400, 200, 11, 30, 50, 55, 1200, Rarity.RARE), 128, true);
-        ItemRegistry.registerItem("aethiumpickaxe", new CustomPickaxeToolItem(450, 220, 12, 35, 55, 55, 1400, ToolsLootTable.tools), 576, true);
-        ItemRegistry.registerItem("aethiumaxe", new CustomAxeToolItem(450, 220, 12, 35, 55, 55, 1400, ToolsLootTable.tools), 576, true);
+        ItemRegistry.registerItem("aethiumpickaxe", new CustomPickaxeToolItem(450, 220, 12, 35, 55, 55, 1400, ToolsLootTable.tools, Rarity.EPIC), 576, true);
+        ItemRegistry.registerItem("aethiumaxe", new CustomAxeToolItem(450, 220, 12, 35, 55, 55, 1400, ToolsLootTable.tools, Rarity.EPIC), 576, true);
         ItemRegistry.registerItem("aethiumshovel", new CustomShovelToolItem(450, 220, 12, 35, 55, 55, 1400, Rarity.EPIC), 576, true);
-        ItemRegistry.registerItem("starrypickaxe", new CustomPickaxeToolItem(500, 250, 13, 40, 60, 55, 1600, ToolsLootTable.tools), 832, true);
-        ItemRegistry.registerItem("starryaxe", new CustomAxeToolItem(500, 250, 13, 40, 60, 55, 1600, ToolsLootTable.tools), 832, true);
-        ItemRegistry.registerItem("starryshovel", new CustomShovelToolItem(500, 250, 13, 40, 60, 55, 1600, Rarity.LEGENDARY), 832, true);
-        ItemRegistry.registerItem("xaeronpickaxe", new CustomPickaxeToolItem(550, 300, 14, 45, 65, 60, 1800, ToolsLootTable.tools), 384, true);
-        ItemRegistry.registerItem("xaeronaxe", new CustomAxeToolItem(550, 300, 14, 45, 65, 60, 1800, ToolsLootTable.tools), 384, true);
+        ItemRegistry.registerItem("starrypickaxe", new CustomPickaxeToolItem(500, 250, 13, 40, 60, 55, 1600, ToolsLootTable.tools, Rarity.EPIC), 832, true);
+        ItemRegistry.registerItem("starryaxe", new CustomAxeToolItem(500, 250, 13, 40, 60, 55, 1600, ToolsLootTable.tools, Rarity.EPIC), 832, true);
+        ItemRegistry.registerItem("starryshovel", new CustomShovelToolItem(500, 250, 13, 40, 60, 55, 1600, Rarity.EPIC), 832, true);
+        ItemRegistry.registerItem("xaeronpickaxe", new CustomPickaxeToolItem(550, 300, 14, 45, 65, 60, 1800, ToolsLootTable.tools, Rarity.LEGENDARY), 384, true);
+        ItemRegistry.registerItem("xaeronaxe", new CustomAxeToolItem(550, 300, 14, 45, 65, 60, 1800, ToolsLootTable.tools, Rarity.LEGENDARY), 384, true);
         ItemRegistry.registerItem("xaeronshovel", new CustomShovelToolItem(550, 300, 14, 45, 65, 60, 1800, Rarity.LEGENDARY), 384, true);
 
         // Items
@@ -333,36 +369,36 @@ public class DeathriteMod {
         ItemRegistry.registerItem("aetherlog", (new MatItem(500, new String[]{"anylog"})).setItemCategory(new String[]{"materials", "logs"}), 2.0F, true);
 
         // Trinkets
-        ItemRegistry.registerItem("thetrinketofeverything", new SimpleTrinketItem(Rarity.LEGENDARY, "thetrinketofeverything", 801268, TrinketsLootTable.trinkets).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener", "aethiumbladesharpener", "staritebladesharpener", "xaeronbladesharpener", "crystalizedxaeronbladesharpener", "arrowhead", "ridiumarrowhead", "aetherarrowhead", "aethiumarrowhead", "staritearrowhead", "xaeronarrowhead", "crystalizedxaeronarrowhead", "spellbook", "ridiumspellbook", "aetherspellbook", "aethiumspellbook", "staritespellbook", "xaeronspellbook", "crystalizedxaeronspellbook", "staffcrystal", "aethercrystal", "aethiumcrystal", "staritecrystal", "crystalizedxaeroncrystal"), 5268, true);
+        ItemRegistry.registerItem("thetrinketofeverything", new SimpleTrinketItem(Rarity.UNIQUE, "thetrinketofeverything", 801268, TrinketsLootTable.trinkets).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener", "aethiumbladesharpener", "staritebladesharpener", "xaeronbladesharpener", "crystalizedxaeronbladesharpener", "arrowhead", "ridiumarrowhead", "aetherarrowhead", "aethiumarrowhead", "staritearrowhead", "xaeronarrowhead", "crystalizedxaeronarrowhead", "spellbook", "ridiumspellbook", "aetherspellbook", "aethiumspellbook", "staritespellbook", "xaeronspellbook", "crystalizedxaeronspellbook", "staffcrystal", "aethercrystal", "aethiumcrystal", "staritecrystal", "crystalizedxaeroncrystal"), 5268, true);
 
         ItemRegistry.registerItem("bladesharpener", new SimpleTrinketItem(Rarity.COMMON, "bladesharpener", 5, TrinketsLootTable.trinkets), 11, true);
-        ItemRegistry.registerItem("ridiumbladesharpener", new SimpleTrinketItem(Rarity.EPIC, "ridiumbladesharpener", 10, TrinketsLootTable.trinkets).addDisables("bladesharpener", "aetherbladesharpener"), 27, true);
-        ItemRegistry.registerItem("aetherbladesharpener", new SimpleTrinketItem(Rarity.EPIC, "aetherbladesharpener", 10, TrinketsLootTable.trinkets).addDisables("bladesharpener", "ridiumbladesharpener"), 27, true);
+        ItemRegistry.registerItem("ridiumbladesharpener", new SimpleTrinketItem(Rarity.RARE, "ridiumbladesharpener", 10, TrinketsLootTable.trinkets).addDisables("bladesharpener", "aetherbladesharpener"), 27, true);
+        ItemRegistry.registerItem("aetherbladesharpener", new SimpleTrinketItem(Rarity.RARE, "aetherbladesharpener", 10, TrinketsLootTable.trinkets).addDisables("bladesharpener", "ridiumbladesharpener"), 27, true);
         ItemRegistry.registerItem("aethiumbladesharpener", new SimpleTrinketItem(Rarity.EPIC, "aethiumbladesharpener", 10, TrinketsLootTable.trinkets).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener"), 69, true);
-        ItemRegistry.registerItem("staritebladesharpener", new SimpleTrinketItem(Rarity.LEGENDARY, "staritebladesharpener", 10, TrinketsLootTable.trinkets).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener", "aethiumbladesharpener"), 173, true);
+        ItemRegistry.registerItem("staritebladesharpener", new SimpleTrinketItem(Rarity.EPIC, "staritebladesharpener", 10, TrinketsLootTable.trinkets).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener", "aethiumbladesharpener"), 173, true);
         ItemRegistry.registerItem("xaeronbladesharpener", new SimpleTrinketItem(Rarity.LEGENDARY, "xaeronbladesharpener", 10, TrinketsLootTable.trinkets).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener", "aethiumbladesharpener", "staritebladesharpener"), 221, true);
         ItemRegistry.registerItem("crystalizedxaeronbladesharpener", new SimpleTrinketItem(Rarity.LEGENDARY, "crystalizedxaeronbladesharpener", 10, TrinketsLootTable.trinkets).addDisables("bladesharpener", "ridiumbladesharpener", "aetherbladesharpener", "aethiumbladesharpener", "staritebladesharpener", "xaeronbladesharpener"), 1317, true);
 
         ItemRegistry.registerItem("arrowhead", new SimpleTrinketItem(Rarity.COMMON, "arrowhead", 5, TrinketsLootTable.trinkets), 11, true);
-        ItemRegistry.registerItem("ridiumarrowhead", new SimpleTrinketItem(Rarity.EPIC, "ridiumarrowheadbuff", 10, TrinketsLootTable.trinkets).addDisables("arrowhead", "aetherarrowhead"),5, true);
-        ItemRegistry.registerItem("aetherarrowhead", new SimpleTrinketItem(Rarity.EPIC, "aetherarrowhead", 10, TrinketsLootTable.trinkets).addDisables("arrowhead", "ridiumarrowhead"), 27, true);
+        ItemRegistry.registerItem("ridiumarrowhead", new SimpleTrinketItem(Rarity.RARE, "ridiumarrowheadbuff", 10, TrinketsLootTable.trinkets).addDisables("arrowhead", "aetherarrowhead"),5, true);
+        ItemRegistry.registerItem("aetherarrowhead", new SimpleTrinketItem(Rarity.RARE, "aetherarrowhead", 10, TrinketsLootTable.trinkets).addDisables("arrowhead", "ridiumarrowhead"), 27, true);
         ItemRegistry.registerItem("aethiumarrowhead", new SimpleTrinketItem(Rarity.EPIC, "aethiumarrowhead", 10, TrinketsLootTable.trinkets).addDisables("arrowhead", "ridiumarrowhead", "aetherarrowhead"), 69, true);
-        ItemRegistry.registerItem("staritearrowhead", new SimpleTrinketItem(Rarity.LEGENDARY, "staritearrowhead", 10, TrinketsLootTable.trinkets).addDisables("arrowhead", "ridiumarrowhead", "aetherarrowhead", "aethiumarrowhead"), 173, true);
+        ItemRegistry.registerItem("staritearrowhead", new SimpleTrinketItem(Rarity.EPIC, "staritearrowhead", 10, TrinketsLootTable.trinkets).addDisables("arrowhead", "ridiumarrowhead", "aetherarrowhead", "aethiumarrowhead"), 173, true);
         ItemRegistry.registerItem("xaeronarrowhead", new SimpleTrinketItem(Rarity.LEGENDARY, "xaeronarrowhead", 10, TrinketsLootTable.trinkets).addDisables("arrowhead", "ridiumarrowhead", "aetherarrowhead", "aethiumarrowhead", "staritearrowhead"), 221, true);
         ItemRegistry.registerItem("crystalizedxaeronarrowhead", new SimpleTrinketItem(Rarity.LEGENDARY, "crystalizedxaeronarrowhead", 10, TrinketsLootTable.trinkets).addDisables("arrowhead", "ridiumarrowhead", "aetherarrowhead", "aethiumarrowhead", "staritearrowhead", "xaeronarrowhead"), 1317, true);
 
         ItemRegistry.registerItem("spellbook", new SimpleTrinketItem(Rarity.COMMON, "spellbook", 5, TrinketsLootTable.trinkets), 11, true);
-        ItemRegistry.registerItem("ridiumspellbook", new SimpleTrinketItem(Rarity.EPIC, "ridiumspellbookbuff", 10, TrinketsLootTable.trinkets).addDisables("spellbook", "aetherspellbook"),5, true);
-        ItemRegistry.registerItem("aetherspellbook", new SimpleTrinketItem(Rarity.EPIC, "aetherspellbook", 10, TrinketsLootTable.trinkets).addDisables("spellbook", "ridiumspellbook"), 27, true);
+        ItemRegistry.registerItem("ridiumspellbook", new SimpleTrinketItem(Rarity.RARE, "ridiumspellbookbuff", 10, TrinketsLootTable.trinkets).addDisables("spellbook", "aetherspellbook"),5, true);
+        ItemRegistry.registerItem("aetherspellbook", new SimpleTrinketItem(Rarity.RARE, "aetherspellbook", 10, TrinketsLootTable.trinkets).addDisables("spellbook", "ridiumspellbook"), 27, true);
         ItemRegistry.registerItem("aethiumspellbook", new SimpleTrinketItem(Rarity.EPIC, "aethiumspellbook", 10, TrinketsLootTable.trinkets).addDisables("spellbook", "ridiumspellbook", "aetherspellbook"), 69, true);
-        ItemRegistry.registerItem("staritespellbook", new SimpleTrinketItem(Rarity.LEGENDARY, "staritespellbook", 10, TrinketsLootTable.trinkets).addDisables("spellbook", "ridiumspellbook", "aetherspellbook", "aethiumspellbook"), 173, true);
+        ItemRegistry.registerItem("staritespellbook", new SimpleTrinketItem(Rarity.EPIC, "staritespellbook", 10, TrinketsLootTable.trinkets).addDisables("spellbook", "ridiumspellbook", "aetherspellbook", "aethiumspellbook"), 173, true);
         ItemRegistry.registerItem("xaeronspellbook", new SimpleTrinketItem(Rarity.LEGENDARY, "xaeronspellbook", 10, TrinketsLootTable.trinkets).addDisables("spellbook", "ridiumspellbook", "aetherspellbook", "aethiumspellbook", "staritespellbook"), 221, true);
         ItemRegistry.registerItem("crystalizedxaeronspellbook", new SimpleTrinketItem(Rarity.LEGENDARY, "crystalizedxaeronspellbook", 10, TrinketsLootTable.trinkets).addDisables("spellbook", "ridiumspellbook", "aetherspellbook", "aethiumspellbook", "staritespellbook", "xaeronspellbook"), 1317, true);
 
         ItemRegistry.registerItem("staffcrystal", new SimpleTrinketItem(Rarity.COMMON, "staffcrystal", 5, TrinketsLootTable.trinkets), 11, true);
-        ItemRegistry.registerItem("aethercrystal", new SimpleTrinketItem(Rarity.EPIC, "aethercrystal", 10, TrinketsLootTable.trinkets).addDisables("staffcrystal"), 27, true);
+        ItemRegistry.registerItem("aethercrystal", new SimpleTrinketItem(Rarity.RARE, "aethercrystal", 10, TrinketsLootTable.trinkets).addDisables("staffcrystal"), 27, true);
         ItemRegistry.registerItem("aethiumcrystal", new SimpleTrinketItem(Rarity.EPIC, "aethiumcrystal", 10, TrinketsLootTable.trinkets).addDisables("staffcrystal", "aethercrystal"), 69, true);
-        ItemRegistry.registerItem("staritecrystal", new SimpleTrinketItem(Rarity.LEGENDARY, "staritecrystal", 10, TrinketsLootTable.trinkets).addDisables("staffcrystal", "aethercrystal", "aethiumcrystal"), 173, true);
+        ItemRegistry.registerItem("staritecrystal", new SimpleTrinketItem(Rarity.EPIC, "staritecrystal", 10, TrinketsLootTable.trinkets).addDisables("staffcrystal", "aethercrystal", "aethiumcrystal"), 173, true);
         ItemRegistry.registerItem("crystalizedxaeroncrystal", new SimpleTrinketItem(Rarity.LEGENDARY, "crystalizedxaeroncrystal", 10, TrinketsLootTable.trinkets).addDisables("staffcrystal", "aethercrystal", "aethiumcrystal", "staritecrystal"), 1317, true);
 
         // Armor
@@ -396,12 +432,18 @@ public class DeathriteMod {
         ItemRegistry.registerItem("darkmatter", new DarkMatter(), 50, true);
         ItemRegistry.registerItem("crystalscale", new CrystalScale(), 50, true);
 
+        // Loot Bags
+        ItemRegistry.registerItem("starfangedlootbag", new StarfangedLootBag(), 100, true);
+
         // Boss Summons
         ItemRegistry.registerItem("starryworm", new StarryWormSpawnItem(), 9450, true);
 
         // Music Vinyls
         ItemRegistry.registerItem(AetherMusic.getStringID() + "vinyl", new VinylItem(AetherMusic), 50, true, false);
         ItemRegistry.registerItem(StarfangedMusic.getStringID() + "vinyl", new VinylItem(StarfangedMusic), 50, true, false);
+        ItemRegistry.registerItem(EnragedStarfangedMusic.getStringID() + "vinyl", new VinylItem(EnragedStarfangedMusic), 50, true, false);
+        ItemRegistry.registerItem(SkyMusic.getStringID() + "vinyl", new VinylItem(SkyMusic), 50, true, false);
+        ItemRegistry.registerItem(WitherEasterEggMusic.getStringID() + "vinyl", new VinylItem(WitherEasterEggMusic), 50, true, false);
 
         // Mobs
         MobRegistry.registerMob("aetherspirit", AetherSpirit.class, true);
@@ -418,6 +460,9 @@ public class DeathriteMod {
         MobRegistry.registerMob("enragedstarfangeddestroyer", EnragedStarfangedDestroyerHead.class, true, true);
         MobRegistry.registerMob("enragedstarfangeddestroyerbody", EnragedStarfangedDestroyerBody.class, false, true);
         MobRegistry.registerMob("enragedstarfangeddestroyertail", EnragedStarfangedDestroyerTail.class, false, true);
+
+        // Mounts
+        MobRegistry.registerMob("hoverboardtwo", Hoverboard2Mob.class, false, false);
 
         // Projectiles
         ProjectileRegistry.registerProjectile("shootingstarprojectile", ShootingStarProjectile.class, "shootingstarprojectile", "shootingstarprojectile_shadow");
@@ -458,26 +503,19 @@ public class DeathriteMod {
     }
 
     public void postInit() {
-        // Install Byte Buddy agent (required for runtime class modification)
-        // Thanks to A Wild Ferren/ferrenfx on discord for getting the workstation upgrade to work
-        ByteBuddyAgent.install();
 
-        try {
-            new ByteBuddy()
-                    .rebase(CraftingStationObject.class) // Rebase preseves the original class.
-                    .visit(Advice.to(GetStationUpgradeInterceptor.class)
-                            .on(ElementMatchers.named("getStationUpgrade"))) // Intercept this method in every instance of CraftingStationObject
-                    .make()
-                    .load(CraftingStationObject.class.getClassLoader(), ClassReloadingStrategy.fromInstalledAgent());
-
-            System.out.println("Successfully intercepted getStationUpgrade()!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        LootTablePresets.startChest.items.addAll(new LootItemList(new LootItem("knightsheart", 250)));
+        LootTablePresets.startChest.items.addAll(new LootItemList(new LootItem(WitherEasterEggMusic.getStringID() + "vinyl", 1)));
 
         // Items
+        Recipes.registerModRecipe(new Recipe(
+                WitherEasterEggMusic.getStringID() + "vinyl",
+                1,
+                RecipeTechRegistry.getTech("deathritesummoner"),
+                new Ingredient[]{
+                        new Ingredient("anylog", 1)
+                }
+        ));
+
         Recipes.registerModRecipe(new Recipe(
                 "knightsheart",
                 1,
@@ -560,7 +598,7 @@ public class DeathriteMod {
                 RecipeTechRegistry.getTech("aethiumanvil"),
                 new Ingredient[]{
                         new Ingredient("starrybar", 10),
-                        new Ingredient("darkmatter", 5)
+                        new Ingredient("darkmatter", 30)
                 }
         ));
 
@@ -625,15 +663,6 @@ public class DeathriteMod {
                 RecipeTechRegistry.getTech("aethiumanvil"),
                 new Ingredient[]{
                         new Ingredient("aethiumbar", 20)
-                }
-        ));
-
-        Recipes.registerModRecipe(new Recipe(
-                "staritegreatsword",
-                1,
-                RecipeTechRegistry.getTech("aethiumanvil"),
-                new Ingredient[]{
-                        new Ingredient("starrybar", 20)
                 }
         ));
 
@@ -1474,7 +1503,6 @@ public class DeathriteMod {
                 RecipeTechRegistry.getTech("deathritesummoner"),
                 new Ingredient[]{
                         new Ingredient("deathrite_stardust", 10),
-                        new Ingredient("essenceofthegods", 1)
                 }
         ));
 
@@ -1489,7 +1517,6 @@ public class DeathriteMod {
                 int crystalmin = 100;
                 int crystalmax = 250;
                 if (event.mob.getStringID().equals("fallenwizard")) {
-                    event.drops.add(new InventoryItem("aethermap", 1));
                     event.drops.add(new InventoryItem("ridiumpickaxe", 1));
                 }
                 if (event.mob.getStringID().equals("motherslime")) {
@@ -1517,27 +1544,5 @@ public class DeathriteMod {
                 }
             }
         });
-    }
-
-    public static class GetStationUpgradeInterceptor {
-        @Advice.OnMethodExit
-        static void onExit(@Advice.This Object thisObject, @Advice.Return(readOnly = false) CraftingStationUpgrade returnValue) {
-            System.out.println("Intercepted getStationUpgrade call!");
-
-
-            if (thisObject instanceof FallenWorkstationObject) {
-
-                // Modify the return value only for FallenWorkstationObject.
-                returnValue = new CraftingStationUpgrade(ObjectRegistry.getObject("aethiumworkstation"),
-                        new Ingredient[]{new Ingredient("aethiumbar", 5), new Ingredient("skycore", 1)});
-            }
-
-            if (thisObject instanceof FallenAnvilObject) {
-
-                // Modify the return value only for FallenWorkstationObject.
-                returnValue = new CraftingStationUpgrade(ObjectRegistry.getObject("aethiumanvil"),
-                        new Ingredient[]{new Ingredient("aethiumbar", 6), new Ingredient("skycore", 1)});
-            }
-        }
     }
 }

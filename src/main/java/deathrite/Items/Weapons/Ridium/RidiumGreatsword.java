@@ -8,7 +8,7 @@ import java.awt.*;
 public class RidiumGreatsword extends GreatswordToolItem {
     public RidiumGreatsword() {
         super(900, GreatswordWeaponsLootTable.greatswordWeapons, getThreeChargeLevels(500, 600, 700));
-        this.rarity = Rarity.EPIC;
+        this.rarity = Rarity.RARE;
         this.attackDamage.setBaseValue(130.0F).setUpgradedValue(1.0F, 155.0F);
         this.attackRange.setBaseValue(130);
         this.knockback.setBaseValue(150);

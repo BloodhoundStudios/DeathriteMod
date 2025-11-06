@@ -30,7 +30,7 @@ import java.awt.geom.Point2D;
 public class RidiumStaff extends MagicProjectileToolItem {
     public RidiumStaff() {
         super(1200, MagicWeaponsLootTable.magicWeapons);
-        this.rarity = Rarity.EPIC;
+        this.rarity = Rarity.RARE;
         this.attackAnimTime.setBaseValue(550);
         this.attackDamage.setBaseValue(57.0F).setUpgradedValue(1.0F, 140.0F);
         this.velocity.setBaseValue(150);

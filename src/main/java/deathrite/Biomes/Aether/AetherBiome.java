@@ -22,7 +22,6 @@ import necesse.level.maps.biomes.MobSpawnTable;
 import necesse.level.maps.regionSystem.Region;
 
 public class AetherBiome extends Biome {
-    public static FishingLootTable surfaceFish;
     public static MobSpawnTable surfaceMobs;
     public static MobSpawnTable caveMobs;
     public static MobSpawnTable deepDesertCaveMobs;

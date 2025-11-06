@@ -10,11 +10,10 @@ public class RidiumSword extends SwordToolItem {
 
     public RidiumSword() {
         super(400, CloseRangeWeaponsLootTable.closeRangeWeapons);
-        rarity = Rarity.EPIC;
-        attackAnimTime.setBaseValue(330); // 300 ms attack time
-        attackDamage.setBaseValue(85) // Base sword damage
-                .setUpgradedValue(1, 85); // Upgraded tier 1 damage
-        attackRange.setBaseValue(100); // 120 range
-        knockback.setBaseValue(100); // 100 knockback
+        rarity = Rarity.RARE;
+        attackAnimTime.setBaseValue(330); // ms attack time
+        attackDamage.setBaseValue(85).setUpgradedValue(1, 85);
+        attackRange.setBaseValue(100); // range
+        knockback.setBaseValue(100); // knockback
     }
 }

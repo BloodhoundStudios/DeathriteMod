@@ -29,7 +29,7 @@ public class RidiumBow extends BowProjectileToolItem {
     public RidiumBow() {
         super(1500, BowWeaponsLootTable.bowWeapons);
         this.attackAnimTime.setBaseValue(450);
-        this.rarity = Item.Rarity.EPIC;
+        this.rarity = Item.Rarity.RARE;
         this.attackDamage.setBaseValue(43.0F).setUpgradedValue(1.0F, 85.0F);
         this.velocity.setBaseValue(225);
         this.attackRange.setBaseValue(800);

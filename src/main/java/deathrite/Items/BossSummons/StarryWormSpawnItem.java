@@ -27,7 +27,7 @@ public class StarryWormSpawnItem extends ConsumableItem {
         this.setItemCategory(new String[]{"consumable", "bossitems"});
         this.dropsAsMatDeathPenalty = true;
         this.keyWords.add("boss");
-        this.rarity = Rarity.LEGENDARY;
+        this.rarity = Rarity.EPIC;
         this.worldDrawSize = 32;
         this.incinerationTimeMillis = 30000;
     }
@@ -76,7 +76,7 @@ public class StarryWormSpawnItem extends ConsumableItem {
                     if (level instanceof IncursionLevel) {
                         ((IncursionLevel) level).onBossSummoned(mob);
                     }
-                } else if (level.getWorldEntity().getDayTimeHour() >= 8 && level.getWorldEntity().getDayTimeHour() <= 19) {
+                } else if (level.getWorldEntity().getDayTimeHour() >= 6 && level.getWorldEntity().getDayTimeHour() <= 19) {
                     System.out.println("Starfanged Destroyer has been summoned at " + level.getIdentifier() + ".");
                     System.out.println(level.getWorldEntity().getDayTimeHour());
                     Mob mob = MobRegistry.getMob("starfangeddestroyer", level);
